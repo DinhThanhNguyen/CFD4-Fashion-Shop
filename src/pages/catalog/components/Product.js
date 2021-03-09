@@ -62,7 +62,7 @@ export default function Product(props) {
                 </div>
                 {/* Price */}
                 <div className="font-weight-bold text-muted">
-                    {price} VND
+                    {price}₫
                 </div>
             </div>
         </div>
