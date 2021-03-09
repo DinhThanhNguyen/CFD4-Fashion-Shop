@@ -1,16 +1,27 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Category from './components/Category'
 import Size from './components/Size'
 import Color from './components/Color'
 import Brand from './components/Brand'
 import Price from './components/Price'
 import Slider from './components/Slider'
-import Breadcrumb from '../../components/Breadcrumb'
+import Session from './components/Session'
+import { useDispatch, useSelector } from 'react-redux'
+import { getProduct } from '../../redux/reducers/productReducers'
 import Product from './components/Product'
-
+import Pagination from './components/Pagination'
 
 
 export default function Catalog() {
+
+    let dispatch = useDispatch()
+
+    let product = useSelector(state => state.product)
+
+    useEffect(() => {
+        dispatch(getProduct())
+    }, [])
+
     return (
         <section className="py-11">
             <div className="container">
@@ -20,6 +31,7 @@ export default function Catalog() {
                         <form className="mb-10 mb-md-0">
                             <ul className="nav nav-vertical" id="filterNav">
                                 <Category />
+                                <Session />
                                 <Size />
                                 <Color />
                                 <Brand />
@@ -36,25 +48,19 @@ export default function Catalog() {
                                 {/* Heading */}
                                 <h3 className="mb-1">Womens' Clothing</h3>
                                 {/* Breadcrumb */}
-                                <Breadcrumb list={[
-                                    {
-                                        title: 'Home',
-                                        link: ''
-                                    },
-                                    {
-                                        title: `Women's Clothing`,
-                                        link: ''
-                                    }
-                                ]} />
+                                <ol className="breadcrumb mb-md-0 font-size-xs text-gray-400">
+                                    <li className="breadcrumb-item">
+                                        <a className="text-gray-400" href="index.html">Home</a>
+                                    </li>
+                                    <li className="breadcrumb-item active">
+                                        Women's Clothing
+                                    </li>
+                                </ol>
                             </div>
                             <div className="col-12 col-md-auto">
                                 {/* Select */}
-                                <select className="custom-select custom-select-xs" onChange={sortChange}>
-                                    <option selected={queryURL.sort === ''} value=''>--Sắp xếp--</option>
-                                    <option selected={queryURL.sort === 'real_price.1'} value="real_price.1">Giá thấp</option>
-                                    <option selected={queryURL.sort === 'real_price.-1'} value="real_price.-1">Giá cao</option>
-                                    <option selected={queryURL.sort === 'rating_average.-1'} value="rating_average.-1">Đánh giá cao</option>
-                                    <option selected={queryURL.sort === 'discount_rate.-1'} value="discount_rate.-1">Giảm nhiều</option>
+                                <select className="custom-select custom-select-xs">
+                                    <option selected>Most popular</option>
                                 </select>
                             </div>
                         </div>
@@ -106,20 +112,11 @@ export default function Catalog() {
                         {/* Products */}
                         <div className="row">
                             {
-                                product.loading && [...Array(15)].map((e, i) => (
-                                    <div className="col-6 col-md-4" key={i}>
-                                        <Product loading={true} />
-                                    </div>
-                                ))
+                                product.products.map((e) => <div className="col-6 col-md-4" key={e._id}>
+                                    {/* Card */}
+                                    <Product {...e} />
+                                </div>)
                             }
-                            {
-                                !product.loading && product.products.map(e => (
-                                    <div className="col-6 col-md-4" key={e._id}>
-                                        {withPriceFormat(Product, e)}
-                                    </div>
-                                ))
-                            }
-
                         </div>
                         {/* Pagination */}
                         <Pagination {...product.paginate} />
