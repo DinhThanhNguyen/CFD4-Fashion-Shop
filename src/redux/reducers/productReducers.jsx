@@ -6,13 +6,12 @@ const initialState = {
     paginate: null
 }
 
-export function getProduct() {
+export function getProduct(page) {
     return (dispatch) => {
-        productApi.catalog()
+        productApi.catalog(page)
             .then(res => {
 
-
-                dispatch({ type: TYPE.catalog, payload: res.data })
+                dispatch({ type: TYPE.catalog, payload: res })
             })
     }
 }

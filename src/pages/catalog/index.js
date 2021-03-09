@@ -12,15 +12,22 @@ import Product from './components/Product'
 import Pagination from './components/Pagination'
 
 
+function getPage() {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get('page');
+}
+
 export default function Catalog() {
 
     let dispatch = useDispatch()
 
     let product = useSelector(state => state.product)
 
+    let page = getPage();
+
     useEffect(() => {
-        dispatch(getProduct())
-    }, [])
+        dispatch(getProduct(page || 1))
+    }, [page])
 
     return (
         <section className="py-11">
@@ -112,12 +119,15 @@ export default function Catalog() {
                         {/* Products */}
                         <div className="row">
                             {
-                                product.products.map((e) => <div className="col-6 col-md-4" key={e._id}>
-                                    {/* Card */}
-                                    <Product {...e} />
-                                </div>)
+                                product.products.map(e => (
+                                    <div className="col-6 col-md-4" key={e._id}>
+                                        {/* Card */}
+                                        <Product {...e} />
+                                    </div>
+                                ))
                             }
                         </div>
+
                         {/* Pagination */}
                         <Pagination {...product.paginate} />
                     </div>

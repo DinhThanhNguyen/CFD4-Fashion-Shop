@@ -1,6 +1,8 @@
 import React from 'react'
 
-export default function Product(props) {
+export default function Product({ name, price, images }) {
+    let image1 = images?.[0]?.medium_url
+    let image2 = images?.[1]?.medium_url
 
     return (
         <div className="card mb-7">
@@ -12,8 +14,13 @@ export default function Product(props) {
             <div className="card-img">
                 {/* Image */}
                 <a className="card-img-hover" href="product.html">
-                    <img className="card-img-top card-img-back" src="/img/products/product-120.jpg" alt="..." />
-                    <img className="card-img-top card-img-front" src="/img/products/product-5.jpg" alt="..." />
+                    {
+                        image1 && <img className="card-img-top card-img-back" src={image1} alt="..." />
+                    }
+                    {
+                        image2 ? <img className="card-img-top card-img-front" src={image2} alt="..." /> :
+                            <img className="card-img-top card-img-front" src={image1} alt="..." />
+                    }
                 </a>
                 {/* Actions */}
                 <div className="card-actions">
@@ -43,12 +50,12 @@ export default function Product(props) {
                 {/* Title */}
                 <div className="font-weight-bold">
                     <a className="text-body" href="product.html">
-                        Leather mid-heel Sandals
+                        {name}
                     </a>
                 </div>
                 {/* Price */}
                 <div className="font-weight-bold text-muted">
-                    $129.00
+                    {price} VND
                 </div>
             </div>
         </div>
