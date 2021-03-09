@@ -1,6 +1,13 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
+import { addCart } from '../../../redux/reducers/cartReducers'
 
-export default function Product({ name, price, images }) {
+export default function Product(props) {
+
+    let { name, price, images } = props
+
+    let dispatch = useDispatch()
+
     let image1 = images?.[0]?.medium_url
     let image2 = images?.[1]?.medium_url
 
@@ -30,7 +37,7 @@ export default function Product({ name, price, images }) {
                         </button>
                     </span>
                     <span className="card-action">
-                        <button className="btn btn-xs btn-circle btn-white-primary" data-toggle="button">
+                        <button className="btn btn-xs btn-circle btn-white-primary" data-toggle="button" onClick={dispatch.bind(null, addCart(props))}>
                             <i className="fe fe-shopping-cart" />
                         </button>
                     </span>

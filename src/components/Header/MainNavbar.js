@@ -1,14 +1,18 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 export default function MainNavbar() {
+
+    const cart = useSelector(state => state.cart)
+
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-white">
             <div className="container">
                 {/* Brand */}
-                <a className="navbar-brand" href="./overview.html">
+                <Link className="navbar-brand" to="/">
                     Shopper.
-                </a>
+                </Link>
                 {/* Toggler */}
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon" />
@@ -71,9 +75,17 @@ export default function MainNavbar() {
                         </li>
                         <li className="nav-item ml-lg-n4">
                             <a className="nav-link" data-toggle="modal" href="#modalShoppingCart">
-                                <span data-cart-items={2}>
-                                    <i className="fe fe-shopping-cart" />
-                                </span>
+                                {
+                                    cart.num > 0 ? (<span data-cart-items={cart.num}>
+                                        <i className="fe fe-shopping-cart" />
+                                    </span>
+
+                                    ) : (
+                                        <span>
+                                            <i className="fe fe-shopping-cart" />
+                                        </span>
+                                    )
+                                }
                             </a>
                         </li>
                     </ul>

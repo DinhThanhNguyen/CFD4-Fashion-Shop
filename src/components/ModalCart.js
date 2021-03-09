@@ -1,8 +1,12 @@
 import React from 'react'
-import reactDom from 'react-dom'
+import reactDOM from 'react-dom'
+import { useSelector } from 'react-redux'
 
-export default function shoppingCart() {
-    return reactDom.createPortal (
+export default function ModalCart() {
+
+    const cart = useSelector(state => state.cart)
+
+    return reactDOM.createPortal (
         <div className="modal fixed-right fade" id="modalShoppingCart" tabIndex={-1} role="dialog" aria-hidden="true">
             <div className="modal-dialog modal-dialog-vertical" role="document">
                 {/* Full cart (add `.d-none` to disable it) */}
@@ -13,7 +17,7 @@ export default function shoppingCart() {
                     </button>
                     {/* Header*/}
                     <div className="modal-header line-height-fixed font-size-lg">
-                        <strong className="mx-auto">Your Cart (2)</strong>
+                        <strong className="mx-auto">Your Cart {cart.num}</strong>
                     </div>
                     {/* List group */}
                     <ul className="list-group list-group-lg list-group-flush">
@@ -42,7 +46,7 @@ export default function shoppingCart() {
                                         {/* Remove */}
                                         <a className="font-size-xs text-gray-400 ml-auto" href="#!">
                                             <i className="fe fe-x" /> Remove
-                      </a>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -72,7 +76,7 @@ export default function shoppingCart() {
                                         {/* Remove */}
                                         <a className="font-size-xs text-gray-400 ml-auto" href="#!">
                                             <i className="fe fe-x" /> Remove
-                      </a>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -105,7 +109,7 @@ export default function shoppingCart() {
                         {/* Button */}
                         <a className="btn btn-block btn-outline-dark" href="#!">
                             Continue Shopping
-              </a>
+                        </a>
                     </div>
                 </div>
             </div>

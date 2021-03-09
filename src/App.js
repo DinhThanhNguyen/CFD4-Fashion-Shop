@@ -19,6 +19,7 @@ import reducers from './redux/reducers'
 import Account from './pages/account'
 import PrivateRoute from './core/PrivateRoute'
 import Catalog from './pages/catalog'
+import ModalCart from './components/ModalCart'
 
 function App() {
   return <AppProvider reducers={reducers}>
@@ -41,6 +42,7 @@ function App() {
     <Route path="/" component={errorPage} />
   </Switch>
   <Footer />
+  <ModalCart />
   </AppProvider>
 }
 
