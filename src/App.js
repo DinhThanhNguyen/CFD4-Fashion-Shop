@@ -9,7 +9,7 @@ import shippingAndReturns from './pages/shippingAndReturns'
 import storeLocator from './pages/storeLocator'
 import FAQ from './pages/FAQ'
 import shoppingCart from './pages/shoppingCart'
-import checkout from './pages/checkout'
+import Checkout from './pages/checkout'
 import Blog from './pages/blogPost/components/Blog'
 import contactUs from './pages/contactUs'
 import Auth from './pages/auth'
@@ -28,7 +28,7 @@ function App() {
   <Switch>
     <Route path="/faq" component={FAQ} />
     <PrivateRoute path="/account" component={Account} />
-    <Route path="/checkout" component={checkout} />
+    <Route path="/checkout" component={Checkout} />
     <Route path="/auth" component={Auth} />
     <Route path="/catalog" component={Catalog} />
     <Route path="/shopping-cart" component={shoppingCart} />

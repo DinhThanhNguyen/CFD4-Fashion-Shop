@@ -1,7 +1,11 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import Features from '../../components/Features'
 
-export default function checkout() {
+export default function Checkout() {
+
+    const cart = useSelector(state => state.cart)
+
     return (
         <>
             <section className="pt-7 pb-12">
@@ -290,7 +294,7 @@ export default function checkout() {
                     </div>
                     <div className="col-12 col-md-5 col-lg-4 offset-lg-1">
                     {/* Heading */}
-                    <h6 className="mb-7">Order Items (3)</h6>
+                    <h6 className="mb-7">Order Items ({cart.num})</h6>
                     {/* Divider */}
                     <hr className="my-7" />
                     {/* List group */}

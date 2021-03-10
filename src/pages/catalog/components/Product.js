@@ -4,7 +4,7 @@ import { addCart } from '../../../redux/reducers/cartReducers'
 
 export default function Product(props) {
 
-    let { name, price, images } = props
+    let { name, price_text, images } = props
 
     let dispatch = useDispatch()
 
@@ -62,7 +62,7 @@ export default function Product(props) {
                 </div>
                 {/* Price */}
                 <div className="font-weight-bold text-muted">
-                    {price}₫
+                    {price_text}₫
                 </div>
             </div>
         </div>

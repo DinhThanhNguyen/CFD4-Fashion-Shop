@@ -1,11 +1,15 @@
 import React from 'react'
 import reactDOM from 'react-dom'
 import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
+import withPriceFormat from '../hoc/withPriceFormat'
 import { decrementCart, incrementCart, removeCart } from '../redux/reducers/cartReducers'
 
 export default function ModalCart() {
 
     const cart = useSelector(state => state.cart)
+
+    let amount = new Intl.NumberFormat('vn').format(cart.amount)
 
     return reactDOM.createPortal(
         <div className="modal fixed-right fade" id="modalShoppingCart" tabIndex={-1} role="dialog" aria-hidden="true">
@@ -23,16 +27,16 @@ export default function ModalCart() {
                     {/* List group */}
                     <ul className="list-group list-group-lg list-group-flush">
                         {
-                            cart.list.map(e => <CartItem key={e._id} {...e} />)
+                            cart.list.map(e => <React.Fragment key={e._id}>{withPriceFormat(CartItem, e)}</React.Fragment>)
                         }
                     </ul>
                     {/* Footer */}
                     <div className="modal-footer line-height-fixed font-size-sm bg-light mt-auto">
-                        <strong>Subtotal</strong> <strong className="ml-auto">{cart.amount}₫</strong>
+                        <strong>Subtotal</strong> <strong className="ml-auto">{amount}₫</strong>
                     </div>
                     {/* Buttons */}
                     <div className="modal-body">
-                        <a className="btn btn-block btn-dark" href="./checkout.html">Continue to Checkout</a>
+                        <Link className="btn btn-block btn-dark" to="/checkout">Continue to Checkout</Link>
                         <a className="btn btn-block btn-outline-dark" href="./shopping-cart.html">View Cart</a>
                     </div>
                 </div>
@@ -44,16 +48,16 @@ export default function ModalCart() {
                     </button>
                     {/* Header*/}
                     <div className="modal-header line-height-fixed font-size-lg">
-                        <strong className="mx-auto">Your Cart (0)</strong>
+                        <strong className="mx-auto">Your Cart ({cart.num})</strong>
                     </div>
                     {/* Body */}
                     <div className="modal-body flex-grow-0 my-auto">
                         {/* Heading */}
                         <h6 className="mb-7 text-center">Your cart is empty 😞</h6>
                         {/* Button */}
-                        <a className="btn btn-block btn-outline-dark" href="#!">
+                        <Link className="btn btn-block btn-outline-dark" to="/catalog">
                             Continue Shopping
-                        </a>
+                        </Link>
                     </div>
                 </div>
             </div>
@@ -62,7 +66,7 @@ export default function ModalCart() {
     )
 }
 
-function CartItem({ name, price, images, _id, cartNum }) {
+function CartItem({ name, price_text, images, _id, cartNum }) {
 
     const dispatch = useDispatch()
 
@@ -70,8 +74,6 @@ function CartItem({ name, price, images, _id, cartNum }) {
         e.preventDefault();
         dispatch(removeCart(_id))
     }
-
-    let priceProduct = price*cartNum
 
     return (
         <li className="list-group-item">
@@ -86,7 +88,7 @@ function CartItem({ name, price, images, _id, cartNum }) {
                     {/* Title */}
                     <p className="font-size-sm font-weight-bold mb-6">
                         <a className="text-body" href="./product.html">{name}</a> <br />
-                        <span className="text-muted">{priceProduct}₫</span>
+                        <span className="text-muted">{price_text}₫</span>
                     </p>
                     {/*Footer */}
                     <div className="d-flex align-items-center">

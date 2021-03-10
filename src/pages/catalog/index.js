@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getProduct } from '../../redux/reducers/productReducers'
 import Product from './components/Product'
 import Pagination from './components/Pagination'
+import withPriceFormat from '../../hoc/withPriceFormat'
 
 
 function getPage() {
@@ -122,7 +123,7 @@ export default function Catalog() {
                                 product.products.map(e => (
                                     <div className="col-6 col-md-4" key={e._id}>
                                         {/* Card */}
-                                        <Product {...e} />
+                                        {withPriceFormat(Product, e)}
                                     </div>
                                 ))
                             }
