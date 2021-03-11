@@ -1,7 +1,10 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { Redirect } from 'react-router'
 import Features from '../../components/Features'
 import useFormValidate from '../../core/hook/useValidateForm'
+import withPriceFormat from '../../hoc/withPriceFormat'
+import { decrementCart, incrementCart, removeCart, shippingChange } from '../../redux/reducers/cartReducers'
 
 
 const styles = {
@@ -14,9 +17,9 @@ const styles = {
 
 export default function Checkout() {
 
-    const state = useSelector(state => state)
+    const cart = useSelector(state => state.cart)
 
-    let { cart, auth } = state
+    let dispatch = useDispatch()
 
     let { form, inputChange, submit, error, setForm } = useFormValidate({
         first_name: '',
@@ -68,9 +71,16 @@ export default function Checkout() {
         message: {}
     })
 
-    // let shipping_price = new Intl.NumberFormat('vn').format(cart.shipping_price)
+    let shipping_price = new Intl.NumberFormat('vn').format(cart.shipping_price)
+
+    let amount = new Intl.NumberFormat('vn').format(cart.amount)
+
+    let tax = new Intl.NumberFormat('vn').format((cart.amount*10)/100)
+
+    let total = new Intl.NumberFormat('vn').format(cart.shipping_price + cart.amount + (cart.amount*10)/100)
 
     function _btnPlaceOrderClick() {
+
         let error
         if (form.shipping_diff_address) {
             error = submit()
@@ -79,8 +89,19 @@ export default function Checkout() {
         }
 
         if (Object.keys(error).length === 0) {
-            alert('Đặt hàng thành công')
+            alert('Đặt hành thành công')
         }
+    }
+
+    if(cart.num === 0) return <Redirect to="/catalog" />
+
+    function _shippingChange(e) {
+        let { value } = e.target,
+        price = parseInt(e.target.dataset.price)
+        dispatch(shippingChange ({
+            shipping_option: value,
+            shipping_price: price
+        }))
 
     }
 
@@ -156,52 +177,52 @@ export default function Checkout() {
                                             <tr>
                                                 <td>
                                                     <div className="custom-control custom-radio">
-                                                        <input className="custom-control-input" id="checkoutShippingStandard" name="shipping" type="radio" />
+                                                        <input className="custom-control-input" id="checkoutShippingStandard" name="shipping" type="radio" data-price={30000} checked={form.shipping_option === 'standard' || form.shipping_option === ''} value="standard" onClick={_shippingChange} onChange={inputChange} />
                                                         <label className="custom-control-label text-body text-nowrap" htmlFor="checkoutShippingStandard">
                                                             Standard Shipping
-                                    </label>
+                                                        </label>
                                                     </div>
                                                 </td>
                                                 <td>Delivery in 5 - 7 working days</td>
-                                                <td>$8.00</td>
+                                                <td>30.000₫</td>
                                             </tr>
                                             <tr>
                                                 <td>
                                                     <div className="custom-control custom-radio">
-                                                        <input className="custom-control-input" id="checkoutShippingExpress" name="shipping" type="radio" />
+                                                        <input className="custom-control-input" id="checkoutShippingExpress" name="shipping" type="radio" data-price={40000} checked={form.shipping_option === 'express'} value="express" onClick={_shippingChange} onChange={inputChange} />
                                                         <label className="custom-control-label text-body text-nowrap" htmlFor="checkoutShippingExpress">
                                                             Express Shipping
-                                    </label>
+                                                        </label>
                                                     </div>
                                                 </td>
                                                 <td>Delivery in 3 - 5 working days</td>
-                                                <td>$12.00</td>
+                                                <td>40.000₫</td>
                                             </tr>
                                             <tr>
                                                 <td>
                                                     <div className="custom-control custom-radio">
-                                                        <input className="custom-control-input" id="checkoutShippingShort" name="shipping" type="radio" />
+                                                        <input className="custom-control-input" id="checkoutShippingShort" name="shipping" type="radio" data-price={50000} checked={form.shipping_option === 'shipping'} value="shipping" onClick={_shippingChange} onChange={inputChange} />
                                                         <label className="custom-control-label text-body text-nowrap" htmlFor="checkoutShippingShort">
                                                             1 - 2 Shipping
-                                    </label>
+                                                        </label>
                                                     </div>
                                                 </td>
                                                 <td>Delivery in 1 - 2 working days</td>
-                                                <td>$18.00</td>
+                                                <td>50.000₫</td>
                                             </tr>
                                             <tr>
                                                 <td>
                                                     <div className="custom-control custom-radio">
-                                                        <input className="custom-control-input" id="checkoutShippingFree" name="shipping" type="radio" />
+                                                        <input className="custom-control-input" id="checkoutShippingFree" name="shipping" type="radio" data-price={0} checked={form.shipping_option === 'free'} value="shipping" onClick={_shippingChange} onChange={inputChange} />
                                                         <label className="custom-control-label text-body text-nowrap" htmlFor="checkoutShippingFree">
                                                             Free Shipping
-                                    </label>
+                                                        </label>
                                                     </div>
                                                 </td>
                                                 <td>Living won't the He one every subdue
                                                 meat replenish face was you morning
-                                firmament darkness.</td>
-                                                <td>$0.00</td>
+                                                firmament darkness.</td>
+                                                <td>0₫</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -210,11 +231,11 @@ export default function Checkout() {
                                 <div className="mb-9">
                                     {/* Checkbox */}
                                     <div className="custom-control custom-checkbox">
-                                    <input className="custom-control-input" id="checkoutShippingAddress" name="shipping_diff_address" type="checkbox" checked={form.shipping_diff_address} onChange={inputChange} />
-                                    <label className="custom-control-label font-size-sm" data-toggle="collapse" data-target="#checkoutShippingAddressCollapse" htmlFor="checkoutShippingAddress">
-                                        Ship to a different address?
+                                        <input className="custom-control-input" id="checkoutShippingAddress" name="shipping_diff_address" type="checkbox" checked={form.shipping_diff_address} onChange={inputChange} />
+                                        <label className="custom-control-label font-size-sm" data-toggle="collapse" data-target="#checkoutShippingAddressCollapse" htmlFor="checkoutShippingAddress">
+                                            Ship to a different address?
                                     </label>
-                                </div>
+                                    </div>
                                     {/* Collapse */}
                                     <div className="collapse" id="checkoutShippingAddressCollapse">
                                         <div className="row mt-6">
@@ -266,16 +287,10 @@ export default function Checkout() {
                                         {/* Form */}
                                         <div className="form-row py-5">
                                             <div className="col-12">
-                                                <div className="form-group mb-4">
-                                                    <label className="sr-only" htmlFor="checkoutPaymentCardNumber">Card Number</label>
-                                                    <input className="form-control form-control-sm" id="checkoutPaymentCardNumber" type="text" placeholder="Card Number *" required />
-                                                </div>
+                                                <InputGroup name="payment_card_number" title="Card Number" form={form} inputChange={inputChange} error={error} />
                                             </div>
                                             <div className="col-12">
-                                                <div className="form-group mb-4">
-                                                    <label className="sr-only" htmlFor="checkoutPaymentCardName">Name on Card</label>
-                                                    <input className="form-control form-control-sm" id="checkoutPaymentCardName" type="text" placeholder="Name on Card *" required />
-                                                </div>
+                                                <InputGroup name="payment_card_name" title="Name on Card" form={form} inputChange={inputChange} error={error} />
                                             </div>
                                             <div className="col-12 col-md-4">
                                                 <div className="form-group mb-md-0">
@@ -299,12 +314,15 @@ export default function Checkout() {
                                             </div>
                                             <div className="col-12 col-md-4">
                                                 <div className="input-group input-group-merge">
-                                                    <input className="form-control form-control-sm" id="checkoutPaymentCardCVV" type="text" placeholder="CVV *" required />
+                                                    <input className="form-control form-control-sm" id="checkoutPaymentCardCVV" type="text" placeholder="CVV *" name="payment_card_cvv" value={form.payment_card_cvv} onChange={inputChange} />
                                                     <div className="input-group-append">
                                                         <span className="input-group-text" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="The CVV Number on your credit card or debit card is a 3 digit number on VISA, MasterCard and Discover branded credit and debit cards.">
                                                             <i className="fe fe-help-circle" />
                                                         </span>
                                                     </div>
+                                                    {
+                                                        error.payment_card_cvv && <p className="text-error" style={styles.inputError}>{error.payment_card_cvv}</p>
+                                                    }
                                                 </div>
                                             </div>
                                         </div>
@@ -327,70 +345,30 @@ export default function Checkout() {
                         </div>
                         <div className="col-12 col-md-5 col-lg-4 offset-lg-1">
                             {/* Heading */}
-                            <h6 className="mb-7">Order Items (2)</h6>
+                            <h6 className="mb-7">Order Items ({cart.num})</h6>
                             {/* Divider */}
                             <hr className="my-7" />
                             {/* List group */}
                             <ul className="list-group list-group-lg list-group-flush-y list-group-flush-x mb-7">
-                                <li className="list-group-item">
-                                    <div className="row align-items-center">
-                                        <div className="col-4">
-                                            {/* Image */}
-                                            <a href="product.html">
-                                                <img src="/img/products/product-6.jpg" alt="..." className="img-fluid" />
-                                            </a>
-                                        </div>
-                                        <div className="col">
-                                            {/* Title */}
-                                            <p className="mb-4 font-size-sm font-weight-bold">
-                                                <a className="text-body" href="product.html">Cotton floral print Dress</a> <br />
-                                                <span className="text-muted">$40.00</span>
-                                            </p>
-                                            {/* Text */}
-                                            <div className="font-size-sm text-muted">
-                                                Size: M <br />
-                                Color: Red
-                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li className="list-group-item">
-                                    <div className="row align-items-center">
-                                        <div className="col-4">
-                                            {/* Image */}
-                                            <a href="product.html">
-                                                <img src="/img/products/product-10.jpg" alt="..." className="img-fluid" />
-                                            </a>
-                                        </div>
-                                        <div className="col">
-                                            {/* Title */}
-                                            <p className="mb-4 font-size-sm font-weight-bold">
-                                                <a className="text-body" href="product.html">Suede cross body Bag</a> <br />
-                                                <span className="text-muted">$49.00</span>
-                                            </p>
-                                            {/* Text */}
-                                            <div className="font-size-sm text-muted">
-                                                Color: Brown
-                            </div>
-                                        </div>
-                                    </div>
-                                </li>
+                                {
+                                    cart.list.map(e => <React.Fragment key={e._id}>{withPriceFormat(CartItem, e)}</React.Fragment>)
+                                }
                             </ul>
                             {/* Card */}
                             <div className="card mb-9 bg-light">
                                 <div className="card-body">
                                     <ul className="list-group list-group-sm list-group-flush-y list-group-flush-x">
                                         <li className="list-group-item d-flex">
-                                            <span>Subtotal</span> <span className="ml-auto font-size-sm">$89.00</span>
+                                            <span>Subtotal</span> <span className="ml-auto font-size-sm">{amount}₫</span>
                                         </li>
                                         <li className="list-group-item d-flex">
-                                            <span>Tax</span> <span className="ml-auto font-size-sm">$00.00</span>
+                                            <span>Tax</span> <span className="ml-auto font-size-sm">{tax}₫</span>
                                         </li>
                                         <li className="list-group-item d-flex">
-                                            <span>Shipping</span> <span className="ml-auto font-size-sm">$8.00</span>
+                                            <span>Shipping</span> <span className="ml-auto font-size-sm">{shipping_price}₫</span>
                                         </li>
                                         <li className="list-group-item d-flex font-size-lg font-weight-bold">
-                                            <span>Total</span> <span className="ml-auto">$97.00</span>
+                                            <span>Total</span> <span className="ml-auto">{total}₫</span>
                                         </li>
                                     </ul>
                                 </div>
@@ -427,5 +405,46 @@ function InputGroup({ form, name, title, type = "text", placeholder, inputChange
                 error[name] && <p className="error-text" style={styles.inputError}>{error[name]}</p>
             }
         </div>
+    )
+}
+
+function CartItem({ name, price_text, images, _id, cartNum }) {
+
+    const dispatch = useDispatch()
+
+    function remove(e) {
+        e.preventDefault();
+        dispatch(removeCart(_id))
+    }
+
+    return (
+        <li className="list-group-item">
+            <div className="row align-items-center">
+                <div className="col-4">
+                    {/* Image */}
+                    <a href="./product.html">
+                        <img className="img-fluid" src={images?.[0]?.medium_url} alt="..." />
+                    </a>
+                </div>
+                <div className="col-8">
+                    {/* Title */}
+                    <p className="font-size-sm font-weight-bold mb-6">
+                        <a className="text-body" href="./product.html">{name}</a> <br />
+                        <span className="text-muted">{price_text}₫</span>
+                    </p>
+                    {/*Footer */}
+                    <div className="d-flex align-items-center">
+                        {/* Select */}
+                        <button className="cartItem-button" onClick={() => dispatch(decrementCart(_id))}>-</button>
+                        <input className="cartItem-number" type="text" value={cartNum} />
+                        <button className="cartItem-button" onClick={() => dispatch(incrementCart(_id))}>+</button>
+                        {/* Remove */}
+                        <a className="font-size-xs text-gray-400 ml-auto" href="#!" onClick={remove}>
+                            <i className="fe fe-x" /> Remove
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </li>
     )
 }

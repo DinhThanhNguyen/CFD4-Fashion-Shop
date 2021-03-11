@@ -5,7 +5,9 @@ let cart = JSON.parse(localStorage.getItem('cart'))
 const initialState = {
     list: cart?.list || [],
     num: cart?.num || 0,
-    amount: cart?.amount || 0
+    amount: cart?.amount || 0,
+    shipping_option: cart?.shipping_option || 'free',
+    shipping_price: cart?.shipping_price || 0,
 }
 
 function returnCart(cart) {
@@ -97,6 +99,15 @@ let { reducer, action, TYPE } = createSlice({
                 list,
                 amount
             })
+        },
+        shippingChange: function(state, action) {
+            let {shipping_option, shipping_price } = action.payload
+
+            return returnCart({
+                ...state,
+                shipping_option,
+                shipping_price
+            })
         }
     }
 })
@@ -111,3 +122,5 @@ export const removeCart = action.removeCart
 export const incrementCart = action.increment
 
 export const decrementCart = action.decrement
+
+export const shippingChange = action.shippingChange

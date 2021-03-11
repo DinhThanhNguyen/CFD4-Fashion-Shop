@@ -60,7 +60,7 @@ export default function Login() {
                     <div className="form-group">
                         <label className="sr-only" htmlFor="loginEmail">
                             Email Address *
-                                                </label>
+                    </label>
                         <input className="form-control form-control-sm" id="loginEmail" type="text" name="username" placeholder="Email Address *" onChange={inputChange} value={form.username} />
                         {error.username && <p style={styles.inputError} className="text-error">{error.username}</p>}
                     </div>
@@ -70,7 +70,7 @@ export default function Login() {
                     <div className="form-group">
                         <label className="sr-only" htmlFor="loginPassword">
                             Password *
-                                                </label>
+                        </label>
                         <input className="form-control form-control-sm" id="loginPassword" type="password" name="password" placeholder="Password *" onChange={inputChange} value={form.password} />
                         {error.password && <p style={styles.inputError} className="text-error">{error.password}</p>}
                     </div>
@@ -82,7 +82,7 @@ export default function Login() {
                             <input className="custom-control-input" id="loginRemember" type="checkbox" />
                             <label className="custom-control-label" htmlFor="loginRemember">
                                 Remember me
-                                                    </label>
+                            </label>
                         </div>
                     </div>
                 </div>
@@ -96,7 +96,7 @@ export default function Login() {
                     {/* Button */}
                     <button className="btn btn-sm btn-dark" type="submit" onClick={_btnLogin}>
                         Sign In
-                                            </button>
+                    </button>
                 </div>
             </div>
         </div>
