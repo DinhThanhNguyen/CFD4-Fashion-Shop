@@ -7,7 +7,7 @@ const initialState = {
     num: cart?.num || 0,
     amount: cart?.amount || 0,
     shipping_option: cart?.shipping_option || 'free',
-    shipping_price: cart?.shipping_price || 0,
+    shipping_price: cart?.shipping_prices || 0,
 }
 
 function returnCart(cart) {
