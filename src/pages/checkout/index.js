@@ -4,7 +4,7 @@ import { Redirect } from 'react-router'
 import Features from '../../components/Features'
 import useFormValidate from '../../core/hook/useValidateForm'
 import withPriceFormat from '../../hoc/withPriceFormat'
-import { decrementCart, incrementCart, removeCart, shippingChange } from '../../redux/reducers/cartReducers'
+import { cartUpdate, decrementCart, incrementCart, removeCart } from '../../redux/reducers/cartReducers'
 
 
 const styles = {
@@ -33,6 +33,7 @@ export default function Checkout() {
         postcode: '',
         phone: '',
         shipping_option: cart.shipping_option,
+        shipping_price: cart.shipping_price,
         shipping_diff_address: false,
         ship_country: '',
         ship_address1: '',
@@ -47,7 +48,6 @@ export default function Checkout() {
         payment_card_year: '',
         payment_card_cvv: '',
         note: '',
-
     }, {
         rule: {
             first_name: { required: true },
@@ -75,34 +75,60 @@ export default function Checkout() {
 
     let amount = new Intl.NumberFormat('vn').format(cart.amount)
 
-    let tax = new Intl.NumberFormat('vn').format((cart.amount*10)/100)
+    let tax = new Intl.NumberFormat('vn').format((cart.amount * 10) / 100)
 
-    let total = new Intl.NumberFormat('vn').format(cart.shipping_price + cart.amount + (cart.amount*10)/100)
+    let total = new Intl.NumberFormat('vn').format(cart.shipping_price + cart.amount + (cart.amount * 10) / 100)
+
+    let yearNow = (new Date()).getFullYear();
 
     function _btnPlaceOrderClick() {
-
         let error
-        if (form.shipping_diff_address) {
-            error = submit()
-        } else {
-            error = submit({ exclude: { ship_country: 1, ship_city: 1, ship_post_code: 1 } });
+
+        let exclude = {}
+        if (!form.shipping_diff_address) {
+            exclude = {
+                ...exclude,
+                ship_country: 1,
+                ship_city: 1,
+                ship_post_code: 1
+            }
         }
+
+        if (form.payment_option !== 'credit_cart') {
+            exclude = {
+                ...exclude,
+                payment_card_number: 1,
+                payment_card_name: 1,
+                payment_card_cvv: 1
+            }
+        }
+
+        error = submit({ exclude })
 
         if (Object.keys(error).length === 0) {
             alert('Đặt hành thành công')
         }
     }
 
-    if(cart.num === 0) return <Redirect to="/catalog" />
+    if (cart.num === 0) return <Redirect to="/catalog" />
 
     function _shippingChange(e) {
         let { value } = e.target,
-        price = parseInt(e.target.dataset.price)
-        dispatch(shippingChange ({
+            price = parseInt(e.target.dataset.price)
+        dispatch(cartUpdate({
             shipping_option: value,
             shipping_price: price
-        }))
+        })
+        )
+    }
 
+    function _paymentChange(e) {
+        let { value } = e.target
+
+        dispatch(cartUpdate({
+            payment_option: value
+        })
+        )
     }
 
     return (
@@ -177,7 +203,8 @@ export default function Checkout() {
                                             <tr>
                                                 <td>
                                                     <div className="custom-control custom-radio">
-                                                        <input className="custom-control-input" id="checkoutShippingStandard" name="shipping" type="radio" data-price={30000} checked={form.shipping_option === 'standard' || form.shipping_option === ''} value="standard" onClick={_shippingChange} onChange={inputChange} />
+                                                        <input className="custom-control-input" id="checkoutShippingStandard" name="shipping_option" type="radio" data-price={30000} checked={form.shipping_option === 'standard' || form.shipping_option === ''}
+                                                            value="standard" onClick={_shippingChange} onChange={inputChange} />
                                                         <label className="custom-control-label text-body text-nowrap" htmlFor="checkoutShippingStandard">
                                                             Standard Shipping
                                                         </label>
@@ -189,7 +216,8 @@ export default function Checkout() {
                                             <tr>
                                                 <td>
                                                     <div className="custom-control custom-radio">
-                                                        <input className="custom-control-input" id="checkoutShippingExpress" name="shipping" type="radio" data-price={40000} checked={form.shipping_option === 'express'} value="express" onClick={_shippingChange} onChange={inputChange} />
+                                                        <input className="custom-control-input" id="checkoutShippingExpress" name="shipping_option" type="radio" data-price={40000} checked={form.shipping_option === 'express'}
+                                                            value="express" onClick={_shippingChange} onChange={inputChange} />
                                                         <label className="custom-control-label text-body text-nowrap" htmlFor="checkoutShippingExpress">
                                                             Express Shipping
                                                         </label>
@@ -201,7 +229,8 @@ export default function Checkout() {
                                             <tr>
                                                 <td>
                                                     <div className="custom-control custom-radio">
-                                                        <input className="custom-control-input" id="checkoutShippingShort" name="shipping" type="radio" data-price={50000} checked={form.shipping_option === 'shipping'} value="shipping" onClick={_shippingChange} onChange={inputChange} />
+                                                        <input className="custom-control-input" id="checkoutShippingShort" name="shipping_option" type="radio" data-price={50000} checked={form.shipping_option === 'shipping'}
+                                                            value="shipping" onClick={_shippingChange} onChange={inputChange} />
                                                         <label className="custom-control-label text-body text-nowrap" htmlFor="checkoutShippingShort">
                                                             1 - 2 Shipping
                                                         </label>
@@ -213,7 +242,8 @@ export default function Checkout() {
                                             <tr>
                                                 <td>
                                                     <div className="custom-control custom-radio">
-                                                        <input className="custom-control-input" id="checkoutShippingFree" name="shipping" type="radio" data-price={0} checked={form.shipping_option === 'free'} value="shipping" onClick={_shippingChange} onChange={inputChange} />
+                                                        <input className="custom-control-input" id="checkoutShippingFree" name="shipping_option" type="radio" data-price={0} checked={form.shipping_option === 'free'}
+                                                            value="free" onClick={_shippingChange} onChange={inputChange} />
                                                         <label className="custom-control-label text-body text-nowrap" htmlFor="checkoutShippingFree">
                                                             Free Shipping
                                                         </label>
@@ -276,7 +306,8 @@ export default function Checkout() {
                                         {/* Radio */}
                                         <div className="custom-control custom-radio">
                                             {/* Input */}
-                                            <input className="custom-control-input" id="checkoutPaymentCard" name="payment" type="radio" data-toggle="collapse" data-action="show" data-target="#checkoutPaymentCardCollapse" />
+                                            <input className="custom-control-input" id="checkoutPaymentCard" name="payment_option" value="credit_card" checked={form.payment_option === 'credit_card'}
+                                                onClick={_paymentChange} onChange={inputChange} type="radio" data-toggle="collapse" data-action="show" data-target="#checkoutPaymentCardCollapse" />
                                             {/* Label */}
                                             <label className="custom-control-label font-size-sm text-body text-nowrap" htmlFor="checkoutPaymentCard">
                                                 Credit Card <img className="ml-2" src="/img/brands/color/cards.svg" alt="..." />
@@ -287,18 +318,27 @@ export default function Checkout() {
                                         {/* Form */}
                                         <div className="form-row py-5">
                                             <div className="col-12">
-                                                <InputGroup name="payment_card_number" title="Card Number" form={form} inputChange={inputChange} error={error} />
+                                                <InputGroup className={'md-4'} name="payment_card_number" title="Card Number" form={form} inputChange={inputChange} error={error} />
                                             </div>
                                             <div className="col-12">
-                                                <InputGroup name="payment_card_name" title="Name on Card" form={form} inputChange={inputChange} error={error} />
+                                                <InputGroup className={'md-4'} name="payment_card_name" title="Name on Card" form={form} inputChange={inputChange} error={error} />
                                             </div>
                                             <div className="col-12 col-md-4">
                                                 <div className="form-group mb-md-0">
                                                     <label className="sr-only" htmlFor="checkoutPaymentMonth">Month</label>
-                                                    <select className="custom-select custom-select-sm" id="checkoutPaymentMonth">
-                                                        <option>January</option>
-                                                        <option>February</option>
-                                                        <option>March</option>
+                                                    <select className="custom-select custom-select-sm" name="payment_month" onChange={inputChange} value={form.payment_month} id="checkoutPaymentMonth">
+                                                        <option value="1">January</option>
+                                                        <option value="2">February</option>
+                                                        <option value="3">March</option>
+                                                        <option value="4">April</option>
+                                                        <option value="5">May</option>
+                                                        <option value="6">June</option>
+                                                        <option value="7">July</option>
+                                                        <option value="8">August</option>
+                                                        <option value="9">September</option>
+                                                        <option value="10">October</option>
+                                                        <option value="11">November</option>
+                                                        <option value="12">December</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -306,9 +346,9 @@ export default function Checkout() {
                                                 <div className="form-group mb-md-0">
                                                     <label className="sr-only" htmlFor="checkoutPaymentCardYear">Year</label>
                                                     <select className="custom-select custom-select-sm" id="checkoutPaymentCardYear">
-                                                        <option>2017</option>
-                                                        <option>2018</option>
-                                                        <option>2019</option>
+                                                        {
+                                                            [].map.bind([...Array(50)])((e, i) => <option value={i + yearNow} key={i}>{yearNow - 50 / 2 + i}</option>)
+                                                        }
                                                     </select>
                                                 </div>
                                             </div>
@@ -331,7 +371,7 @@ export default function Checkout() {
                                         {/* Radio */}
                                         <div className="custom-control custom-radio">
                                             {/* Input */}
-                                            <input className="custom-control-input" id="checkoutPaymentPaypal" name="payment" type="radio" data-toggle="collapse" data-action="hide" data-target="#checkoutPaymentCardCollapse" />
+                                            <input className="custom-control-input" id="checkoutPaymentPaypal" name="payment_option" value="paypal" checked={form.payment_option === 'paypal'} onClick={_paymentChange} onChange={inputChange} type="radio" data-toggle="collapse" data-action="hide" data-target="#checkoutPaymentCardCollapse" />
                                             {/* Label */}
                                             <label className="custom-control-label font-size-sm text-body text-nowrap" htmlFor="checkoutPaymentPaypal">
                                                 <img src="/img/brands/color/paypal.svg" alt="..." />
@@ -378,7 +418,7 @@ export default function Checkout() {
                                 Your personal data will be used to process your order, support
                                 your experience throughout this website, and for other purposes
                                 described in our privacy policy.
-                    </p>
+                             </p>
                             {/* Button */}
                             <button className="btn btn-block btn-dark" onClick={_btnPlaceOrderClick}>
                                 Place Order
@@ -397,8 +437,10 @@ function InputGroup({ form, name, title, type = "text", placeholder, inputChange
 
     let randomID = 'id-' + (Math.round(Math.random() * 100000))
 
+    className = className ? `form-group ${className}` : 'form-group'
+
     return (
-        <div className="form-group">
+        <div className={className}>
             <label htmlFor={randomID}>{title}</label>
             <input className="form-control form-control-sm" id={randomID} name={name} type={type} placeholder={placeholder} value={form[name]} onChange={inputChange} />
             {

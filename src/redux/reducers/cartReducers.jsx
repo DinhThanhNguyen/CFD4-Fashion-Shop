@@ -7,7 +7,8 @@ const initialState = {
     num: cart?.num || 0,
     amount: cart?.amount || 0,
     shipping_option: cart?.shipping_option || 'free',
-    shipping_price: cart?.shipping_prices || 0,
+    shipping_price: cart?.shipping_price || 0,
+    payment_option: cart?.payment_option || 'paypal'
 }
 
 function returnCart(cart) {
@@ -28,7 +29,7 @@ let { reducer, action, TYPE } = createSlice({
                 amount += list[find].price
             } else {
                 let item = JSON.parse(JSON.stringify(action.payload))
-                
+
                 item.cartNum = 1
                 list.push(item)
                 amount += item.price
@@ -45,11 +46,11 @@ let { reducer, action, TYPE } = createSlice({
         },
         removeCart: function (state, action) {
 
-            let { list, amount, num  } = state
+            let { list, amount, num } = state
 
             let find = list.findIndex(e => e._id === action.payload)
             if (find !== -1) {
-                amount -= list[find].price*list[find].cartNum
+                amount -= list[find].price * list[find].cartNum
                 num -= list[find].cartNum
                 list.splice(find, 1)
             }
@@ -61,9 +62,9 @@ let { reducer, action, TYPE } = createSlice({
                 amount
             })
         },
-        increment: function(state, action) {
-            
-            let { list, amount  } = state
+        increment: function (state, action) {
+
+            let { list, amount } = state
 
             let find = list.findIndex(e => e._id === action.payload)
             if (find !== -1) {
@@ -78,16 +79,16 @@ let { reducer, action, TYPE } = createSlice({
                 amount
             })
         },
-        decrement: function(state, action) {
-            
-            let { list, amount  } = state
+        decrement: function (state, action) {
+
+            let { list, amount } = state
 
             let find = list.findIndex(e => e._id === action.payload)
             if (find !== -1) {
-                if(list[find].cartNum > 1){
+                if (list[find].cartNum > 1) {
                     list[find].cartNum--
                     amount -= list[find].price
-                } else{
+                } else {
                     amount -= list[find].price
                     list.splice(find, 1)
                 }
@@ -100,13 +101,16 @@ let { reducer, action, TYPE } = createSlice({
                 amount
             })
         },
-        shippingChange: function(state, action) {
-            let {shipping_option, shipping_price } = action.payload
+        cartUpdate: function(state, action) {
+            let { shipping_option, shipping_price } = action.payload
+
+            let { payment_option } = action.payload
 
             return returnCart({
                 ...state,
                 shipping_option,
-                shipping_price
+                shipping_price,
+                payment_option
             })
         }
     }
@@ -123,4 +127,4 @@ export const incrementCart = action.increment
 
 export const decrementCart = action.decrement
 
-export const shippingChange = action.shippingChange
+export const cartUpdate = action.cartUpdate
