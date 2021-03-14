@@ -36,7 +36,7 @@ export default function ModalCart() {
                     </div>
                     {/* Buttons */}
                     <div className="modal-body">
-                        <Link className="btn btn-block btn-dark" to="/checkout">Continue to Checkout</Link>
+                        <Link onClick={() => document.getElementById('modalShoppingCart').dispatchEvent(new Event('click'))} className="btn btn-block btn-dark" to="/checkout">Continue to Checkout</Link>
                         <a className="btn btn-block btn-outline-dark" href="./shopping-cart.html">View Cart</a>
                     </div>
                 </div>
@@ -55,7 +55,7 @@ export default function ModalCart() {
                         {/* Heading */}
                         <h6 className="mb-7 text-center">Your cart is empty 😞</h6>
                         {/* Button */}
-                        <Link className="btn btn-block btn-outline-dark" to="/catalog">
+                        <Link onClick={() => document.getElementById('modalShoppingCart').dispatchEvent(new Event('click'))} className="btn btn-block btn-outline-dark" to="/catalog">
                             Continue Shopping
                         </Link>
                     </div>
@@ -80,14 +80,14 @@ function CartItem({ name, price_text, images, _id, cartNum }) {
             <div className="row align-items-center">
                 <div className="col-4">
                     {/* Image */}
-                    <a href="./product.html">
+                    <Link to="/product-detail">
                         <img className="img-fluid" src={images?.[0]?.medium_url} alt="..." />
-                    </a>
+                    </Link>
                 </div>
                 <div className="col-8">
                     {/* Title */}
                     <p className="font-size-sm font-weight-bold mb-6">
-                        <a className="text-body" href="./product.html">{name}</a> <br />
+                        <Link className="text-body" to="/product-detail">{name}</Link> <br />
                         <span className="text-muted">{price_text}₫</span>
                     </p>
                     {/*Footer */}

@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom'
 import useFormValidate from '../core/hook/useValidateForm'
 import withPriceFormat from '../hoc/withPriceFormat'
 import { fetchSearch } from '../redux/reducers/searchReducer'
-import ProductDetail from '../pages/productDetail'
 
 const styles = {
     inputError: {
@@ -45,6 +44,12 @@ export default function Search() {
         }
     }
 
+    function _keyPress(e) {
+        if(e.which === 13) {
+            _btnSubmit()
+        }
+    }
+
     return reactDom.createPortal(
         <div className="modal fixed-right fade" id="modalSearch" tabIndex={-1} role="dialog" aria-hidden="true">
             <div className="modal-dialog modal-dialog-vertical" role="document">
@@ -69,7 +74,7 @@ export default function Search() {
                             </select>
                         </div>
                         <div className="input-group input-group-merge">
-                            <input className="form-control" type="search" placeholder="Search" name="input" value={form.input} onChange={inputChange} />
+                            <input className="form-control" type="search" placeholder="Search" name="input" value={form.input} onKeyPress={_keyPress} onChange={inputChange} />
                             <div className="input-group-append" >
                                 <button className="btn btn-outline-border" type="submit" onClick={_btnSubmit}>
                                     <i className="fe fe-search" />
@@ -89,9 +94,9 @@ export default function Search() {
                             search.list.map(e => <React.Fragment key={e._id}>{withPriceFormat(SearchItem, e)}</React.Fragment>)
                         }
                         {/* Button */}
-                        <a className="btn btn-link px-0 text-reset" href="./shop.html">
+                        <Link onClick={() => document.getElementById('modalSearch').dispatchEvent(new Event('click'))} className="btn btn-link px-0 text-reset" to={`/catalog?search=${form.input}`}>
                             View All <i className="fe fe-arrow-right ml-2" />
-                        </a>
+                        </Link>
                     </div>
                     {/* Body: Empty (remove `.d-none` to disable it) */}
                     <div className="d-none modal-body">
@@ -121,7 +126,7 @@ function SearchItem({ name, images, price_text }) {
             <div className="col position-static">
                 {/* Text */}
                 <p className="mb-0 font-weight-bold">
-                    <Link className="stretched-link text-body" to="/product-detail">{name}</Link> <br />
+                    <Link onClick={() => document.getElementById('modalSearch').dispatchEvent(new Event('click'))} className="stretched-link text-body" to="/product-detail">{name}</Link> <br />
                     <span className="text-muted">{price_text}₫</span>
                 </p>
             </div>
