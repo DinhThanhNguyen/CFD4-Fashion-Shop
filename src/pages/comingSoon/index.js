@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 
 export default function ComingSoon({ day, hours, minutes, seconds }) {
-
-
     return (
         <section className="bg-cover" style={{ marginTop: '-90px', backgroundImage: 'url(/img/covers/cover-22.jpg)' }}>
             <div className="container d-flex flex-column">

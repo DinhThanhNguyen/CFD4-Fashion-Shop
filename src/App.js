@@ -20,16 +20,17 @@ import PrivateRoute from './core/PrivateRoute'
 import Catalog from './pages/catalog'
 import ModalCart from './components/ModalCart'
 import './assets/custom.scss'
-import ProductDetail from './pages/product-detail'
+import ProductDetail from './pages/productDetail'
 import ComingSoon from './pages/comingSoon'
 import WithCountDown from './hoc/withCountDown'
+import Search from './components/Search'
 
 function App() {
   return <AppProvider reducers={reducers}>
   <Header />
   <Switch>
     <Route path="/faq" component={FAQ} />
-    <Route path="/product" component={ProductDetail} />
+    <Route path="/product-detail" component={ProductDetail} />
     <PrivateRoute path="/account" component={Account} />
     <Route path="/checkout" component={Checkout} />
     <Route path="/auth" component={Auth} />
@@ -47,6 +48,7 @@ function App() {
   </Switch>
   <Footer />
   <ModalCart />
+  <Search />
   </AppProvider>
 }
 

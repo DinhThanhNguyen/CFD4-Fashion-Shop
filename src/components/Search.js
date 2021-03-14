@@ -1,8 +1,51 @@
 import React from 'react'
 import reactDom from 'react-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
+import useFormValidate from '../core/hook/useValidateForm'
+import withPriceFormat from '../hoc/withPriceFormat'
+import { fetchSearch } from '../redux/reducers/searchReducer'
+import ProductDetail from '../pages/productDetail'
+
+const styles = {
+    inputError: {
+        marginTop: '10px',
+        paddingLeft: '20px',
+        color: 'red',
+        fontSize: 13,
+        fontStyle: 'italic'
+    }
+}
 
 export default function Search() {
-    return reactDom.createPortal (
+
+
+    let { form, error, inputChange, submit } = useFormValidate({
+        input: ''
+    }, {
+        rule: {
+            input: { required: true }
+        },
+        message: {
+            input: {
+                required: 'Vui lòng nhập thông tin cần tìm kiếm'
+            }
+        }
+    })
+
+    const search = useSelector(state => state.search)
+
+    let dispatch = useDispatch()
+
+    function _btnSubmit() {
+        let error = submit()
+
+        if (Object.keys(error).length === 0) {
+            dispatch(fetchSearch(form.input))
+        }
+    }
+
+    return reactDom.createPortal(
         <div className="modal fixed-right fade" id="modalSearch" tabIndex={-1} role="dialog" aria-hidden="true">
             <div className="modal-dialog modal-dialog-vertical" role="document">
                 <div className="modal-content">
@@ -16,96 +59,35 @@ export default function Search() {
                     </div>
                     {/* Body: Form */}
                     <div className="modal-body">
-                        <form>
-                            <div className="form-group">
-                                <label className="sr-only" htmlFor="modalSearchCategories">Categories:</label>
-                                <select className="custom-select" id="modalSearchCategories">
-                                    <option selected>All Categories</option>
-                                    <option>Women</option>
-                                    <option>Men</option>
-                                    <option>Kids</option>
-                                </select>
+                        <div className="form-group">
+                            <label className="sr-only" htmlFor="modalSearchCategories">Categories:</label>
+                            <select className="custom-select" id="modalSearchCategories">
+                                <option selected>All Categories</option>
+                                <option>Women</option>
+                                <option>Men</option>
+                                <option>Kids</option>
+                            </select>
+                        </div>
+                        <div className="input-group input-group-merge">
+                            <input className="form-control" type="search" placeholder="Search" name="input" value={form.input} onChange={inputChange} />
+                            <div className="input-group-append" >
+                                <button className="btn btn-outline-border" type="submit" onClick={_btnSubmit}>
+                                    <i className="fe fe-search" />
+                                </button>
                             </div>
-                            <div className="input-group input-group-merge">
-                                <input className="form-control" type="search" placeholder="Search" />
-                                <div className="input-group-append">
-                                    <button className="btn btn-outline-border" type="submit">
-                                        <i className="fe fe-search" />
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
+                        </div>
+                        {
+                            error.input && <p className="text-error" style={styles.inputError}>{error.input}</p>
+                        }
                     </div>
                     {/* Body: Results (add `.d-none` to disable it) */}
                     <div className="modal-body border-top font-size-sm">
                         {/* Heading */}
                         <p>Search Results:</p>
                         {/* Items */}
-                        <div className="row align-items-center position-relative mb-5">
-                            <div className="col-4 col-md-3">
-                                {/* Image */}
-                                <img className="img-fluid" src="/img/products/product-5.jpg" alt="..." />
-                            </div>
-                            <div className="col position-static">
-                                {/* Text */}
-                                <p className="mb-0 font-weight-bold">
-                                    <a className="stretched-link text-body" href="./product.html">Leather mid-heel Sandals</a> <br />
-                                    <span className="text-muted">$129.00</span>
-                                </p>
-                            </div>
-                        </div>
-                        <div className="row align-items-center position-relative mb-5">
-                            <div className="col-4 col-md-3">
-                                {/* Image */}
-                                <img className="img-fluid" src="/img/products/product-6.jpg" alt="..." />
-                            </div>
-                            <div className="col position-static">
-                                {/* Text */}
-                                <p className="mb-0 font-weight-bold">
-                                    <a className="stretched-link text-body" href="./product.html">Cotton floral print Dress</a> <br />
-                                    <span className="text-muted">$40.00</span>
-                                </p>
-                            </div>
-                        </div>
-                        <div className="row align-items-center position-relative mb-5">
-                            <div className="col-4 col-md-3">
-                                {/* Image */}
-                                <img className="img-fluid" src="/img/products/product-7.jpg" alt="..." />
-                            </div>
-                            <div className="col position-static">
-                                {/* Text */}
-                                <p className="mb-0 font-weight-bold">
-                                    <a className="stretched-link text-body" href="./product.html">Leather Sneakers</a> <br />
-                                    <span className="text-primary">$85.00</span>
-                                </p>
-                            </div>
-                        </div>
-                        <div className="row align-items-center position-relative mb-5">
-                            <div className="col-4 col-md-3">
-                                {/* Image */}
-                                <img className="img-fluid" src="/img/products/product-8.jpg" alt="..." />
-                            </div>
-                            <div className="col position-static">
-                                {/* Text */}
-                                <p className="mb-0 font-weight-bold">
-                                    <a className="stretched-link text-body" href="./product.html">Cropped cotton Top</a> <br />
-                                    <span className="text-muted">$29.00</span>
-                                </p>
-                            </div>
-                        </div>
-                        <div className="row align-items-center position-relative mb-5">
-                            <div className="col-4 col-md-3">
-                                {/* Image */}
-                                <img className="img-fluid" src="/img/products/product-9.jpg" alt="..." />
-                            </div>
-                            <div className="col position-static">
-                                {/* Text */}
-                                <p className="mb-0 font-weight-bold">
-                                    <a className="stretched-link text-body" href="./product.html">Floral print midi Dress</a> <br />
-                                    <span className="text-muted">$50.00</span>
-                                </p>
-                            </div>
-                        </div>
+                        {
+                            search.list.map(e => <React.Fragment key={e._id}>{withPriceFormat(SearchItem, e)}</React.Fragment>)
+                        }
                         {/* Button */}
                         <a className="btn btn-link px-0 text-reset" href="./shop.html">
                             View All <i className="fe fe-arrow-right ml-2" />
@@ -125,5 +107,24 @@ export default function Search() {
             </div>
         </div>,
         document.getElementById('root2')
+    )
+}
+
+
+function SearchItem({ name, images, price_text }) {
+    return (
+        <div className="row align-items-center position-relative mb-5">
+            <div className="col-4 col-md-3">
+                {/* Image */}
+                <img className="img-fluid" src={images?.[0]?.medium_url} alt="..." />
+            </div>
+            <div className="col position-static">
+                {/* Text */}
+                <p className="mb-0 font-weight-bold">
+                    <Link className="stretched-link text-body" to="/product-detail">{name}</Link> <br />
+                    <span className="text-muted">{price_text}₫</span>
+                </p>
+            </div>
+        </div>
     )
 }

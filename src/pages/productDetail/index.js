@@ -14,7 +14,7 @@ export default function ProductDetail() {
                                         {/* Badge */}
                                         <div className="badge badge-primary card-badge text-uppercase">
                                             Sale
-                    </div>
+                                        </div>
                                         {/* Slider */}
                                         <div className="mb-4" data-flickity="{&quot;draggable&quot;: false, &quot;fade&quot;: true}" id="productSlider">
                                             {/* Item */}
