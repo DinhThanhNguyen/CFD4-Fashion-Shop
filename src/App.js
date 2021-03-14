@@ -3,7 +3,6 @@ import Home from '../src/pages/home'
 import errorPage from '../src/pages/404Page'
 import About from './pages/about'
 import blogPost from './pages/blogPost'
-import comingSoon from './pages/comingSoon'
 import Footer from './components/Footer'
 import shippingAndReturns from './pages/shippingAndReturns'
 import storeLocator from './pages/storeLocator'
@@ -21,12 +20,16 @@ import PrivateRoute from './core/PrivateRoute'
 import Catalog from './pages/catalog'
 import ModalCart from './components/ModalCart'
 import './assets/custom.scss'
+import ProductDetail from './pages/product-detail'
+import ComingSoon from './pages/comingSoon'
+import WithCountDown from './hoc/withCountDown'
 
 function App() {
   return <AppProvider reducers={reducers}>
   <Header />
   <Switch>
     <Route path="/faq" component={FAQ} />
+    <Route path="/product" component={ProductDetail} />
     <PrivateRoute path="/account" component={Account} />
     <Route path="/checkout" component={Checkout} />
     <Route path="/auth" component={Auth} />
@@ -34,7 +37,7 @@ function App() {
     <Route path="/shopping-cart" component={shoppingCart} />
     <Route path="/shipping-and-returns" component={shippingAndReturns} />
     <Route path="/store-locator" component={storeLocator} />
-    <Route path="/coming-soon" component={comingSoon} />
+    <Route path="/coming-soon" component={() => <WithCountDown WapperComponent={ComingSoon} timeCountDown={((1*24)*60*60) + 59} />} />
     <Route path="/blog-post" component={blogPost} />
     <Route path="/blog" component={Blog} />
     <Route path="/contact-us" component={contactUs} />

@@ -15,7 +15,7 @@ let thunkFake = store => next => action => {
     return next(action)
 }
 
-export default function App({ children, reducers = {} }) {
+export default function AppProvider({ children, reducers = {} }) {
 
     if(!store){
         store = combineReducers(reducers)

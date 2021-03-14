@@ -1,6 +1,7 @@
 import React from 'react'
 
-export default function SalesOff() {
+export default function SalesOff({day, hours, minutes, seconds}) {
+
     return (
         <section className="py-13 bg-cover" style={{ backgroundImage: 'url(/img/covers/cover-4.jpg)' }}>
             <div className="container">
@@ -13,28 +14,28 @@ export default function SalesOff() {
                         {/* Counter */}
                         <div className="d-flex mb-9" data-countdown data-date="Jan 5, 2021 15:37:25">
                             <div className="text-center">
-                                <div className="font-size-h1 font-weight-bolder text-primary" data-days>00</div>
+                                <div className="font-size-h1 font-weight-bolder text-primary" data-days>{day.toString().padStart(2, '0')}</div>
                                 <div className="heading-xxs text-muted">Days</div>
                             </div>
                             <div className="px-1 px-md-4">
                                 <div className="font-size-h2 font-weight-bolder text-primary">:</div>
                             </div>
                             <div className="text-center">
-                                <div className="font-size-h1 font-weight-bolder text-primary" data-hours>00</div>
+                                <div className="font-size-h1 font-weight-bolder text-primary" data-hours>{hours.toString().padStart(2, '0')}</div>
                                 <div className="heading-xxs text-muted">Hours</div>
                             </div>
                             <div className="px-1 px-md-4">
                                 <div className="font-size-h2 font-weight-bolder text-primary">:</div>
                             </div>
                             <div className="text-center">
-                                <div className="font-size-h1 font-weight-bolder text-primary" data-minutes>00</div>
+                                <div className="font-size-h1 font-weight-bolder text-primary" data-minutes>{minutes.toString().padStart(2, '0')}</div>
                                 <div className="heading-xxs text-muted">Minutes</div>
                             </div>
                             <div className="px-1 px-md-4">
                                 <div className="font-size-h2 font-weight-bolder text-primary">:</div>
                             </div>
                             <div className="text-center">
-                                <div className="font-size-h1 font-weight-bolder text-primary" data-seconds>00</div>
+                                <div className="font-size-h1 font-weight-bolder text-primary" data-seconds>{seconds.toString().padStart(2, '0')}</div>
                                 <div className="heading-xxs text-muted">Seconds</div>
                             </div>
                         </div>

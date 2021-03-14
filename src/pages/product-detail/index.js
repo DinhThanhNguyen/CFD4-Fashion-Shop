@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Product() {
+export default function ProductDetail() {
     return (
         <>
             <section>
@@ -894,7 +894,7 @@ export default function Product() {
                                                         {/* Button */}
                                                         <a className="btn btn-xs btn-outline-border" href="#!">
                                                             Comment
-                            </a>
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -946,11 +946,11 @@ export default function Product() {
                                                     {/* Title */}
                                                     <p className="mb-2 font-size-lg font-weight-bold">
                                                         Very good
-                          </p>
+                                                    </p>
                                                     {/* Text */}
                                                     <p className="text-gray-500">
                                                         Made face lights yielding forth created for image behold blessed seas.
-                          </p>
+                                                    </p>
                                                     {/* Footer */}
                                                     <div className="row align-items-center">
                                                         <div className="col-auto d-none d-lg-block">
@@ -976,7 +976,7 @@ export default function Product() {
                                                             {/* Button */}
                                                             <a className="btn btn-xs btn-outline-border" href="#!">
                                                                 Comment
-                              </a>
+                                                            </a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1026,11 +1026,11 @@ export default function Product() {
                                     {/* Heading */}
                                     <h6 className="heading-xxs mb-1">
                                         Free shipping
-                  </h6>
+                                    </h6>
                                     {/* Text */}
                                     <p className="mb-0 font-size-sm text-muted">
                                         From all orders over $100
-                  </p>
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -1044,11 +1044,11 @@ export default function Product() {
                                     {/* Heading */}
                                     <h6 className="mb-1 heading-xxs">
                                         Free returns
-                  </h6>
+                                    </h6>
                                     {/* Text */}
                                     <p className="mb-0 font-size-sm text-muted">
                                         Return money within 30 days
-                  </p>
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -1062,11 +1062,11 @@ export default function Product() {
                                     {/* Heading */}
                                     <h6 className="mb-1 heading-xxs">
                                         Secure shopping
-                  </h6>
+                                    </h6>
                                     {/* Text */}
                                     <p className="mb-0 font-size-sm text-muted">
                                         You're in safe hands
-                  </p>
+                                     </p>
                                 </div>
                             </div>
                         </div>
@@ -1080,11 +1080,11 @@ export default function Product() {
                                     {/* Heading */}
                                     <h6 className="mb-1 heading-xxs">
                                         Over 10,000 Styles
-                  </h6>
+                                    </h6>
                                     {/* Text */}
                                     <p className="mb-0 font-size-sm text-muted">
                                         We have everything you need
-                  </p>
+                                    </p>
                                 </div>
                             </div>
                         </div>
