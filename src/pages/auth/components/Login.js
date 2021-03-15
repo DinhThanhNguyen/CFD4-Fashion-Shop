@@ -19,7 +19,8 @@ export default function Login() {
     }, {
         rule: {
             username: {
-                required: true
+                required: true,
+                pattern: 'email'
             },
             password: {
                 required: true
@@ -27,7 +28,8 @@ export default function Login() {
         },
         message: {
             username: {
-                required: 'Username không được để trống'
+                required: 'Username không được để trống',
+                pattern: 'Username không đúng định dạng'
             },
             password: {
                 required: 'Password không được để trống'

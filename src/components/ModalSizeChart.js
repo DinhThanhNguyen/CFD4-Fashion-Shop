@@ -1,8 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-export default function sizeChart() {
-    return ReactDOM.createPortal (
+export default function ModalSizeChart() {
+    return ReactDOM.createPortal(
         <div className="modal fade" id="modalSizeChart" tabIndex={-1} role="dialog" aria-hidden="true">
             <div className="modal-dialog modal-dialog-centered modal-lg" role="document">
                 <div className="modal-content">
@@ -24,10 +24,10 @@ export default function sizeChart() {
                             <div className="btn-group btn-group-toggle ml-auto" data-toggle="buttons">
                                 <label className="btn btn-xxs btn-circle btn-outline-dark font-size-xxxs rounded-0 active">
                                     <input type="radio" name="modalSizeChartUnitOne" defaultChecked /> IN
-                  </label>
+                                </label>
                                 <label className="btn btn-xxs btn-circle btn-outline-dark font-size-xxxs rounded-0 ml-2">
                                     <input type="radio" name="modalSizeChartUnitOne" /> CM
-                  </label>
+                                </label>
                             </div>
                         </div>
                         {/* Table */}
@@ -99,10 +99,10 @@ export default function sizeChart() {
                             <div className="btn-group btn-group-toggle ml-auto" data-toggle="buttons">
                                 <label className="btn btn-xxs btn-circle btn-outline-dark font-size-xxxs rounded-0 active">
                                     <input type="radio" name="modalSizeCharUnitTwo" defaultChecked /> IN
-                  </label>
+                                </label>
                                 <label className="btn btn-xxs btn-circle btn-outline-dark font-size-xxxs rounded-0 ml-2">
                                     <input type="radio" name="modalSizeCharUnitTwo" /> CM
-                  </label>
+                                </label>
                             </div>
                         </div>
                         {/* Tables */}

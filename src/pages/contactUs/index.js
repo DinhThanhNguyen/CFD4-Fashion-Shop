@@ -1,6 +1,66 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+import useFormValidate from '../../core/hook/useValidateForm'
 
-export default function contactUs() {
+
+const styles = {
+  inputError: {
+      color: 'red',
+      fontSize: 13,
+      fontStyle: 'italic',
+      marginTop: '20px',
+      marginLeft: '20px'
+  }
+}
+
+export default function ContactUs() {
+
+  let {form, error, inputChange, submit} = useFormValidate({
+    name: '',
+    email: '',
+    title: '',
+    message: ''
+  }, {
+    rule: {
+      name: {
+        required: true
+      },
+      email: {
+        required: true,
+        pattern: 'email'
+      },
+      title: {
+        required: true
+      },
+      message: {
+        required: true
+      }
+    }, 
+    message: {
+      name: {
+        required: 'Your Name cannot be left blank'
+      },
+      email: {
+        required: 'Your Email cannot be left blank'
+      },
+      title: {
+        required: 'Title cannot be left blank'
+      },
+      message: {
+        required: 'Message cannot be left blank'
+      }
+    }
+  })
+
+  function _btnSend() {
+    let error = submit()
+
+    if(Object.keys(error).length === 0) {
+      alert('Cảm ơn bạn đã quan tâm đến chúng tôi. Chúng tôi sẽ liên hệ với bạn sớm')
+    }
+  }
+
+
     return (
         <section className="pt-7 pb-12">
         <div className="container">
@@ -61,48 +121,58 @@ export default function contactUs() {
                 </p>
                 {/* Button */}
                 <p className="mb-0">
-                  <a className="btn btn-link px-0 text-body" href="store-locator.html">
+                  <Link className="btn btn-link px-0 text-body" to="/store-locator">
                     Go to Store Locator <i className="fe fe-arrow-right ml-2" />
-                  </a>
+                  </Link>
                 </p>
               </aside>
             </div>
             <div className="col-12 col-md-8">
               {/* Form */}
-              <form>
                 {/* Email */}
                 <div className="form-group">
                   <label className="sr-only" htmlFor="contactName">
                     Your Name *
                   </label>
-                  <input className="form-control form-control-sm" id="contactName" type="text" placeholder="Your Name *" required />
+                  <input className="form-control form-control-sm" id="contactName" type="text" placeholder="Your Name *" name="name" value={form.name} onChange={inputChange} />
+                  {
+                    error.name && <p className="error-text" style={styles.inputError}>{error.name}</p>
+                  }
                 </div>
                 {/* Email */}
                 <div className="form-group">
                   <label className="sr-only" htmlFor="contactEmail">
                     Your Email *
                   </label>
-                  <input className="form-control form-control-sm" id="contactEmail" type="email" placeholder="Your Email *" required />
+                  <input className="form-control form-control-sm" id="contactEmail" type="email" placeholder="Your Email *" name="email" value={form.email} onChange={inputChange} />
+                  {
+                    error.email && <p className="error-text" style={styles.inputError}>{error.email}</p>
+                  }
                 </div>
                 {/* Email */}
                 <div className="form-group">
                   <label className="sr-only" htmlFor="contactTitle">
                     Title *
                   </label>
-                  <input className="form-control form-control-sm" id="contactTitle" type="text" placeholder="Title *" required />
+                  <input className="form-control form-control-sm" id="contactTitle" type="text" placeholder="Title *" name="title" value={form.title} onChange={inputChange} />
+                  {
+                    error.title && <p className="error-text" style={styles.inputError}>{error.title}</p>
+                  }
                 </div>
                 {/* Email */}
                 <div className="form-group mb-7">
                   <label className="sr-only" htmlFor="contactMessage">
                     Message *
                   </label>
-                  <textarea className="form-control form-control-sm" id="contactMessage" rows={5} placeholder="Message *" required defaultValue={""} />
+                  <textarea className="form-control form-control-sm" id="contactMessage" rows={5} placeholder="Message *" name="message" value={form.message} onChange={inputChange} />
+                  {
+                    error.message && <p className="error-text" style={styles.inputError}>{error.message}</p>
+                  }
                 </div>
                 {/* Button */}
-                <button className="btn btn-dark">
+                <button className="btn btn-dark" onClick={_btnSend}>
                   Send Message
                 </button>
-              </form>
             </div>
           </div>
         </div>

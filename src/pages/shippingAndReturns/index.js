@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function shippingAndReturns() {
     return (
@@ -166,14 +167,14 @@ export default function shippingAndReturns() {
               {/* Buttons */}
               <div className="row mt-9">
                 <div className="col-12 col-md-6">
-                  <a className="btn btn-lg btn-block btn-outline-dark" href="faq.html">
+                  <Link className="btn btn-lg btn-block btn-outline-dark" to="/faq">
                     Have more Questions?
-                  </a>
+                  </Link>
                 </div>
                 <div className="col-12 col-md-6">
-                  <a className="btn btn-lg btn-block btn-outline-dark" href="contact-us.html">
+                  <Link className="btn btn-lg btn-block btn-outline-dark" to="/contact-us">
                     Want to Contact Us?
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>

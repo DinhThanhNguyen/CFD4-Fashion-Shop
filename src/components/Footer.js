@@ -1,6 +1,45 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+import useFormValidate from '../core/hook/useValidateForm'
+
+
+const styles = {
+    inputError: {
+        color: 'red',
+        fontSize: 13,
+        fontStyle: 'italic',
+        color: 'white',
+        marginTop: '20px',
+        marginLeft: '20px'
+    }
+}
 
 export default function Footer() {
+
+    let { form, error, inputChange, submit } = useFormValidate({
+        email: ''
+    }, {
+        rule: {
+            email: {
+                required: true,
+                pattern: 'email'
+            }
+        },
+        message: {
+            required: 'Email không được để trống',
+            pattern: 'Email không đúng định dạng'
+        }
+    })
+
+    function _btnSend() {
+        let error = submit()
+
+        if (Object.keys(error).length === 0) {
+            alert('Chúng tôi sẽ liên hệ với bạn trong thời gian sớm')
+        }
+    }
+
+
     return (
         <footer className="bg-dark bg-cover @@classList" style={{ backgroundImage: 'url(/img/patterns/pattern-2.svg)' }}>
             <div className="py-12 border-bottom border-gray-700">
@@ -10,16 +49,20 @@ export default function Footer() {
                             {/* Heading */}
                             <h5 className="mb-7 text-center text-white">Want style Ideas and Treats?</h5>
                             {/* Form */}
-                            <form className="mb-11">
+                            <div className="mb-11">
                                 <div className="form-row align-items-start">
                                     <div className="col">
-                                        <input type="email" className="form-control form-control-gray-700 form-control-lg" placeholder="Enter Email *" />
+                                        <input type="email" className="form-control form-control-gray-700 form-control-lg" placeholder="Enter Email *"
+                                            name="email" value={form.email} onChange={inputChange} />
                                     </div>
                                     <div className="col-auto">
-                                        <button type="submit" className="btn btn-gray-500 btn-lg">Subscribe</button>
+                                        <button type="submit" className="btn btn-gray-500 btn-lg" onClick={_btnSend}>Subscribe</button>
                                     </div>
                                 </div>
-                            </form>
+                                {
+                                    error.email && <p className="error-text" style={styles.inputError}>{error.email}</p>
+                                }
+                            </div>
                         </div>
                     </div>
                     <div className="row">
@@ -59,20 +102,20 @@ export default function Footer() {
                             {/* Heading */}
                             <h6 className="heading-xxs mb-4 text-white">
                                 Support
-                </h6>
+                            </h6>
                             {/* Links */}
                             <ul className="list-unstyled mb-7 mb-sm-0">
                                 <li>
-                                    <a className="text-gray-300" href="./contact-us.html">Contact Us</a>
+                                    <Link className="text-gray-300" to="/contact-us">Contact Us</Link>
                                 </li>
                                 <li>
-                                    <a className="text-gray-300" href="./faq.html">FAQs</a>
+                                    <Link className="text-gray-300" to="/faq">FAQs</Link>
                                 </li>
                                 <li>
                                     <a className="text-gray-300" data-toggle="modal" href="#modalSizeChart">Size Guide</a>
                                 </li>
                                 <li>
-                                    <a className="text-gray-300" href="./shipping-and-returns.html">Shipping &amp; Returns</a>
+                                    <Link className="text-gray-300" to="/shipping-and-returns">Shipping &amp; Returns</Link>
                                 </li>
                             </ul>
                         </div>
@@ -80,20 +123,20 @@ export default function Footer() {
                             {/* Heading */}
                             <h6 className="heading-xxs mb-4 text-white">
                                 Shop
-                </h6>
+                            </h6>
                             {/* Links */}
                             <ul className="list-unstyled mb-7 mb-sm-0">
                                 <li>
-                                    <a className="text-gray-300" href="./shop.html">Men's Shopping</a>
+                                    <Link className="text-gray-300" to="/catalog">Men's Shopping</Link>
                                 </li>
                                 <li>
-                                    <a className="text-gray-300" href="./shop.html">Women's Shopping</a>
+                                    <Link className="text-gray-300" to="/catalog">Women's Shopping</Link>
                                 </li>
                                 <li>
-                                    <a className="text-gray-300" href="./shop.html">Kids' Shopping</a>
+                                    <Link className="text-gray-300" to="/catalog">Kids' Shopping</Link>
                                 </li>
                                 <li>
-                                    <a className="text-gray-300" href="./shop.html">Discounts</a>
+                                    <Link className="text-gray-300" to="/catalog">Discounts</Link>
                                 </li>
                             </ul>
                         </div>
@@ -101,20 +144,20 @@ export default function Footer() {
                             {/* Heading */}
                             <h6 className="heading-xxs mb-4 text-white">
                                 Company
-                </h6>
+                            </h6>
                             {/* Links */}
                             <ul className="list-unstyled mb-0">
                                 <li>
-                                    <a className="text-gray-300" href="./about.html">Our Story</a>
+                                    <Link className="text-gray-300" to="/about">Our Story</Link>
                                 </li>
                                 <li>
-                                    <a className="text-gray-300" href="#!">Careers</a>
+                                    <Link className="text-gray-300" to="#!">Careers</Link>
                                 </li>
                                 <li>
-                                    <a className="text-gray-300" href="#!">Terms &amp; Conditions</a>
+                                    <Link className="text-gray-300" to="#!">Terms &amp; Conditions</Link>
                                 </li>
                                 <li>
-                                    <a className="text-gray-300" href="#!">Privacy &amp; Cookie policy</a>
+                                    <Link className="text-gray-300" to="#!">Privacy &amp; Cookie policy</Link>
                                 </li>
                             </ul>
                         </div>
@@ -122,7 +165,7 @@ export default function Footer() {
                             {/* Heading */}
                             <h6 className="heading-xxs mb-4 text-white">
                                 Contact
-                </h6>
+                            </h6>
                             {/* Links */}
                             <ul className="list-unstyled mb-0">
                                 <li>
@@ -146,7 +189,7 @@ export default function Footer() {
                             {/* Copyright */}
                             <p className="mb-3 mb-md-0 font-size-xxs text-muted">
                                 © 2019 All rights reserved. Designed by Unvab.
-                </p>
+                            </p>
                         </div>
                         <div className="col-auto">
                             {/* Payment methods */}
