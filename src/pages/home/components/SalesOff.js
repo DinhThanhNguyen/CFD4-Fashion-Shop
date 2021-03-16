@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function SalesOff({day, hours, minutes, seconds}) {
 
@@ -10,7 +11,7 @@ export default function SalesOff({day, hours, minutes, seconds}) {
                         {/* Heading */}
                         <h3 className="mb-7">
                             Get -50% from <br />Summer Collection
-              </h3>
+                        </h3>
                         {/* Counter */}
                         <div className="d-flex mb-9" data-countdown data-date="Jan 5, 2021 15:37:25">
                             <div className="text-center">
@@ -40,9 +41,9 @@ export default function SalesOff({day, hours, minutes, seconds}) {
                             </div>
                         </div>
                         {/* Button */}
-                        <a className="btn btn-dark" href="shop.html">
+                        <Link className="btn btn-dark" to="/catalog">
                             Shop Now <i className="fe fe-arrow-right ml-2" />
-                        </a>
+                        </Link>
                     </div>
                 </div>
             </div>

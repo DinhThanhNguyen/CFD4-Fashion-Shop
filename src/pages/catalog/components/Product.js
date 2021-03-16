@@ -1,5 +1,6 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { addCart } from '../../../redux/reducers/cartReducers'
 
 export default function Product(props) {
@@ -20,7 +21,7 @@ export default function Product(props) {
             {/* Image */}
             <div className="card-img">
                 {/* Image */}
-                <a className="card-img-hover" href="product.html">
+                <Link className="card-img-hover" to="/product-detail">
                     {
                         image1 && <img className="card-img-top card-img-back" src={image1} alt="..." />
                     }
@@ -28,7 +29,7 @@ export default function Product(props) {
                         image2 ? <img className="card-img-top card-img-front" src={image2} alt="..." /> :
                             <img className="card-img-top card-img-front" src={image1} alt="..." />
                     }
-                </a>
+                </Link>
                 {/* Actions */}
                 <div className="card-actions">
                     <span className="card-action">
@@ -51,14 +52,14 @@ export default function Product(props) {
             {/* Body */}
             <div className="card-body px-0">
                 {/* Category */}
-                <div className="font-size-xs">
-                    <a className="text-muted" href="shop.html">Shoes</a>
-                </div>
+                {/* <div className="font-size-xs">
+                    <Link className="text-muted" to="/catalog">Shoes</Link>
+                </div> */}
                 {/* Title */}
                 <div className="font-weight-bold">
-                    <a className="text-body" href="product.html">
+                    <Link className="text-body" to="/product-detail">
                         {name}
-                    </a>
+                    </Link>
                 </div>
                 {/* Price */}
                 <div className="font-weight-bold text-muted">

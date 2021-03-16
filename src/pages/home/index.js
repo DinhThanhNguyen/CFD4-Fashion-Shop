@@ -1,6 +1,5 @@
 import React from 'react'
 import WithCountDown from '../../hoc/withCountDown'
-import withCountDown from '../../hoc/withCountDown'
 import Banner from './components/Banner'
 import Bestpick from './components/Bestpick'
 import Review from './components/Review'

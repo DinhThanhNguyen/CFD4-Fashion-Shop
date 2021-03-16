@@ -1,0 +1,39 @@
+{
+    "data": [
+        {
+            "building" : "Park 6",
+            "address" : "Vinhomes Central Park, Ward 22, Binh Thanh District, Ho Chi Minh City, Viet Nam",
+            "phone" : "0987654321",
+            "store_hourse" : "10 am - 10 pm EST, 7 days a week",
+            "iframe_google_map" : "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2174.327152000161!2d106.72092788657216!3d10.79412256949!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317529664ed42713%3A0x282b57a24209b2b5!2sVinhomes%20Park%206!5e0!3m2!1svi!2s!4v1615864131875!5m2!1svi!2s"
+        },
+        {
+            "building" : "Floor 2",
+            "address" : "Vincom Mega Mall, Thao Dien Ward, District 2, Ho Chi Minh City, Viet Nam",
+            "phone" : "0987654321",
+            "store_hourse" : "10 am - 10 pm EST, 7 days a week",
+            "iframe_google_map" : "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d9814.51238510237!2d106.72794867772647!3d10.797520700499884!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317526116a00db67%3A0x2a83ec9f23dbe496!2zVmluY29tIE1lZ2EgTWFsbCBUaOG6o28gxJBp4buBbg!5e0!3m2!1svi!2s!4v1615863657823!5m2!1svi!2s"
+        },
+        {
+            "building" : "Floor 3",
+            "address" : "Vincom Center, Ben Nghe Ward, District 1, Ho Chi Minh City, Viet Nam",
+            "phone" : "0987654321",
+            "store_hourse" : "10 am - 10 pm EST, 7 days a week",
+            "iframe_google_map" : "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d32471.697738157753!2d106.71278524002807!3d10.796950414944149!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xc53453d621f9cfae!2zVmluY29tIENlbnRlciAoVmluY29tIMSQ4buTbmcgS2jhu59pKQ!5e0!3m2!1svi!2s!4v1615863734483!5m2!1svi!2s"
+        },
+        {
+            "building" : "Floor 2",
+            "address" : "Vista Verde Apartment, Thanh My Loi Ward, District 2, Thu Duc City, Viet Nam",
+            "phone" : "0987654321",
+            "store_hourse" : "10 am - 10 pm EST, 7 days a week",
+            "iframe_google_map" : "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14568.223717386618!2d106.7588815014416!3d10.78145601400912!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3175250fcaa3dfc9%3A0x929a840373ec2b61!2sChung%20c%C6%B0%20Vista%20Verde!5e0!3m2!1svi!2s!4v1615864495120!5m2!1svi!2s"
+        },
+        {
+            "building" : "Park 4",
+            "address" : "Saigon Centre, Ben Nghe Ward, District 1, Ho Chi Minh City, Viet Nam",
+            "phone" : "0987654321",
+            "store_hourse" : "10 am - 10 pm EST, 7 days a week",
+            "iframe_google_map" : "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.4952412220464!2d106.69877231494169!3d10.773330262196396!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f4743648f3d%3A0x16ce95918cb14834!2sSaigon%20Centre!5e0!3m2!1svi!2s!4v1615864730510!5m2!1svi!2s"
+        }
+    ]
+}

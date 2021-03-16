@@ -100,7 +100,7 @@ export default function Widhlist() {
                         {/* Body */}
                         <div className="card-body font-weight-bold text-center">
                             <a className="text-body" href="product.html">Leather Sneakers</a> <br />
-                            <a className="text-primary" href="#">Select Options</a>
+                            <a className="text-primary" href="#!">Select Options</a>
                         </div>
                     </div>
                 </div>
@@ -132,30 +132,30 @@ export default function Widhlist() {
             <nav className="d-flex justify-content-center justify-content-md-end">
                 <ul className="pagination pagination-sm text-gray-400">
                     <li className="page-item">
-                        <a className="page-link page-link-arrow" href="#">
+                        <a className="page-link page-link-arrow" href="#!">
                             <i className="fa fa-caret-left" />
                         </a>
                     </li>
                     <li className="page-item active">
-                        <a className="page-link" href="#">1</a>
+                        <a className="page-link" href="#!">1</a>
                     </li>
                     <li className="page-item">
-                        <a className="page-link" href="#">2</a>
+                        <a className="page-link" href="#!">2</a>
                     </li>
                     <li className="page-item">
-                        <a className="page-link" href="#">3</a>
+                        <a className="page-link" href="#!">3</a>
                     </li>
                     <li className="page-item">
-                        <a className="page-link" href="#">4</a>
+                        <a className="page-link" href="#!">4</a>
                     </li>
                     <li className="page-item">
-                        <a className="page-link" href="#">5</a>
+                        <a className="page-link" href="#!">5</a>
                     </li>
                     <li className="page-item">
-                        <a className="page-link" href="#">6</a>
+                        <a className="page-link" href="#!">6</a>
                     </li>
                     <li className="page-item">
-                        <a className="page-link page-link-arrow" href="#">
+                        <a className="page-link page-link-arrow" href="#!">
                             <i className="fa fa-caret-right" />
                         </a>
                     </li>

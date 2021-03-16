@@ -16,7 +16,7 @@ export default function paymentList() {
                                     {/* Text */}
                                     <p className="mb-lg-0 font-size-sm font-weight-bold">
                                         673290789
-                                                </p>
+                                     </p>
                                 </div>
                                 <div className="col-6 col-lg-3">
                                     {/* Heading */}
@@ -25,7 +25,7 @@ export default function paymentList() {
                                     <p className="mb-lg-0 font-size-sm font-weight-bold">
                                         <time dateTime="2019-10-01">
                                             01 Oct, 2019
-                                                    </time>
+                                        </time>
                                     </p>
                                 </div>
                                 <div className="col-6 col-lg-3">
@@ -42,7 +42,7 @@ export default function paymentList() {
                                     {/* Text */}
                                     <p className="mb-0 font-size-sm font-weight-bold">
                                         $259.00
-                                                </p>
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -70,7 +70,7 @@ export default function paymentList() {
                                         <a className="embed-responsive-item embed-responsive-item-text text-reset" href="#!">
                                             <div className="font-size-xxs font-weight-bold">
                                                 +2 <br /> more
-                                                        </div>
+                                            </div>
                                         </a>
                                     </div>
                                 </div>
@@ -82,13 +82,13 @@ export default function paymentList() {
                                     {/* Button */}
                                     <a className="btn btn-sm btn-block btn-outline-dark" href="account-order.html">
                                         Order Details
-                                                </a>
+                                    </a>
                                 </div>
                                 <div className="col-6">
                                     {/* Button */}
                                     <a className="btn btn-sm btn-block btn-outline-dark" href="#!">
                                         Track order
-                                                </a>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -108,7 +108,7 @@ export default function paymentList() {
                                     {/* Text */}
                                     <p className="mb-lg-0 font-size-sm font-weight-bold">
                                         871090437
-                                                </p>
+                                    </p>
                                 </div>
                                 <div className="col-6 col-lg-3">
                                     {/* Heading */}
@@ -117,7 +117,7 @@ export default function paymentList() {
                                     <p className="mb-lg-0 font-size-sm font-weight-bold">
                                         <time dateTime="2019-09-25">
                                             25 Sep, 2019
-                                                </time>
+                                        </time>
                                     </p>
                                 </div>
                                 <div className="col-6 col-lg-3">
@@ -126,7 +126,7 @@ export default function paymentList() {
                                     {/* Text */}
                                     <p className="mb-0 font-size-sm font-weight-bold">
                                         In Processing
-                                                </p>
+                                    </p>
                                 </div>
                                 <div className="col-6 col-lg-3">
                                     {/* Heading */}
@@ -134,7 +134,7 @@ export default function paymentList() {
                                     {/* Text */}
                                     <p className="mb-0 font-size-sm font-weight-bold">
                                         $75.00
-                                                </p>
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -156,13 +156,13 @@ export default function paymentList() {
                                     {/* Button */}
                                     <a className="btn btn-sm btn-block btn-outline-dark" href="account-order.html">
                                         Order Details
-                                                </a>
+                                    </a>
                                 </div>
                                 <div className="col-6">
                                     {/* Button */}
                                     <a className="btn btn-sm btn-block btn-outline-dark" href="#!">
                                         Track order
-                                                </a>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -182,7 +182,7 @@ export default function paymentList() {
                                     {/* Text */}
                                     <p className="mb-lg-0 font-size-sm font-weight-bold">
                                         891230563
-                                                </p>
+                                    </p>
                                 </div>
                                 <div className="col-6 col-lg-3">
                                     {/* Heading */}
@@ -191,7 +191,7 @@ export default function paymentList() {
                                     <p className="mb-lg-0 font-size-sm font-weight-bold">
                                         <time dateTime="2019-09-07">
                                             07 Sep, 2019
-                                                    </time>
+                                        </time>
                                     </p>
                                 </div>
                                 <div className="col-6 col-lg-3">
@@ -200,7 +200,7 @@ export default function paymentList() {
                                     {/* Text */}
                                     <p className="mb-0 font-size-sm font-weight-bold">
                                         Delivered
-                                                </p>
+                                    </p>
                                 </div>
                                 <div className="col-6 col-lg-3">
                                     {/* Heading */}
@@ -208,7 +208,7 @@ export default function paymentList() {
                                     {/* Text */}
                                     <p className="mb-0 font-size-sm font-weight-bold">
                                         $69.00
-                                                </p>
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -234,13 +234,13 @@ export default function paymentList() {
                                     {/* Button */}
                                     <a className="btn btn-sm btn-block btn-outline-dark" href="account-order.html">
                                         Order Details
-                                                </a>
+                                    </a>
                                 </div>
                                 <div className="col-6">
                                     {/* Button */}
                                     <a className="btn btn-sm btn-block btn-outline-dark" href="#!">
                                         Track order
-                                                </a>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -251,30 +251,30 @@ export default function paymentList() {
             <nav className="d-flex justify-content-center justify-content-md-end mt-10">
                 <ul className="pagination pagination-sm text-gray-400">
                     <li className="page-item">
-                        <a className="page-link page-link-arrow" href="#">
+                        <a className="page-link page-link-arrow" href="#!">
                             <i className="fa fa-caret-left" />
                         </a>
                     </li>
                     <li className="page-item active">
-                        <a className="page-link" href="#">1</a>
+                        <a className="page-link" href="#!">1</a>
                     </li>
                     <li className="page-item">
-                        <a className="page-link" href="#">2</a>
+                        <a className="page-link" href="#!">2</a>
                     </li>
                     <li className="page-item">
-                        <a className="page-link" href="#">3</a>
+                        <a className="page-link" href="#!">3</a>
                     </li>
                     <li className="page-item">
-                        <a className="page-link" href="#">4</a>
+                        <a className="page-link" href="#!">4</a>
                     </li>
                     <li className="page-item">
-                        <a className="page-link" href="#">5</a>
+                        <a className="page-link" href="#!">5</a>
                     </li>
                     <li className="page-item">
-                        <a className="page-link" href="#">6</a>
+                        <a className="page-link" href="#!">6</a>
                     </li>
                     <li className="page-item">
-                        <a className="page-link page-link-arrow" href="#">
+                        <a className="page-link page-link-arrow" href="#!">
                             <i className="fa fa-caret-right" />
                         </a>
                     </li>

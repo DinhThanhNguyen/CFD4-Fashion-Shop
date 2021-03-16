@@ -19,7 +19,7 @@ export default function TopNavbar() {
                     <ul className="nav nav-divided navbar-nav mr-auto">
                         <li className="nav-item dropdown">
                             {/* Toggle */}
-                            <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="#">
+                            <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="#!">
                                 <img className="mb-1 mr-1" src="/img/flags/usa.svg" alt="..." /> United States
                             </a>
                             {/* Menu */}
@@ -37,7 +37,7 @@ export default function TopNavbar() {
                         </li>
                         <li className="nav-item dropdown">
                             {/* Toggle */}
-                            <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="#">USD</a>
+                            <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="#!">USD</a>
                             {/* Menu */}
                             <div className="dropdown-menu minw-0">
                                 <a className="dropdown-item" href="#!">USD</a>
@@ -46,12 +46,12 @@ export default function TopNavbar() {
                         </li>
                         <li className="nav-item dropdown">
                             {/* Toggle */}
-                            <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="#">English</a>
+                            <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="#!">English</a>
                             {/* Menu */}
                             <div className="dropdown-menu minw-0">
-                                <a className="dropdown-item" href="#">English</a>
-                                <a className="dropdown-item" href="#">French</a>
-                                <a className="dropdown-item" href="#">German</a>
+                                <a className="dropdown-item" href="#!">English</a>
+                                <a className="dropdown-item" href="#!">French</a>
+                                <a className="dropdown-item" href="#!">German</a>
                             </div>
                         </li>
                     </ul>

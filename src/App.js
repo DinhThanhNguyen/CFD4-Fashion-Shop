@@ -10,7 +10,7 @@ import FAQ from './pages/FAQ'
 import shoppingCart from './pages/shoppingCart'
 import Checkout from './pages/checkout'
 import Blog from './pages/blogPost/components/Blog'
-import contactUs from './pages/contactUs'
+import ContactUs from './pages/contactUs'
 import Auth from './pages/auth'
 import Header from './components/Header/index'
 import AppProvider from './core/AppProvider'
@@ -42,7 +42,7 @@ function App() {
     <Route path="/coming-soon" component={() => <WithCountDown WapperComponent={ComingSoon} timeCountDown={((1*24)*60*60) + 59} />} />
     <Route path="/blog-post" component={blogPost} />
     <Route path="/blog" component={Blog} />
-    <Route path="/contact-us" component={contactUs} />
+    <Route path="/contact-us" component={ContactUs} />
     <Route path="/about" component={About} />
     <Route path="/" exact component={Home} />
     <Route path="/" component={errorPage} />
