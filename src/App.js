@@ -7,7 +7,6 @@ import Footer from './components/Footer'
 import shippingAndReturns from './pages/shippingAndReturns'
 import StoreLocator from './pages/storeLocator'
 import FAQ from './pages/FAQ'
-import shoppingCart from './pages/shoppingCart'
 import Checkout from './pages/checkout'
 import Blog from './pages/blogPost/components/Blog'
 import ContactUs from './pages/contactUs'
@@ -25,6 +24,7 @@ import ComingSoon from './pages/comingSoon'
 import WithCountDown from './hoc/withCountDown'
 import Search from './components/Search'
 import ModalSizeChart from './components/ModalSizeChart'
+import ShoppingCart from './pages/shoppingCart'
 
 function App() {
   return <AppProvider reducers={reducers}>
@@ -36,7 +36,7 @@ function App() {
     <Route path="/checkout" component={Checkout} />
     <Route path="/auth" component={Auth} />
     <Route path="/catalog" component={Catalog} />
-    <Route path="/shopping-cart" component={shoppingCart} />
+    <Route path="/shopping-cart" component={ShoppingCart} />
     <Route path="/shipping-and-returns" component={shippingAndReturns} />
     <Route path="/store-locator" component={StoreLocator} />
     <Route path="/coming-soon" component={() => <WithCountDown WapperComponent={ComingSoon} timeCountDown={((1*24)*60*60) + 59} />} />

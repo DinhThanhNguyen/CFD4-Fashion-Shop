@@ -1,7 +1,10 @@
+import useCountDown from 'core/hook/useCountDown'
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-export default function SalesOff({day, hours, minutes, seconds}) {
+export default function SalesOff() {
+
+    let {day, hours, minutes, seconds} = useCountDown(((1 * 24) * 60 * 60) + 59)
 
     return (
         <section className="py-13 bg-cover" style={{ backgroundImage: 'url(/img/covers/cover-4.jpg)' }}>

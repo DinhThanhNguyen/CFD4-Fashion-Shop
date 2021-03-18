@@ -15,6 +15,13 @@ Content-Type: application/json
 {{DOMAIN}}/logout
 
 ### Đăng ký
+POST {{DOMAIN}}elearning/v4/register
+Content-Type: application/json
+
+{
+    "username": "abcdf@gmail.com", 
+    "password": "123456"
+}
 
 ### Cập nhật thông tin
 

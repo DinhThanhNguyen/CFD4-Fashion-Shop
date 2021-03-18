@@ -1,10 +1,44 @@
-import React from 'react'
+import cartApi from 'api/cartApi'
+import useInputValidate from 'core/hook/useInputValidate'
+import withPriceFormat from 'hoc/withPriceFormat'
+import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 import Features from '../../components/Features'
+import CartItem from './components/CartItem'
 
-export default function shoppingCart() {
-    return (
-      <>
-        <section className="pt-7 pb-12">
+export default function ShoppingCart() {
+
+  const cart = useSelector(state => state.cart)
+
+  const dispatch = useDispatch()
+
+  let amount = new Intl.NumberFormat('vn').format(cart.amount)
+
+  let tax = new Intl.NumberFormat('vn').format((cart.amount * 10) / 100)
+
+  let total = new Intl.NumberFormat('vn').format(cart.amount + (cart.amount * 10) / 100)
+
+  let [codeMessage, setCodeMessage] = useState()
+
+  let { Input: InputCouponCode, validate } = useInputValidate('', { min: 6 })
+
+  function applyCouponCode() {
+    let result = validate()
+    console.log(result.value)
+    if (result.value) {
+      cartApi.applyCode(result.value)
+        .then(res => {
+          setCodeMessage('Bạn đã thêm Coupon Code thành công')
+        }, error => {
+
+        })
+    }
+  }
+
+  return (
+    <>
+      <section className="pt-7 pb-12">
         <div className="container">
           <div className="row">
             <div className="col-12">
@@ -16,100 +50,37 @@ export default function shoppingCart() {
             <div className="col-12 col-md-7">
               {/* List group */}
               <ul className="list-group list-group-lg list-group-flush-x mb-6">
-                <li className="list-group-item">
-                  <div className="row align-items-center">
-                    <div className="col-3">
-                      {/* Image */}
-                      <a href="product.html">
-                        <img src="/img/products/product-6.jpg" alt="..." className="img-fluid" />
-                      </a>
-                    </div>
-                    <div className="col">
-                      {/* Title */}
-                      <div className="d-flex mb-2 font-weight-bold">
-                        <a className="text-body" href="product.html">Cotton floral print</a> <span className="ml-auto">$40.00</span>
-                      </div>
-                      {/* Text */}
-                      <p className="mb-7 font-size-sm text-muted">
-                        Size: M <br />
-                        Color: Red
-                      </p>
-                      {/*Footer */}
-                      <div className="d-flex align-items-center">
-                        {/* Select */}
-                        <select className="custom-select custom-select-xxs w-auto">
-                          <option value={1}>1</option>
-                          <option value={1}>2</option>
-                          <option value={1}>3</option>
-                        </select>
-                        {/* Remove */}
-                        <a className="font-size-xs text-gray-400 ml-auto" href="#!">
-                          <i className="fe fe-x" /> Remove
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-                <li className="list-group-item">
-                  <div className="row align-items-center">
-                    <div className="col-3">
-                      {/* Image */}
-                      <a href="product.html">
-                        <img src="/img/products/product-10.jpg" alt="..." className="img-fluid" />
-                      </a>
-                    </div>
-                    <div className="col">
-                      {/* Title */}
-                      <div className="d-flex mb-2 font-weight-bold">
-                        <a className="text-body" href="product.html">Suede cross body Bag</a> <span className="ml-auto">$49.00</span>
-                      </div>
-                      {/* Text */}
-                      <p className="mb-7 font-size-sm text-muted">
-                        Color: Brown
-                      </p>
-                      {/*Footer */}
-                      <div className="d-flex align-items-center">
-                        {/* Select */}
-                        <select className="custom-select custom-select-xxs w-auto">
-                          <option value={1}>1</option>
-                          <option value={1}>2</option>
-                          <option value={1}>3</option>
-                        </select>
-                        {/* Remove */}
-                        <a className="font-size-xs text-gray-400 ml-auto" href="#!">
-                          <i className="fe fe-x" /> Remove
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </li>
+                {
+                  cart.list.map(e => <React.Fragment key={e._id}>{withPriceFormat(CartItem, e)}</React.Fragment>)
+                }
               </ul>
               {/* Footer */}
-              <div className="row align-items-end justify-content-between mb-10 mb-md-0">
-                <div className="col-12 col-md-7">
-                  {/* Coupon */}
-                  <form className="mb-7 mb-md-0">
-                    <label className="font-size-sm font-weight-bold" htmlFor="cartCouponCode">
-                      Coupon code:
+              <div className="row align-items-end justify-content-between mb-10 mb-md-0 shopping-coupon-code" style={{ display: 'flex' }}>
+                {/* Coupon */}
+                <div className="mb-7 mb-md-0">
+                  <label className="font-size-sm font-weight-bold" htmlFor="cartCouponCode">
+                    Coupon code:
                     </label>
-                    <div className="row form-row">
-                      <div className="col">
-                        {/* Input */}
-                        <input className="form-control form-control-sm" id="cartCouponCode" type="text" placeholder="Enter coupon code*" />
-                      </div>
-                      <div className="col-auto">
-                        {/* Button */}
-                        <button className="btn btn-sm btn-dark" type="submit">
-                          Apply
-                        </button>
-                      </div>
+                  <div className="row form-row">
+                    <div className="col">
+                      {/* Input */}
+                      {<InputCouponCode placeholder="Enter coupon code*" className="form-control" />}
+                      {
+                        codeMessage && <div className="green-message">{codeMessage}</div>
+                      }
                     </div>
-                  </form>
+                    <div className="col-auto">
+                      {/* Button */}
+                      <button className="btn btn-sm btn-dark" type="submit" onClick={applyCouponCode} >
+                        Apply
+                      </button>
+                    </div>
+                  </div>
                 </div>
-                <div className="col-12 col-md-auto">
-                  {/* Button */}
-                  <button className="btn btn-sm btn-outline-dark">Update Cart</button>
-                </div>
+                {/* Button */}
+                {/* <div className="col-12 col-md-auto">
+                  <button className="btn btn-sm btn-outline-dark" >Update Cart</button>
+                </div> */}
               </div>
             </div>
             <div className="col-12 col-md-5 col-lg-4 offset-lg-1">
@@ -118,13 +89,13 @@ export default function shoppingCart() {
                 <div className="card-body">
                   <ul className="list-group list-group-sm list-group-flush-y list-group-flush-x">
                     <li className="list-group-item d-flex">
-                      <span>Subtotal</span> <span className="ml-auto font-size-sm">$89.00</span>
+                      <span>Subtotal</span> <span className="ml-auto font-size-sm">{amount}₫</span>
                     </li>
                     <li className="list-group-item d-flex">
-                      <span>Tax</span> <span className="ml-auto font-size-sm">$00.00</span>
+                      <span>Tax</span> <span className="ml-auto font-size-sm">{tax}₫</span>
                     </li>
                     <li className="list-group-item d-flex font-size-lg font-weight-bold">
-                      <span>Total</span> <span className="ml-auto font-size-sm">$89.00</span>
+                      <span>Total</span> <span className="ml-auto font-size-sm">{total}</span>
                     </li>
                     <li className="list-group-item font-size-sm text-center text-gray-500">
                       Shipping cost calculated at Checkout *
@@ -133,16 +104,16 @@ export default function shoppingCart() {
                 </div>
               </div>
               {/* Button */}
-              <a className="btn btn-block btn-dark mb-2" href="checkout.html">Proceed to Checkout</a>
+              <Link className="btn btn-block btn-dark mb-2" to="/checkout">Proceed to Checkout</Link>
               {/* Link */}
-              <a className="btn btn-link btn-sm px-0 text-body" href="shop.html">
+              <Link className="btn btn-link btn-sm px-0 text-body" to="/catalog">
                 <i className="fe fe-arrow-left mr-2" /> Continue Shopping
-              </a>
+              </Link>
             </div>
           </div>
         </div>
       </section>
       <Features />
-      </>
-    )
+    </>
+  )
 }

@@ -1,6 +1,10 @@
 import React from 'react'
+import useCountDown from '../../core/hook/useCountDown'
 
-export default function ComingSoon({ day, hours, minutes, seconds }) {
+export default function ComingSoon() {
+
+    let { day, hours, minutes, seconds } = useCountDown(((1 * 24) * 60 * 60) + 59)
+
     return (
         <section className="bg-cover" style={{ marginTop: '-90px', backgroundImage: 'url(/img/covers/cover-22.jpg)' }}>
             <div className="container d-flex flex-column">

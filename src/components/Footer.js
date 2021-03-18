@@ -1,4 +1,5 @@
-import React from 'react'
+import pageApi from 'api/pageApi'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import useFormValidate from '../core/hook/useValidateForm'
 
@@ -8,7 +9,7 @@ const styles = {
         color: 'red',
         fontSize: 13,
         fontStyle: 'italic',
-        color: 'white',
+        color: 'red',
         marginTop: '20px',
         marginLeft: '20px'
     }
@@ -31,11 +32,22 @@ export default function Footer() {
         }
     })
 
+    let [errorMessage, setErrorMessage] = useState('')
+
+    let [successMessage, setSuccessMessage] = useState('')
+
     function _btnSend() {
         let error = submit()
 
         if (Object.keys(error).length === 0) {
-            alert('Chúng tôi sẽ liên hệ với bạn trong thời gian sớm')
+            pageApi.contact(form)
+                .then(res => {
+                    if (res.success) {
+                        setSuccessMessage('Gửi liên hệ thành công. Chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất!');
+                    }
+                }, res => {
+                    setErrorMessage(res.error)
+                })
         }
     }
 
@@ -50,6 +62,12 @@ export default function Footer() {
                             <h5 className="mb-7 text-center text-white">Want style Ideas and Treats?</h5>
                             {/* Form */}
                             <div className="mb-11">
+                                {
+                                    successMessage && <p className="success-message">{successMessage}</p>
+                                }
+                                {
+                                    errorMessage && <p className="error-message">{errorMessage}</p>
+                                }
                                 <div className="form-row align-items-start">
                                     <div className="col">
                                         <input type="email" className="form-control form-control-gray-700 form-control-lg" placeholder="Enter Email *"
@@ -136,7 +154,7 @@ export default function Footer() {
                                     <Link className="text-gray-300" to="/catalog">Kids' Shopping</Link>
                                 </li>
                                 <li>
-                                    <Link className="text-gray-300" to="/catalog">Discounts</Link>
+                                    <Link className="text-gray-300" to="/coming-soon">Discounts</Link>
                                 </li>
                             </ul>
                         </div>
@@ -169,13 +187,13 @@ export default function Footer() {
                             {/* Links */}
                             <ul className="list-unstyled mb-0">
                                 <li>
-                                    <a className="text-gray-300" href="#!">1-202-555-0105</a>
+                                    <Link className="text-gray-300" to="/contact-us" >1-202-555-0105</Link>
                                 </li>
                                 <li>
-                                    <a className="text-gray-300" href="#!">1-202-555-0106</a>
+                                    <Link className="text-gray-300" to="/contact-us">1-202-555-0106</Link>
                                 </li>
                                 <li>
-                                    <a className="text-gray-300" href="#!">help@shopper.com</a>
+                                    <Link className="text-gray-300" to="/contact-us">help@shopper.com</Link>
                                 </li>
                             </ul>
                         </div>

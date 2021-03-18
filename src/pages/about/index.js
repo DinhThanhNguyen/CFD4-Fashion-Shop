@@ -1,4 +1,7 @@
+import Features from 'components/Features'
 import React from 'react'
+import { Link } from 'react-router-dom'
+import Review from './components/Review'
 
 export default function About() {
     return (
@@ -10,7 +13,7 @@ export default function About() {
                             {/* Breadcrumb */}
                             <ol className="breadcrumb mb-0 font-size-xs text-gray-400">
                                 <li className="breadcrumb-item">
-                                    <a className="text-gray-400" href="index.html">Home</a>
+                                    <Link className="text-gray-400" to="/">Home</Link>
                                 </li>
                                 <li className="breadcrumb-item active">
                                     About Us
@@ -104,9 +107,9 @@ export default function About() {
                     <div className="row">
                         <div className="col-12 text-center">
                             {/* Button */}
-                            <a className="btn btn-dark" href="shop.html">
+                            <Link className="btn btn-dark" to="/catalog">
                                 Shop Now <i className="fe fe-arrow-right ml-2" />
-                            </a>
+                            </Link>
                         </div>
                     </div>
                 </div>
@@ -177,61 +180,7 @@ export default function About() {
                     </div>
                 </div>
             </section>
-            <section className="pt-12">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-12 text-center">
-                            {/* Preheading */}
-                            <h6 className="heading-xxs mb-3 text-gray-400">
-                                What buyers say
-                            </h6>
-                            {/* Heading */}
-                            <h2 className="mb-10">
-                                Customers Reviews
-                            </h2>
-                            {/* Slider */}
-                            <div className="flickity-buttons-lg flickity-buttons-offset px-lg-12" data-flickity="{&quot;prevNextButtons&quot;: true, &quot;pageDots&quot;: true}">
-                                {/* Item */}
-                                <blockquote className="blockquote col-12">
-                                    <p className="mb-6">
-                                        Given wherein. Doesn't called also and air sea to make first subdue
-                                        beginning. Appear seasons the it after whose beginning. Hath can't good life. They're multiply made give
-                                        divided open, be likeness Cattle be have.
-                                        Life tree darkness. She'd very.
-                                    </p>
-                                    <footer className="blockquote-footer">
-                                        Darrell Baker, <time dateTime="2019-05-18">18 May 2019</time>
-                                    </footer>
-                                </blockquote>
-                                {/* Item */}
-                                <blockquote className="blockquote col-12">
-                                    <p className="mb-6">
-                                        Given wherein. Doesn't called also and air sea to make first subdue
-                                        beginning. Appear seasons the it after whose beginning. Hath can't good life. They're multiply made give
-                                        divided open, be likeness Cattle be have.
-                                        Life tree darkness. She'd very.
-                                    </p>
-                                    <footer className="blockquote-footer">
-                                        Darrell Baker, <time dateTime="2019-05-18">18 May 2019</time>
-                                    </footer>
-                                </blockquote>
-                                {/* Item */}
-                                <blockquote className="blockquote col-12">
-                                    <p className="mb-6">
-                                        Given wherein. Doesn't called also and air sea to make first subdue
-                                        beginning. Appear seasons the it after whose beginning. Hath can't good life. They're multiply made give
-                                        divided open, be likeness Cattle be have.
-                                        Life tree darkness. She'd very.
-                                    </p>
-                                    <footer className="blockquote-footer">
-                                        Darrell Baker, <time dateTime="2019-05-18">18 May 2019</time>
-                                    </footer>
-                                </blockquote>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            <Review />
             <section className="pt-12">
                 <div className="container bg-h-100" style={{ backgroundImage: 'url(/img/covers/cover-15.jpg)' }}>
                     <div className="row">
@@ -242,84 +191,7 @@ export default function About() {
                     </div>
                 </div>
             </section>
-            <section className="py-9">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-12 col-md-6 col-lg-3">
-                            {/* Item */}
-                            <div className="d-flex mb-6 mb-lg-0">
-                                {/* Icon */}
-                                <i className="fe fe-truck font-size-lg text-primary" />
-                                {/* Body */}
-                                <div className="ml-6">
-                                    {/* Heading */}
-                                    <h6 className="heading-xxs mb-1">
-                                        Free shipping
-                                    </h6>
-                                    {/* Text */}
-                                    <p className="mb-0 font-size-sm text-muted">
-                                        From all orders over $100
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-12 col-md-6 col-lg-3">
-                            {/* Item */}
-                            <div className="d-flex mb-6 mb-lg-0">
-                                {/* Icon */}
-                                <i className="fe fe-repeat font-size-lg text-primary" />
-                                {/* Body */}
-                                <div className="ml-6">
-                                    {/* Heading */}
-                                    <h6 className="mb-1 heading-xxs">
-                                        Free returns
-                                    </h6>
-                                    {/* Text */}
-                                    <p className="mb-0 font-size-sm text-muted">
-                                        Return money within 30 days
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-12 col-md-6 col-lg-3">
-                            {/* Item */}
-                            <div className="d-flex mb-6 mb-md-0">
-                                {/* Icon */}
-                                <i className="fe fe-lock font-size-lg text-primary" />
-                                {/* Body */}
-                                <div className="ml-6">
-                                    {/* Heading */}
-                                    <h6 className="mb-1 heading-xxs">
-                                        Secure shopping
-                                    </h6>
-                                    {/* Text */}
-                                    <p className="mb-0 font-size-sm text-muted">
-                                        You're in safe hands
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-12 col-md-6 col-lg-3">
-                            {/* Item */}
-                            <div className="d-flex">
-                                {/* Icon */}
-                                <i className="fe fe-tag font-size-lg text-primary" />
-                                {/* Body */}
-                                <div className="ml-6">
-                                    {/* Heading */}
-                                    <h6 className="mb-1 heading-xxs">
-                                        Over 10,000 Styles
-                                    </h6>
-                                    {/* Text */}
-                                    <p className="mb-0 font-size-sm text-muted">
-                                        We have everything you need
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            <Features />
         </>
     )
 }

@@ -22,11 +22,24 @@ export function login(data) {
     }
 }
 
+export function register(data) {
+    return (dispatch) => {
+        userApi.register(data)
+            .then(res => {
+                if (res.error) {
+                    dispatch(action.error(res.error))
+                } else {
+                    dispatch(action.register(res.data))
+                }
+            })
+    }
+}
+
 let { action, reducer, TYPE } = createSlice({
     name: 'auth',
     initialState,
     reducers: {
-        login: function(state, action) {
+        login: function (state, action) {
             let user = action.payload
             let token = action.payload.token
 
@@ -38,7 +51,7 @@ let { action, reducer, TYPE } = createSlice({
                 user
             }
         },
-        logout: function(state, action) {
+        logout: function (state) {
             localStorage.removeItem('login')
             localStorage.removeItem('token')
             return {
@@ -47,10 +60,22 @@ let { action, reducer, TYPE } = createSlice({
                 user: null
             }
         },
-        error: function(state, action) {
+        error: function (state, action) {
             return {
                 ...state,
                 error: action.payload
+            }
+        },
+        register: function (state, action) {
+            let user = action.payload
+            let token = action.payload.token
+
+            localStorage.setItem('login', JSON.stringify(user))
+            localStorage.setItem('token', JSON.stringify(token))
+            return {
+                ...state,
+                register: true,
+                user
             }
         }
     }
@@ -61,5 +86,7 @@ export default reducer
 export const userLogin = action.login
 
 export const userLogout = action.logout
+
+export const userRegister = action.register
 
 export const USER = TYPE

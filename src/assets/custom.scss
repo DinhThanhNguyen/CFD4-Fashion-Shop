@@ -18,3 +18,27 @@
 .error-input::placeholder {
     color: red;
 }
+
+.success-message {
+    color: green;
+}
+
+.error-message {
+    color: red;
+}
+
+.shopping-coupon-code {
+    align-items: flex-start !important;
+}
+
+.error-text{
+    color: red;
+    font-style: italic;
+    margin-top: 10px;
+}
+
+.green-message {
+    color: green;
+    font-style: italic;
+    margin-top: 10px;
+}

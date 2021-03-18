@@ -37,7 +37,7 @@ export default function ModalCart() {
                     {/* Buttons */}
                     <div className="modal-body">
                         <Link onClick={() => document.getElementById('modalShoppingCart').dispatchEvent(new Event('click'))} className="btn btn-block btn-dark" to="/checkout">Continue to Checkout</Link>
-                        <a className="btn btn-block btn-outline-dark" href="./shopping-cart.html">View Cart</a>
+                        <Link onClick={() => document.getElementById('modalShoppingCart').dispatchEvent(new Event('click'))} className="btn btn-block btn-outline-dark" to="/shopping-cart">View Cart</Link>
                     </div>
                 </div>
                 {/* Empty cart (remove `.d-none` to enable it) */}

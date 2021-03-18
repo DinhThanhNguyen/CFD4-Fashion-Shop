@@ -1,5 +1,4 @@
 import React from 'react'
-import WithCountDown from '../../hoc/withCountDown'
 import Banner from './components/Banner'
 import Bestpick from './components/Bestpick'
 import Review from './components/Review'
@@ -13,9 +12,7 @@ export default function Home() {
             <Banner />
             <Bestpick />
             <Topmonth />
-            {
-                <WithCountDown WapperComponent={SalesOff} timeCountDown={((1*24)*60*60) + 59} />
-            }
+            <SalesOff />
             <Review />
             <Shopper />
         </>
