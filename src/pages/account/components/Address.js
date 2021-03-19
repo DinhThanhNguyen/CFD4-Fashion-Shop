@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function address() {
+export default function Address() {
     return (
         <div className="col-12 col-md-9 col-lg-8 offset-lg-1">
             {/* Heading */}

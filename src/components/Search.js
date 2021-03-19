@@ -27,7 +27,7 @@ export default function Search() {
         },
         message: {
             input: {
-                required: 'Vui lòng nhập thông tin cần tìm kiếm'
+                required: 'Vui lòng nhập từ khoá cần tìm kiếm'
             }
         }
     })

@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function addressList() {
+export default function AddressList() {
     return (
         <div className="col-12 col-md-9 col-lg-8 offset-lg-1">
             <div className="row">

@@ -10,6 +10,8 @@ export default function PersonalInfor() {
 
   let dispatch = useDispatch()
 
+  let yearNow = (new Date()).getFullYear()
+
   let { form, error, inputChange, submit } = useFormValidate({
     first_name: auth.user.first_name,
     last_name: auth.user.last_name,
@@ -109,7 +111,7 @@ export default function PersonalInfor() {
                 <label className="sr-only" htmlFor="accountMonth">
                   Month
                   </label>
-                <select className="custom-select custom-select-sm" id="accountMonth">
+                <select className="custom-select custom-select-sm " id="accountMonth">
                   <option>January</option>
                   <option>February</option>
                   <option>March</option>
@@ -131,7 +133,7 @@ export default function PersonalInfor() {
                   </label>
                 <select className="custom-select custom-select-sm" id="accountYear">
                   {
-                    [...Array(50)].map((e, i) => <option value={i + 1} key={i}>{i + 1}</option>)
+                    [].map.bind([...Array(100)])((e, i) => <option value={i + yearNow} key={i}>{yearNow - i}</option>)
                   }
                 </select>
               </div>
