@@ -35,6 +35,19 @@ export function register(data) {
     }
 }
 
+export function updateInfo(data) {
+    return (dispatch) => {
+        userApi.update(data)
+            .then(res => {
+                if(res.error) {
+                    dispatch(action.error(res.error))
+                } else {
+                    dispatch(action.update(res.data))
+                }
+            })
+    }
+}
+
 let { action, reducer, TYPE } = createSlice({
     name: 'auth',
     initialState,
@@ -60,12 +73,6 @@ let { action, reducer, TYPE } = createSlice({
                 user: null
             }
         },
-        error: function (state, action) {
-            return {
-                ...state,
-                error: action.payload
-            }
-        },
         register: function (state, action) {
             let user = action.payload
             let token = action.payload.token
@@ -76,6 +83,20 @@ let { action, reducer, TYPE } = createSlice({
                 ...state,
                 register: true,
                 user
+            }
+        },
+        update: (state, action) => {
+            state.user = {
+                ...state.user,
+                ...action.payload
+            }
+
+            localStorage.setItem('login', JSON.stringify(state.user))
+        },
+        error: function (state, action) {
+            return {
+                ...state,
+                error: action.payload
             }
         }
     }

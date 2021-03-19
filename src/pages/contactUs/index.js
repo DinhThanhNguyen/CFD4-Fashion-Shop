@@ -196,7 +196,7 @@ export default function ContactUs() {
             {/* Button */}
             <button className="btn btn-dark" onClick={_btnSend}>
               Send Message
-                </button>
+            </button>
           </div>
         </div>
       </div>

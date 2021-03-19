@@ -6,21 +6,21 @@ export default function Catagory() {
             {/* Toggle */}
             <a className="nav-link dropdown-toggle font-size-lg text-reset border-bottom mb-6" data-toggle="collapse" href="#categoryCollapse">
                 Category
-                                    </a>
+            </a>
             {/* Collapse */}
             <div className="collapse show" id="categoryCollapse">
                 <div className="form-group">
                     <ul className="list-styled mb-0" id="productsNav">
                         <li className="list-styled-item">
-                            <a className="list-styled-link" href="#">
+                            <a className="list-styled-link" href="#!">
                                 All Products
-                                                    </a>
+                            </a>
                         </li>
                         <li className="list-styled-item">
                             {/* Toggle */}
                             <a className="list-styled-link" data-toggle="collapse" href="#blousesCollapse">
                                 Blouses and Shirts
-                                                    </a>
+                            </a>
                             {/* Collapse */}
                             <div className="collapse" id="blousesCollapse" data-parent="#productsNav">
                                 <div className="py-4 pl-5">
@@ -28,25 +28,25 @@ export default function Catagory() {
                                         <input className="custom-control-input" id="blousesOne" type="checkbox" />
                                         <label className="custom-control-label" htmlFor="blousesOne">
                                             Women Tops, Tees &amp; Blouses
-                                                                </label>
+                                        </label>
                                     </div>
                                     <div className="custom-control custom-checkbox mb-3">
                                         <input className="custom-control-input" id="blousesTwo" type="checkbox" />
                                         <label className="custom-control-label" htmlFor="blousesTwo">
                                             Petite
-                                                                </label>
+                                        </label>
                                     </div>
                                     <div className="custom-control custom-checkbox mb-3">
                                         <input className="custom-control-input" id="blousesThree" type="checkbox" />
                                         <label className="custom-control-label" htmlFor="blousesThree">
                                             Petite-Size Blouses &amp; Button-Down Shirts
-                                                                </label>
+                                        </label>
                                     </div>
                                     <div className="custom-control custom-checkbox">
                                         <input className="custom-control-input" id="blousesFour" type="checkbox" />
                                         <label className="custom-control-label" htmlFor="blousesFour">
                                             Women Plus Tops &amp; Tees
-                                                                </label>
+                                        </label>
                                     </div>
                                 </div>
                             </div>
@@ -55,7 +55,7 @@ export default function Catagory() {
                             {/* Toggle */}
                             <a className="list-styled-link" data-toggle="collapse" href="#coatsCollapse">
                                 Coats and Jackets
-                                                    </a>
+                            </a>
                             {/* Collapse */}
                             <div className="collapse" id="coatsCollapse" data-parent="#productsNav">
                                 <div className="py-4 pl-5">
@@ -63,19 +63,19 @@ export default function Catagory() {
                                         <input className="custom-control-input" id="coatsOne" type="checkbox" />
                                         <label className="custom-control-label" htmlFor="coatsOne">
                                             Coats, Jackets &amp; Vests
-                                                                </label>
+                                         </label>
                                     </div>
                                     <div className="custom-control custom-checkbox mb-3">
                                         <input className="custom-control-input" id="coatsTwo" type="checkbox" />
                                         <label className="custom-control-label" htmlFor="coatsTwo">
                                             Down Jackets &amp; Parkas
-                                                                </label>
+                                        </label>
                                     </div>
                                     <div className="custom-control custom-checkbox">
                                         <input className="custom-control-input" id="coatsThree" type="checkbox" />
                                         <label className="custom-control-label" htmlFor="coatsThree">
                                             Wool &amp; Pea Coats Plus-Size
-                                                                </label>
+                                        </label>
                                     </div>
                                 </div>
                             </div>
@@ -84,7 +84,7 @@ export default function Catagory() {
                             {/* Toggle */}
                             <a className="list-styled-link" data-toggle="collapse" href="#dressesCollapse" aria-expanded="true">
                                 Dresses
-                                                    </a>
+                            </a>
                             {/* Collapse */}
                             <div className="collapse show" id="dressesCollapse" data-parent="#productsNav">
                                 <div className="py-4 pl-5">
@@ -92,25 +92,25 @@ export default function Catagory() {
                                         <input className="custom-control-input" id="dressesOne" type="checkbox" />
                                         <label className="custom-control-label" htmlFor="dressesOne">
                                             A-line Dresses
-                                                                </label>
+                                        </label>
                                     </div>
                                     <div className="custom-control custom-checkbox mb-3">
                                         <input className="custom-control-input" id="dressesTwo" type="checkbox" defaultChecked />
                                         <label className="custom-control-label" htmlFor="dressesTwo">
                                             Shift Dresses
-                                                                </label>
+                                        </label>
                                     </div>
                                     <div className="custom-control custom-checkbox mb-3">
                                         <input className="custom-control-input" id="dressesThree" type="checkbox" />
                                         <label className="custom-control-label" htmlFor="dressesThree">
                                             Wrap Dresses
-                                                                </label>
+                                        </label>
                                     </div>
                                     <div className="custom-control custom-checkbox">
                                         <input className="custom-control-input" id="dressesFour" type="checkbox" />
                                         <label className="custom-control-label" htmlFor="dressesFour">
                                             Maxi Dresses
-                                                                </label>
+                                        </label>
                                     </div>
                                 </div>
                             </div>
@@ -119,7 +119,7 @@ export default function Catagory() {
                             {/* Toggle */}
                             <a className="list-styled-link" data-toggle="collapse" href="#hoodiesCollapse">
                                 Hoodies and Sweats
-                                                    </a>
+                            </a>
                             {/* Collapse */}
                             <div className="collapse" id="hoodiesCollapse" data-parent="#productsNav">
                                 <div className="py-4 pl-5">
@@ -127,25 +127,25 @@ export default function Catagory() {
                                         <input className="custom-control-input" id="hoodiesOne" type="checkbox" />
                                         <label className="custom-control-label" htmlFor="hoodiesOne">
                                             Activewear
-                                                                </label>
+                                        </label>
                                     </div>
                                     <div className="custom-control custom-checkbox mb-3">
                                         <input className="custom-control-input" id="hoodiesTwo" type="checkbox" />
                                         <label className="custom-control-label" htmlFor="hoodiesTwo">
                                             Fashion Hoodies &amp; Sweatshirts
-                                                                </label>
+                                        </label>
                                     </div>
                                     <div className="custom-control custom-checkbox mb-3">
                                         <input className="custom-control-input" id="hoodiesThree" type="checkbox" />
                                         <label className="custom-control-label" htmlFor="hoodiesThree">
                                             Big &amp; Tall Sweatshirts
-                                                                </label>
+                                        </label>
                                     </div>
                                     <div className="custom-control custom-checkbox">
                                         <input className="custom-control-input" id="hoodiesFour" type="checkbox" />
                                         <label className="custom-control-label" htmlFor="hoodiesFour">
                                             Big &amp; Tall Fashion Hoodies
-                                                                </label>
+                                        </label>
                                     </div>
                                 </div>
                             </div>
@@ -154,7 +154,7 @@ export default function Catagory() {
                             {/* Toggle */}
                             <a className="list-styled-link" data-toggle="collapse" href="#denimCollapse">
                                 Denim
-                                                    </a>
+                            </a>
                             {/* Collapse */}
                             <div className="collapse" id="denimCollapse" data-parent="#productsNav">
                                 <div className="py-4 pl-5">
@@ -162,25 +162,25 @@ export default function Catagory() {
                                         <input className="custom-control-input" id="denimOne" type="checkbox" />
                                         <label className="custom-control-label" htmlFor="denimOne">
                                             Women Shorts
-                                                                </label>
+                                        </label>
                                     </div>
                                     <div className="custom-control custom-checkbox mb-3">
                                         <input className="custom-control-input" id="denimTwo" type="checkbox" />
                                         <label className="custom-control-label" htmlFor="denimTwo">
                                             Juniors' Shorts
-                                                                </label>
+                                        </label>
                                     </div>
                                     <div className="custom-control custom-checkbox mb-3">
                                         <input className="custom-control-input" id="denimThree" type="checkbox" />
                                         <label className="custom-control-label" htmlFor="denimThree">
                                             Petite
-                                                                </label>
+                                        </label>
                                     </div>
                                     <div className="custom-control custom-checkbox">
                                         <input className="custom-control-input" id="denimFour" type="checkbox" />
                                         <label className="custom-control-label" htmlFor="denimFour">
                                             Women Plus Shorts
-                                                                </label>
+                                        </label>
                                     </div>
                                 </div>
                             </div>

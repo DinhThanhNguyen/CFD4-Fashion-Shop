@@ -58,7 +58,7 @@ export default function ComingSoon() {
                                     {/* Button */}
                                     <button className="btn btn-dark" type="submit">
                                         Notify me!
-                            </button>
+                                    </button>
                                 </div>
                             </div>
                         </form>

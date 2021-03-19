@@ -4,7 +4,7 @@ import address from './components/Address';
 import addressList from './components/AddressLish';
 import payment from './components/Payment';
 import paymentList from './components/PaymentList';
-import personalInfor from './components/PersonalInfor';
+import PersonalInfor from './components/PersonalInfor';
 import SlideBar from './components/SlideBar'
 import widhlist from './components/Widhlist';
 import order from './components/Order';
@@ -32,7 +32,7 @@ export default function Account() {
                         <Route path={`${match.path}/address/:action`} exact component={address} />
                         <Route path={`${match.path}/payment`} exact component={paymentList} />
                         <Route path={`${match.path}/payment/:action`} component={payment} />
-                        <Route path={`${match.path}`} exact component={personalInfor} />
+                        <Route path={`${match.path}`} exact component={PersonalInfor} />
                     </Switch>
                 </div>
             </div>

@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function orderCompleted() {
+export default function OrderCompleted() {
     return (
         <section className="py-12">
         <div className="container">

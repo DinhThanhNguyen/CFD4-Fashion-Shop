@@ -294,7 +294,7 @@ export default function Checkout() {
                                                 {/* Button */}
                                                 <button className="btn btn-sm btn-outline-dark" type="submit">
                                                     Save Address
-                                </button>
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
