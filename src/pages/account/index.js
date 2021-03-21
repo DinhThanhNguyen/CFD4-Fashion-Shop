@@ -2,13 +2,13 @@ import React from 'react'
 import { Route, Switch, useRouteMatch } from 'react-router'
 import Address from './components/Address';
 import AddressList from './components/AddressList'
-import payment from './components/Payment';
-import paymentList from './components/PaymentList';
+import PaymentList from './PaymentList/PaymentList';
+import PaymentMethod from './components/PaymentMethod/PaymentMethod';
 import PersonalInfor from './components/PersonalInfor';
 import SlideBar from './components/SlideBar'
 import widhlist from './components/Widhlist';
-import order from './components/Order';
-import orderList from './components/OrderList';
+import Order from './components/Order';
+import OrderList from './components/OrderList';
 
 export default function Account() {
 
@@ -27,11 +27,11 @@ export default function Account() {
                     <Switch>
                         <Route path={`${match.path}/address/:action`} exact component={Address} />
                         <Route path={`${match.path}/address`} exact component={AddressList} />
-                        <Route path={`${match.path}/order`} exact component={orderList} />
-                        <Route path={`${match.path}/order/:id`} component={order} />
+                        <Route path={`${match.path}/order`} exact component={OrderList} />
+                        <Route path={`${match.path}/order/:id`} component={Order} />
                         <Route path={`${match.path}/widhlist`} component={widhlist} />
-                        <Route path={`${match.path}/payment`} exact component={paymentList} />
-                        <Route path={`${match.path}/payment/:action`} component={payment} />
+                        <Route path={`${match.path}/payment`} exact component={PaymentList} />
+                        <Route path={`${match.path}/payment/:action`} component={PaymentMethod} />
                         <Route path={`${match.path}`} exact component={PersonalInfor} />
                     </Switch>
                 </div>

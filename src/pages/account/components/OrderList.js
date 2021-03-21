@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function orderList() {
+export default function OrderList() {
   return (
     <div className="col-12 col-md-9 col-lg-8 offset-lg-1">
       {/* Order */}

@@ -11,8 +11,6 @@ export default function ShoppingCart() {
 
   const cart = useSelector(state => state.cart)
 
-  const dispatch = useDispatch()
-
   let amount = new Intl.NumberFormat('vn').format(cart.amount)
 
   let tax = new Intl.NumberFormat('vn').format((cart.amount * 10) / 100)

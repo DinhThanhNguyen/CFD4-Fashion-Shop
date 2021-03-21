@@ -2,10 +2,11 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { addCart } from '../../../redux/reducers/cartReducers'
+import { Skeleton } from '@material-ui/lab';
 
 export default function Product(props) {
 
-    let { name, price_text, images } = props
+    let { name, price_text, images, loading } = props
 
     let dispatch = useDispatch()
 
@@ -15,19 +16,25 @@ export default function Product(props) {
     return (
         <div className="card mb-7">
             {/* Badge */}
-            <div className="badge badge-white card-badge card-badge-left text-uppercase">
-                New
-            </div>
+            {
+                !loading && <div className="badge badge-white card-badge card-badge-left text-uppercase">
+                    New
+                </div>
+            }
             {/* Image */}
             <div className="card-img">
                 {/* Image */}
                 <Link className="card-img-hover" to="/product-detail">
                     {
-                        image1 && <img className="card-img-top card-img-back" src={image1} alt="..." />
-                    }
-                    {
-                        image2 ? <img className="card-img-top card-img-front" src={image2} alt="..." /> :
-                            <img className="card-img-top card-img-front" src={image1} alt="..." />
+                        loading ? <Skeleton variant="rect" width="100%" height={253} /> : <>
+                            {
+                                image1 && <img className="card-img-top card-img-back" src={image1} alt="..." />
+                            }
+                            {
+                                image2 ? <img className="card-img-top card-img-front" src={image2} alt="..." /> :
+                                    <img className="card-img-top card-img-front" src={image1} alt="..." />
+                            }
+                        </>
                     }
                 </Link>
                 {/* Actions */}
@@ -56,15 +63,19 @@ export default function Product(props) {
                     <Link className="text-muted" to="/catalog">Shoes</Link>
                 </div> */}
                 {/* Title */}
-                <div className="font-weight-bold">
-                    <Link className="text-body" to="/product-detail">
-                        {name}
-                    </Link>
-                </div>
+                {
+                    loading ? <Skeleton height={40} /> : <div className="font-weight-bold">
+                        <Link className="text-body" to="/product-detail">
+                            {name}
+                        </Link>
+                    </div>
+                }
                 {/* Price */}
-                <div className="font-weight-bold text-muted">
-                    {price_text}₫
-                </div>
+                {
+                    loading ? <Skeleton variant="text" /> : <div className="font-weight-bold text-muted">
+                        {price_text}₫
+                    </div>
+                }
             </div>
         </div>
     )

@@ -1,6 +1,11 @@
 import React from 'react'
+import { useRouteMatch } from 'react-router'
+import { Link } from 'react-router-dom'
 
-export default function payment() {
+export default function PaymentList() {
+
+  let match = useRouteMatch()
+
   return (
     <div className="col-12 col-md-9 col-lg-8 offset-lg-1">
       <div className="row">
@@ -43,11 +48,13 @@ export default function payment() {
         </div>
         <div className="col-12">
           {/* Button */}
-          <a className="btn btn-block btn-lg btn-outline-border" href="account-payment-edit.html">
+          <Link className="btn btn-block btn-lg btn-outline-border" to={`${match.path}/create`}>
             Add Payment Method <i className="fe fe-plus" />
-          </a>
+          </Link>
         </div>
       </div>
     </div>
   )
 }
+
+

@@ -6,7 +6,7 @@ export default function Address() {
             {/* Heading */}
             <h6 className="mb-7">
                 Add Address
-                        </h6>
+            </h6>
             {/* Form */}
             <form>
                 <div className="row">
@@ -86,7 +86,7 @@ export default function Address() {
                 {/* Button */}
                 <button className="btn btn-dark" type="submit">
                     Add Address
-                            </button>
+                </button>
             </form>
         </div>
     )

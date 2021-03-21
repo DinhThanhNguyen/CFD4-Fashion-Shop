@@ -3,15 +3,17 @@ import createSlice from '../../core/createSlice'
 
 const initialState = {
     products: [],
-    paginate: null
+    paginate: null,
+    loading: true
 }
 
 export function getProduct(page) {
     return (dispatch) => {
+        dispatch(action.loading())
         productApi.catalog(page)
             .then(res => {
 
-                dispatch({ type: TYPE.catalog, payload: res })
+                dispatch(action.catalog(res))
             })
     }
 }
@@ -20,11 +22,15 @@ let { reducer, TYPE, action } = createSlice({
     name: 'product',
     initialState,
     reducers: {
+        loading: function(state) {
+            state.loading = true
+        },
         catalog: function (state, action) {
             return {
                 ...state,
                 products: action.payload.data,
-                paginate: action.payload.paginate
+                paginate: action.payload.paginate,
+                loading: false
             }
         }
     }

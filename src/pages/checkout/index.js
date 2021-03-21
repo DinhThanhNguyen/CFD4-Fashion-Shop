@@ -22,7 +22,7 @@ export default function Checkout() {
 
     let dispatch = useDispatch()
 
-    let { form, inputChange, submit, error, setForm } = useFormValidate({
+    let { form, inputChange, submit, error } = useFormValidate({
         first_name: '',
         last_name: '',
         email: '',

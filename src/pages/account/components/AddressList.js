@@ -1,6 +1,10 @@
 import React from 'react'
+import { Link, useRouteMatch } from 'react-router-dom'
 
 export default function AddressList() {
+
+    let match = useRouteMatch()
+
     return (
         <div className="col-12 col-md-9 col-lg-8 offset-lg-1">
             <div className="row">
@@ -68,9 +72,9 @@ export default function AddressList() {
                 </div>
                 <div className="col-12">
                     {/* Button */}
-                    <a className="btn btn-block btn-lg btn-outline-border" href="account-address-edit.html">
+                    <Link className="btn btn-block btn-lg btn-outline-border" to={`${match.path}/create`}>
                         Add Address <i className="fe fe-plus" />
-                    </a>
+                    </Link>
                 </div>
             </div>
         </div>

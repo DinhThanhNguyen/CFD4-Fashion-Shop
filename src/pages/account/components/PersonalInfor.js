@@ -10,7 +10,7 @@ export default function PersonalInfor() {
 
   let dispatch = useDispatch()
 
-  let yearNow = (new Date()).getFullYear()
+  let yearNow = new Date().getFullYear()
 
   let { form, error, inputChange, submit } = useFormValidate({
     first_name: auth.user.first_name,
@@ -55,6 +55,7 @@ export default function PersonalInfor() {
         new_password: '1'
       }
     }
+    
     let error = submit(options);
     if (Object.keys(error).length === 0) {
       dispatch(updateInfo(form))

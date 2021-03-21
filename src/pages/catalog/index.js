@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Category from './components/Category'
 import Size from './components/Size'
 import Color from './components/Color'
@@ -120,12 +120,20 @@ export default function Catalog() {
                         {/* Products */}
                         <div className="row">
                             {
+                                product.products.length === 0 ?
+                                    [...Array(15)].map(e => (
+                                        <div className="col-6 col-md-4">
+                                            {/* Card */}
+                                            {withPriceFormat(Product, { loading: product.loading })}
+                                        </div>
+                                    ))
+                                :
                                 product.products.map(e => (
-                                    <div className="col-6 col-md-4" key={e._id}>
-                                        {/* Card */}
-                                        {withPriceFormat(Product, e)}
-                                    </div>
-                                ))
+                                        <div className="col-6 col-md-4" key={e._id}>
+                                            {/* Card */}
+                                            {withPriceFormat(Product, { ...e, loading: product.loading })}
+                                        </div>
+                                    ))
                             }
                         </div>
 
