@@ -1,6 +1,21 @@
 import React from 'react'
 import { Link, useRouteMatch } from 'react-router-dom';
 
+
+function convertQueryToObject() {
+    var search = '' || window.location.search.substring(1);
+    return !search ? {} : JSON.parse('{"' + decodeURI(search).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g,'":"') + '"}')
+}
+
+const serializeObjectToQueryURL = function(obj) {
+    var str = [];
+    for (var p in obj)
+      if (obj.hasOwnProperty(p)) {
+        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+      }
+    return str.join("&");
+}
+
 export default function Pagination({ currentPage, totalPage }) {
 
 
@@ -20,11 +35,14 @@ export default function Pagination({ currentPage, totalPage }) {
 
         let list = []
         for (let i = start; i <= end; i++) {
+            let queryObj = convertQueryToObject()
+            queryObj.page = i
+            let queryURL = serializeObjectToQueryURL(queryObj)
             list.push(<li className={`page-item ${currentPage === i ? 'active' : ''}`} key={i}>
-                <Link className="page-link" to={`${match.path}?page=${i}`}>{i}</Link>
+                <Link className="page-link" to={`${match.path}?${queryURL}`}>{i}</Link>
             </li>)
         }
-        
+
         return list;
     }
 
@@ -33,7 +51,7 @@ export default function Pagination({ currentPage, totalPage }) {
             <ul className="pagination pagination-sm text-gray-400">
                 {
                     currentPage > 1 && <li className="page-item">
-                        <Link className="page-link page-link-arrow" to={`${match.path}?page=${currentPage - 1}`}>
+                        <Link className="page-link page-link-arrow" to={`${match.path}?${serializeObjectToQueryURL({ ...convertQueryToObject(), page: currentPage - 1 })}`}>
                             <i className="fa fa-caret-left" />
                         </Link>
                     </li>
@@ -45,7 +63,7 @@ export default function Pagination({ currentPage, totalPage }) {
 
                 {
                     currentPage < totalPage && <li className="page-item">
-                        <Link className="page-link page-link-arrow" to={`${match.path}?page=${currentPage + 1}`}>
+                        <Link className="page-link page-link-arrow" to={`${match.path}?${serializeObjectToQueryURL({ ...convertQueryToObject(), page: currentPage + 1 })}`}>
                             <i className="fa fa-caret-right" />
                         </Link>
                     </li>

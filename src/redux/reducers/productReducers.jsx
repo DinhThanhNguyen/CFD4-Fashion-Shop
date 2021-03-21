@@ -7,12 +7,11 @@ const initialState = {
     loading: true
 }
 
-export function getProduct(page) {
+export function getProduct(queryString) {
     return (dispatch) => {
         dispatch(action.loading())
-        productApi.catalog(page)
+        productApi.catalog(queryString)
             .then(res => {
-
                 dispatch(action.catalog(res))
             })
     }

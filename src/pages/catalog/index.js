@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import Category from './components/Category'
 import Size from './components/Size'
 import Color from './components/Color'
@@ -11,11 +11,26 @@ import { getProduct } from '../../redux/reducers/productReducers'
 import Product from './components/Product'
 import Pagination from './components/Pagination'
 import withPriceFormat from '../../hoc/withPriceFormat'
+import { useHistory, useRouteMatch } from 'react-router'
 
 
 function getPage() {
     const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get('page');
+}
+
+function convertQueryToObject() {
+    var search = '' || window.location.search.substring(1);
+    return !search ? {} : JSON.parse('{"' + decodeURI(search).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g,'":"') + '"}')
+}
+
+const serializeObjectToQueryURL = function(obj) {
+    var str = [];
+    for (var p in obj)
+      if (obj.hasOwnProperty(p)) {
+        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+      }
+    return str.join("&");
 }
 
 export default function Catalog() {
@@ -24,11 +39,29 @@ export default function Catalog() {
 
     let product = useSelector(state => state.product)
 
-    let page = getPage();
+    let queryURL = convertQueryToObject()
+
+    let QueryString = serializeObjectToQueryURL(queryURL)
+
+    let history = useHistory()
+
+    let routeMatch = useRouteMatch()
 
     useEffect(() => {
-        dispatch(getProduct(page || 1))
-    }, [page])
+        dispatch(getProduct(QueryString))
+    }, [QueryString])
+
+
+    function sortChange(e) {
+        let value = e.target.value;
+        console.log(value)
+        let queryObj = convertQueryToObject();
+        queryObj.sort = value;
+        delete queryObj.page;
+
+        let queryURL = serializeObjectToQueryURL(queryObj)
+        history.push(`${routeMatch.path}?${queryURL}`)
+    }
 
     return (
         <section className="py-11">
@@ -67,8 +100,11 @@ export default function Catalog() {
                             </div>
                             <div className="col-12 col-md-auto">
                                 {/* Select */}
-                                <select className="custom-select custom-select-xs">
-                                    <option selected>Most popular</option>
+                                <select className="custom-select custom-select-xs cursor-pointer" onChange={sortChange}>
+                                    <option selected disabled className="cursor-pointer">--Sắp xếp--</option>
+                                    <option selected={queryURL.sort === 'rating_average.-1'} value="rating_average.-1">Bán chạy nhất</option>
+                                    <option selected={queryURL.sort === 'price.-1'} value="price.-1">Giá cao đến thấp</option>
+                                    <option selected={queryURL.sort === 'price.1'} value="price.1">Giá thấp đến cao</option>
                                 </select>
                             </div>
                         </div>
@@ -136,7 +172,6 @@ export default function Catalog() {
                                     ))
                             }
                         </div>
-
                         {/* Pagination */}
                         <Pagination {...product.paginate} />
                     </div>
