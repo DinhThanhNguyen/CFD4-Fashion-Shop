@@ -9,29 +9,11 @@ import Session from './components/Session'
 import { useDispatch, useSelector } from 'react-redux'
 import { getProduct } from '../../redux/reducers/productReducers'
 import Product from './components/Product'
-import Pagination from './components/Pagination'
+import Pagination from '../../components/Pagination'
 import withPriceFormat from '../../hoc/withPriceFormat'
 import { useHistory, useRouteMatch } from 'react-router'
+import { convertQueryToObject, serializeObjectToQueryURL } from 'components/helper'
 
-
-function getPage() {
-    const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get('page');
-}
-
-function convertQueryToObject() {
-    var search = '' || window.location.search.substring(1);
-    return !search ? {} : JSON.parse('{"' + decodeURI(search).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g,'":"') + '"}')
-}
-
-const serializeObjectToQueryURL = function(obj) {
-    var str = [];
-    for (var p in obj)
-      if (obj.hasOwnProperty(p)) {
-        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-      }
-    return str.join("&");
-}
 
 export default function Catalog() {
 
@@ -102,9 +84,9 @@ export default function Catalog() {
                                 {/* Select */}
                                 <select className="custom-select custom-select-xs cursor-pointer" onChange={sortChange}>
                                     <option selected disabled className="cursor-pointer">--Sắp xếp--</option>
-                                    <option selected={queryURL.sort === 'rating_average.-1'} value="rating_average.-1">Bán chạy nhất</option>
                                     <option selected={queryURL.sort === 'price.-1'} value="price.-1">Giá cao đến thấp</option>
                                     <option selected={queryURL.sort === 'price.1'} value="price.1">Giá thấp đến cao</option>
+                                    <option selected={queryURL.sort === 'discount_rate.-1'} value="discount_rate.-1">Giá giảm nhiều</option>
                                 </select>
                             </div>
                         </div>
