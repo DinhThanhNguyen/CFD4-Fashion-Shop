@@ -6,7 +6,7 @@ import { Skeleton } from '@material-ui/lab';
 
 export default function Product(props) {
 
-    let { name, price_text, images, loading, discount_rate, price_before_discount } = props
+    let { name, price_text, images, loading, discount_rate, price_before_discount, slug } = props
 
     let dispatch = useDispatch()
 
@@ -24,7 +24,7 @@ export default function Product(props) {
             {/* Image */}
             <div className="card-img">
                 {/* Image */}
-                <Link className="card-img-hover" to="/product-detail">
+                <Link className="card-img-hover" to={`/product/${slug}`}>
                     {
                         loading ? <Skeleton variant="rect" width="100%" height={253} /> : <>
                             {
@@ -38,7 +38,7 @@ export default function Product(props) {
                     }
                     {
                         !discount_rate ? <p className="discount_rate hidden">{discount_rate}%</p> : 
-                        !loading && <p className="discount_rate">{discount_rate}%</p>
+                        !loading && <p className="discount_rate">-{discount_rate}%</p>
                     }
                 </Link>
                 {/* Actions */}
@@ -69,7 +69,7 @@ export default function Product(props) {
                 {/* Title */}
                 {
                     loading ? <Skeleton height={60} /> : <div className="font-weight-bold custom-name-product">
-                        <Link className="text-body" to="/product-detail">
+                        <Link className="text-body" to={`/product/${slug}`}>
                             {name}
                         </Link>
                     </div>

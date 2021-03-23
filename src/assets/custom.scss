@@ -47,30 +47,11 @@
     cursor: pointer;
 }
 
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-  background: #f1f1f1; 
-}
- 
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: #888; 
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #555; 
-}
-
 .discount_rate{
    position: absolute;
    top: 1.25rem;
    right: 0px;
-   background-color: red;
+   background-color: #ff6f61;
    color: white;
    font-size: .6875em;
    text-align: center;
@@ -88,4 +69,21 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
   display: -webkit-box;
+}
+
+.product_details{
+    #productSlider a{
+        display: block;
+        & .active{
+            display: none;
+        }
+    }
+    .slider-thumbnail{
+        cursor: pointer;
+        display: flex;
+        overflow: auto;
+        & .active{
+            border: 1px solid black;
+        }
+    }
 }

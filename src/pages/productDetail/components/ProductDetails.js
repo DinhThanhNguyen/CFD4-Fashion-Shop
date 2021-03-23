@@ -1,8 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-export default function ProductDetails() {
+export default function ProductDetails(props) {
+
+    let { name, price_text, price_before_discount, images, stock_item, discount_rate } = props
+
+    let [currentImage, setCurrentImage] = useState()
+
+    function sliderItemClick(i) {
+        setCurrentImage(i)
+    }
+
     return (
-        <section>
+        <section className="product_details">
             <div className="container">
                 <div className="row">
                     <div className="col-12">
@@ -11,42 +20,30 @@ export default function ProductDetails() {
                                 {/* Card */}
                                 <div className="card">
                                     {/* Badge */}
-                                    <div className="badge badge-primary card-badge text-uppercase">
-                                        Sale
-                                        </div>
+                                    {
+                                        discount_rate ? <div className="badge badge-primary card-badge text-uppercase">
+                                            -{discount_rate}%
+                                        </div> : null
+                                    }
                                     {/* Slider */}
-                                    <div className="mb-4" data-flickity="{&quot;draggable&quot;: false, &quot;fade&quot;: true}" id="productSlider">
+                                    <div className="mb-4" id="productSlider">
                                         {/* Item */}
-                                        <a href="/img/products/product-7.jpg" data-fancybox>
-                                            <img src="/img/products/product-7.jpg" alt="..." className="card-img-top" />
-                                        </a>
-                                        {/* Item */}
-                                        <a href="/img/products/product-122.jpg" data-fancybox>
-                                            <img src="/img/products/product-122.jpg" alt="..." className="card-img-top" />
-                                        </a>
-                                        {/* Item */}
-                                        <a href="/img/products/product-146.jpg" data-fancybox>
-                                            <img src="/img/products/product-146.jpg" alt="..." className="card-img-top" />
-                                        </a>
+                                        {
+                                            images.map((e, i) => <a key={i} href={e.large_url} className={currentImage === i ? 'active' : ''}>
+                                                <img src={e.large_url} alt="..." className="card-img-top" />
+                                            </a>)
+                                        }
                                     </div>
                                 </div>
                                 {/* Slider */}
-                                <div className="flickity-nav mx-n2 mb-10 mb-md-0" data-flickity="{&quot;asNavFor&quot;: &quot;#productSlider&quot;, &quot;contain&quot;: true, &quot;wrapAround&quot;: false}">
+                                <div className="flickity-nav mx-n2 mb-10 mb-md-0 slider-thumbnail">
                                     {/* Item */}
-                                    <div className="col-12 px-2" style={{ maxWidth: '113px' }}>
-                                        {/* Image */}
-                                        <div className="embed-responsive embed-responsive-1by1 bg-cover" style={{ backgroundImage: 'url(/img/products/product-7.jpg)' }} />
-                                    </div>
-                                    {/* Item */}
-                                    <div className="col-12 px-2" style={{ maxWidth: '113px' }}>
-                                        {/* Image */}
-                                        <div className="embed-responsive embed-responsive-1by1 bg-cover" style={{ backgroundImage: 'url(/img/products/product-122.jpg)' }} />
-                                    </div>
-                                    {/* Item */}
-                                    <div className="col-12 px-2" style={{ maxWidth: '113px' }}>
-                                        {/* Image */}
-                                        <div className="embed-responsive embed-responsive-1by1 bg-cover" style={{ backgroundImage: 'url(/img/products/product-146.jpg)' }} />
-                                    </div>
+                                    {
+                                        images.map((e, i) => <div className={`col-12 px-2 ${currentImage === i ? 'active' : ''}`} key={i} style={{ maxWidth: '113px' }} onClick={sliderItemClick.bind(null, i)}>
+                                            {/* Image */}
+                                            <div className="embed-responsive embed-responsive-1by1 bg-cover" style={{ backgroundImage: `url(${e.medium_url})` }} />
+                                        </div>)
+                                    }
                                 </div>
                             </div>
                             <div className="col-12 col-md-6 pl-lg-10">
@@ -81,12 +78,12 @@ export default function ProductDetails() {
                                     </div>
                                 </div>
                                 {/* Heading */}
-                                <h3 className="mb-2">Leather Sneakers</h3>
+                                <h3 className="mb-2">{name}</h3>
                                 {/* Price */}
                                 <div className="mb-7">
-                                    <span className="font-size-lg font-weight-bold text-gray-350 text-decoration-line-through">$115.00</span>
-                                    <span className="ml-1 font-size-h5 font-weight-bolder text-primary">$85.00</span>
-                                    <span className="font-size-sm ml-1">(In Stock)</span>
+                                    <span className="font-size-lg font-weight-bold text-gray-350 text-decoration-line-through">{price_before_discount}₫</span>
+                                    <span className="ml-1 font-size-h5 font-weight-bolder text-primary">{price_text}₫</span>
+                                    <span className="font-size-sm ml-1">({stock_item.qty > 0 ? 'Còn hàng' : 'Hết hàng'})</span>
                                 </div>
                                 {/* Form */}
                                 <form>

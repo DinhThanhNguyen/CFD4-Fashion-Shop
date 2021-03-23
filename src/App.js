@@ -31,7 +31,7 @@ function App() {
   <Header />
   <Switch>
     <Route path="/faq" component={FAQ} />
-    <Route path="/product-detail" component={ProductDetail} />
+    <Route path="/product/:slug" component={ProductDetail} />
     <PrivateRoute path="/account" component={Account} />
     <Route path="/checkout" component={Checkout} />
     <Route path="/auth" component={Auth} />
