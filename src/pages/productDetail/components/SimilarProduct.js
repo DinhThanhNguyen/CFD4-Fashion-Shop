@@ -20,7 +20,7 @@ export default function SimilarProduct() {
                                     {/* Image */}
                                     <div className="card-img">
                                         {/* Image */}
-                                        <a className="card-img-hover" href="product.html">
+                                        <a className="card-img-hover" href="#!">
                                             <img className="card-img-top card-img-back" src="/img/products/product-120.jpg" alt="..." />
                                             <img className="card-img-top card-img-front" src="/img/products/product-5.jpg" alt="..." />
                                         </a>
@@ -51,7 +51,7 @@ export default function SimilarProduct() {
                                         </div>
                                         {/* Title */}
                                         <div className="font-weight-bold">
-                                            <a className="text-body" href="product.html">
+                                            <a className="text-body" href="#!">
                                                 Leather mid-heel Sandals
                                             </a>
                                         </div>
@@ -68,7 +68,7 @@ export default function SimilarProduct() {
                                     {/* Image */}
                                     <div className="card-img">
                                         {/* Image */}
-                                        <a className="card-img-hover" href="product.html">
+                                        <a className="card-img-hover" href="#!">
                                             <img className="card-img-top card-img-back" src="/img/products/product-121.jpg" alt="..." />
                                             <img className="card-img-top card-img-front" src="/img/products/product-6.jpg" alt="..." />
                                         </a>
@@ -99,7 +99,7 @@ export default function SimilarProduct() {
                                         </div>
                                         {/* Title */}
                                         <div className="font-weight-bold">
-                                            <a className="text-body" href="product.html">
+                                            <a className="text-body" href="#!">
                                                 Cotton floral print Dress
                                             </a>
                                         </div>
@@ -120,7 +120,7 @@ export default function SimilarProduct() {
                                     {/* Image */}
                                     <div className="card-img">
                                         {/* Image */}
-                                        <a className="card-img-hover" href="product.html">
+                                        <a className="card-img-hover" href="#!">
                                             <img className="card-img-top card-img-back" src="/img/products/product-122.jpg" alt="..." />
                                             <img className="card-img-top card-img-front" src="/img/products/product-7.jpg" alt="..." />
                                         </a>
@@ -151,7 +151,7 @@ export default function SimilarProduct() {
                                         </div>
                                         {/* Title */}
                                         <div className="font-weight-bold">
-                                            <a className="text-body" href="product.html">
+                                            <a className="text-body" href="#!">
                                                 Leather Sneakers
                                             </a>
                                         </div>
@@ -199,7 +199,7 @@ export default function SimilarProduct() {
                                         </div>
                                         {/* Title */}
                                         <div className="font-weight-bold">
-                                            <a className="text-body" href="product.html">
+                                            <a className="text-body" href="#!">
                                                 Cropped cotton Top
                                             </a>
                                         </div>

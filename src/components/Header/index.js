@@ -1,14 +1,12 @@
 import React from 'react'
-import BottomNavbar from './BottomNavbar'
-import MainNavbar from './MainNavbar'
-import TopNavbar from './TopNavbar'
+import MainNavbar from './components/MainNavbar'
+import TopNavbar from './components/TopNavbar'
 
 export default function Header() {
     return (
         <>
             <TopNavbar />
             <MainNavbar />
-            <BottomNavbar />
         </>
     )
 }

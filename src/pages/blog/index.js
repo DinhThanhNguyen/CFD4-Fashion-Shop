@@ -1,9 +1,22 @@
+import Breadcrumb from 'components/Breadcrumb'
 import React from 'react'
 import { Link } from 'react-router-dom'
 
 export default function Blog() {
-    return (
-        <section className="pt-7 pb-12">
+  return (
+    <>
+      <Breadcrumb
+        list={[
+          {
+            title: 'Home',
+            link: '/'
+          }, {
+            title: 'Blog',
+            link: '/blog'
+          }
+        ]}
+      />
+      <section className="pt-7 pb-12">
         <div className="container">
           <div className="row">
             <div className="col-12">
@@ -181,8 +194,8 @@ export default function Blog() {
                     Showing 16 of 24 products
                   </p>
                   {/* Progress */}
-                  <div className="progress mx-auto mb-7" style={{maxWidth: '250px'}}>
-                    <div className="progress-bar bg-dark" role="progressbar" style={{width: '66%'}} aria-valuenow={66} aria-valuemin={0} aria-valuemax={100} />
+                  <div className="progress mx-auto mb-7" style={{ maxWidth: '250px' }}>
+                    <div className="progress-bar bg-dark" role="progressbar" style={{ width: '66%' }} aria-valuenow={66} aria-valuemin={0} aria-valuemax={100} />
                   </div>
                   {/* Button */}
                   <button className="btn btn-sm btn-outline-dark">
@@ -194,5 +207,6 @@ export default function Blog() {
           </div>
         </div>
       </section>
-    )
+    </>
+  )
 }

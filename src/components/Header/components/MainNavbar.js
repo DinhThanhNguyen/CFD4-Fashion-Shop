@@ -22,22 +22,22 @@ export default function MainNavbar() {
                     {/* Nav */}
                     <ul className="navbar-nav mx-auto">
                         <li className="nav-item dropdown">
-                            <Link className="nav-link" to="/catalog">Product</Link>
+                            <Link className="nav-link" to="/">Home</Link>
                         </li>
                         <li className="nav-item dropdown position-static">
-                            <Link className="nav-link" data-toggle="dropdown" to="/catalog/women">Women</Link>
+                            <Link className="nav-link" data-toggle="dropdown" to="/catalog">Shop</Link>
                         </li>
-                        <li className="nav-item dropdown">
+                        {/* <li className="nav-item dropdown">
                             <Link className="nav-link" data-toggle="dropdown" to="/catalog/men">Men</Link>
-                        </li>
+                        </li> */}
                         <li className="nav-item dropdown">
                             <Link className="nav-link" data-toggle="dropdown" to="/blog">Blog</Link>
                         </li>
                         <li className="nav-item dropdown">
-                            <Link className="nav-link" data-toggle="dropdown" to="/about">About</Link>
+                            <Link className="nav-link" data-toggle="dropdown" to="/about">About Us</Link>
                         </li>
                         <li className="nav-item dropdown">
-                            <Link className="nav-link" data-toggle="dropdown" to="/contact-us">Contact</Link>
+                            <Link className="nav-link" data-toggle="dropdown" to="/store-locator">Store Locator</Link>
                         </li>
                     </ul>
                     {/* Nav */}

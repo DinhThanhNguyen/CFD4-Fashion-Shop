@@ -2,7 +2,7 @@ import Features from 'components/Features'
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-export default function Banner() {
+export default function Category() {
     return (
         <>
             <section>

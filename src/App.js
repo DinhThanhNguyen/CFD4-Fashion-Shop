@@ -18,13 +18,13 @@ import PrivateRoute from './core/PrivateRoute'
 import Catalog from './pages/catalog'
 import ModalCart from './components/ModalCart'
 import './assets/custom.scss'
-import ProductDetail from './pages/productDetail'
 import ComingSoon from './pages/comingSoon'
 import WithCountDown from './hoc/withCountDown'
 import Search from './components/Search'
 import ModalSizeChart from './components/ModalSizeChart'
 import ShoppingCart from './pages/shoppingCart'
 import Blog from 'pages/blog'
+import ProductDetail from 'pages/productDetail'
 
 function App() {
   return <AppProvider reducers={reducers}>

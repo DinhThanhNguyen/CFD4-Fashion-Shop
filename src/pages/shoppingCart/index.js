@@ -1,4 +1,5 @@
 import cartApi from 'api/cartApi'
+import Breadcrumb from 'components/Breadcrumb'
 import useInputValidate from 'core/hook/useInputValidate'
 import withPriceFormat from 'hoc/withPriceFormat'
 import React, { useState } from 'react'
@@ -36,6 +37,17 @@ export default function ShoppingCart() {
 
   return (
     <>
+      <Breadcrumb
+        list={[
+          {
+            title: 'Home',
+            link: '/'
+          }, {
+            title: 'Shopping Cart',
+            link: '/shopping-cart'
+          }
+        ]}
+      />
       <section className="pt-7 pb-12">
         <div className="container">
           <div className="row">

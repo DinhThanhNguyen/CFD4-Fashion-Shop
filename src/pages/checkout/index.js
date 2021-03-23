@@ -1,3 +1,4 @@
+import Breadcrumb from 'components/Breadcrumb'
 import InputGroup from 'components/InputGroup'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -134,6 +135,20 @@ export default function Checkout() {
 
     return (
         <>
+            <Breadcrumb
+                list={[
+                    {
+                        title: 'Home',
+                        link: '/'
+                    }, {
+                        title: 'Shopping Cart',
+                        link: '/shopping-cart'
+                    }, {
+                        title: 'Check Out',
+                        link: '/checkout'
+                    }
+                ]}
+            />
             <section className="pt-7 pb-12">
                 <div className="container">
                     <div className="row">

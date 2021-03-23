@@ -1,3 +1,4 @@
+import Breadcrumb from 'components/Breadcrumb'
 import Features from 'components/Features'
 import React from 'react'
 import { Link } from 'react-router-dom'
@@ -6,23 +7,17 @@ import Review from './components/Review'
 export default function About() {
     return (
         <>
-            <nav className="my-5">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-12">
-                            {/* Breadcrumb */}
-                            <ol className="breadcrumb mb-0 font-size-xs text-gray-400">
-                                <li className="breadcrumb-item">
-                                    <Link className="text-gray-400" to="/">Home</Link>
-                                </li>
-                                <li className="breadcrumb-item active">
-                                    About Us
-                                </li>
-                            </ol>
-                        </div>
-                    </div>
-                </div>
-            </nav>
+            <Breadcrumb
+                list={[
+                    {
+                        title: 'Home',
+                        link: '/'
+                    }, {
+                        title: 'About US',
+                        link: '/about'
+                    }
+                ]}
+            />
             <section>
                 <div className="container">
                     <div className="row justify-content-center py-14 bg-cover" style={{ backgroundImage: 'url(/img/covers/cover-21.jpg)' }}>

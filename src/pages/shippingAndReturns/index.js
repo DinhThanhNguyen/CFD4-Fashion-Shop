@@ -1,9 +1,22 @@
+import Breadcrumb from 'components/Breadcrumb'
 import React from 'react'
 import { Link } from 'react-router-dom'
 
 export default function shippingAndReturns() {
-    return (
-        <section className="pt-7 pb-12">
+  return (
+    <>
+      <Breadcrumb
+        list={[
+          {
+            title: 'Home',
+            link: '/'
+          }, {
+            title: 'Shipping & Returns',
+            link: '/shipping-and-returns'
+          }
+        ]}
+      />
+      <section className="pt-7 pb-12">
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-12 col-lg-10 font-size-lg text-gray-500">
@@ -43,17 +56,17 @@ export default function shippingAndReturns() {
                   <tr>
                     <td>Delivery in 5 - 7 working days</td>
                     <td>Delivery in 5 - 7 working days</td>
-                    <td>$8.00</td>
+                    <td>30.000₫</td>
                   </tr>
                   <tr>
                     <td>Express Shipping</td>
                     <td>Delivery in 3 - 5 working days</td>
-                    <td>$12.00</td>
+                    <td>40.000₫</td>
                   </tr>
                   <tr>
                     <td>1 - 2 day Shipping</td>
                     <td>Delivery in 1 - 2 working days</td>
-                    <td>$18.00</td>
+                    <td>50.000₫</td>
                   </tr>
                   <tr>
                     <td>Free Shipping</td>
@@ -61,7 +74,7 @@ export default function shippingAndReturns() {
                       Living won't the He one every subdue meat replenish face
                       was you morning firmament darkness.
                     </td>
-                    <td>$0.00</td>
+                    <td>0₫</td>
                   </tr>
                 </tbody>
               </table>
@@ -181,5 +194,6 @@ export default function shippingAndReturns() {
           </div>
         </div>
       </section>
-    )
+    </>
+  )
 }

@@ -1,7 +1,8 @@
 import React from 'react'
+import reactDOM from 'react-dom'
 
-export default function waitList() {
-    return ReactDOM.createPortal (
+export default function WaitList() {
+    return reactDOM.createPortal (
         <div className="modal fade" id="modalWaitList" tabIndex={-1} role="dialog" aria-hidden="true">
         <div className="modal-dialog modal-dialog-centered" role="document">
           <div className="modal-content">

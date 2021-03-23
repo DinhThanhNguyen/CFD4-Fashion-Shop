@@ -24,22 +24,24 @@ let { reducer, action, TYPE } = createSlice({
             let { list, amount } = state
 
             let find = list.findIndex(e => e._id === action.payload._id)
+
+            let cartNum = action.payload.cartNum || 1
+
+
+
             if (find !== -1) {
-                list[find].cartNum++
-                amount += list[find].price
+                list[find].cartNum += cartNum
+                amount += list[find].real_price * cartNum
             } else {
                 let item = JSON.parse(JSON.stringify(action.payload))
-
-                item.cartNum = 1
+                item.cartNum = cartNum
                 list.push(item)
-                amount += item.price
+                amount += item.real_price * cartNum
             }
-
-
 
             return returnCart({
                 ...state,
-                num: state.num + 1,
+                num: state.num + cartNum,
                 list,
                 amount
             })
@@ -50,7 +52,7 @@ let { reducer, action, TYPE } = createSlice({
 
             let find = list.findIndex(e => e._id === action.payload)
             if (find !== -1) {
-                amount -= list[find].price * list[find].cartNum
+                amount -= list[find].real_price * list[find].cartNum
                 num -= list[find].cartNum
                 list.splice(find, 1)
             }
@@ -69,7 +71,7 @@ let { reducer, action, TYPE } = createSlice({
             let find = list.findIndex(e => e._id === action.payload)
             if (find !== -1) {
                 list[find].cartNum++
-                amount += list[find].price
+                amount += list[find].real_price
             }
 
             return returnCart({
@@ -87,9 +89,9 @@ let { reducer, action, TYPE } = createSlice({
             if (find !== -1) {
                 if (list[find].cartNum > 1) {
                     list[find].cartNum--
-                    amount -= list[find].price
+                    amount -= list[find].real_price
                 } else {
-                    amount -= list[find].price
+                    amount -= list[find].real_price
                     list.splice(find, 1)
                 }
             }

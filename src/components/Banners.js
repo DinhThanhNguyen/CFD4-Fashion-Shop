@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function BottomNavbar() {
+export default function Banners() {
     return (
         <div class="py-3 bg-dark bg-pattern mb-4">
             <div class="container">

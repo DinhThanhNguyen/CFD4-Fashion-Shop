@@ -1,6 +1,7 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
-export default function Description() {
+export default function Description({ description }) {
     return (
         <section className="pt-11">
             <div className="container">
@@ -24,43 +25,7 @@ export default function Description() {
                                 <div className="row justify-content-center py-9">
                                     <div className="col-12 col-lg-10 col-xl-8">
                                         <div className="row">
-                                            <div className="col-12">
-                                                {/* Text */}
-                                                <p className="text-gray-500">
-                                                    Won't herb first male seas, beast. Let upon, female upon third fifth every. Man subdue rule
-                                                    after years herb after
-                                                    form. And image may, morning. Behold in tree day sea that together cattle whose. Fifth gathering
-                                                    brought
-                                                    bearing. Abundantly creeping whose. Beginning form have void two. A whose.
-                                                </p>
-                                            </div>
-                                            <div className="col-12 col-md-6">
-                                                {/* List */}
-                                                <ul className="list list-unstyled mb-md-0 text-gray-500">
-                                                    <li>
-                                                        <strong className="text-body">SKU</strong>: #61590437
-                                                    </li>
-                                                    <li>
-                                                        <strong className="text-body">Occasion</strong>: Lifestyle, Sport
-                                                    </li>
-                                                    <li>
-                                                        <strong className="text-body">Country</strong>: Italy
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div className="col-12 col-md-6">
-                                                {/* List */}
-                                                <ul className="list list-unstyled mb-0">
-                                                    <li>
-                                                        <strong>Outer</strong>: Leather 100%, Polyamide 100%
-                                                    </li>
-                                                    <li>
-                                                        <strong>Lining</strong>: Polyester 100%
-                                                    </li>
-                                                    <li>
-                                                        <strong>CounSoletry</strong>: Rubber 100%
-                                                    </li>
-                                                </ul>
+                                            <div className="col-12" dangerouslySetInnerHTML={{__html: description}}>
                                             </div>
                                         </div>
                                     </div>
@@ -129,17 +94,17 @@ export default function Description() {
                                                     <tr>
                                                         <td>Standard Shipping</td>
                                                         <td>Delivery in 5 - 7 working days</td>
-                                                        <td>$8.00</td>
+                                                        <td>30.000₫</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Express Shipping</td>
                                                         <td>Delivery in 3 - 5 working days</td>
-                                                        <td>$12.00</td>
+                                                        <td>40.000₫</td>
                                                     </tr>
                                                     <tr>
                                                         <td>1 - 2 day Shipping</td>
                                                         <td>Delivery in 1 - 2 working days</td>
-                                                        <td>$12.00</td>
+                                                        <td>50.000₫</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Free Shipping</td>
@@ -147,14 +112,14 @@ export default function Description() {
                                                             Living won't the He one every subdue meat replenish
                                                             face was you morning firmament darkness.
                                                         </td>
-                                                        <td>$0.00</td>
+                                                        <td>0₫</td>
                                                     </tr>
                                                 </tbody>
                                             </table>
                                         </div>
                                         {/* Caption */}
                                         <p className="mb-0 text-gray-500">
-                                            May, life blessed night so creature likeness their, for. <a className="text-body text-decoration-underline" href="#!">Find out more</a>
+                                            May, life blessed night so creature likeness their, for. <Link className="text-body text-decoration-underline" to="/shipping-and-returns">Find out more</Link>
                                         </p>
                                     </div>
                                 </div>
