@@ -8,7 +8,6 @@ import shippingAndReturns from './pages/shippingAndReturns'
 import StoreLocator from './pages/storeLocator'
 import FAQ from './pages/FAQ'
 import Checkout from './pages/checkout'
-import Blog from './pages/blogPost/components/Blog'
 import ContactUs from './pages/contactUs'
 import Auth from './pages/auth'
 import Header from './components/Header/index'
@@ -25,6 +24,7 @@ import WithCountDown from './hoc/withCountDown'
 import Search from './components/Search'
 import ModalSizeChart from './components/ModalSizeChart'
 import ShoppingCart from './pages/shoppingCart'
+import Blog from 'pages/blog'
 
 function App() {
   return <AppProvider reducers={reducers}>

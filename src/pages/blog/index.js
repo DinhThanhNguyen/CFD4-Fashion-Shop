@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function Blog() {
     return (
@@ -10,11 +11,11 @@ export default function Blog() {
               <h3 className="mb-7 text-center">Our Blog</h3>
               {/* Nav */}
               <nav className="nav justify-content-center mb-10">
-                <a className="nav-link active" href="#">All</a>
-                <a className="nav-link" href="#">Company</a>
-                <a className="nav-link" href="#">Brand</a>
-                <a className="nav-link" href="#">Fashion</a>
-                <a className="nav-link" href="#">Shop</a>
+                <a className="nav-link active" href="#!">All</a>
+                <a className="nav-link" href="#!">Company</a>
+                <a className="nav-link" href="#!">Brand</a>
+                <a className="nav-link" href="#!">Fashion</a>
+                <a className="nav-link" href="#!">Shop</a>
               </nav>
             </div>
           </div>
@@ -38,9 +39,9 @@ export default function Blog() {
                     day let over gathered, grass face one every light of under.
                   </p>
                   {/* Button */}
-                  <a className="btn btn-link stretched-link px-0 text-reset" href="blog-post.html">
+                  <Link className="btn btn-link stretched-link px-0 text-reset" to="/blog-post">
                     Read More <i className="fe fe-arrow-right ml-2" />
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -63,9 +64,9 @@ export default function Blog() {
                     moveth man replenish. Meat place is so fruit.
                   </p>
                   {/* Button */}
-                  <a className="btn btn-link stretched-link px-0 text-reset" href="blog-post.html">
+                  <Link className="btn btn-link stretched-link px-0 text-reset" to="blog-post">
                     Read More <i className="fe fe-arrow-right ml-2" />
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -88,9 +89,9 @@ export default function Blog() {
                     doesn't together bearing also can't heaven their.
                   </p>
                   {/* Button */}
-                  <a className="btn btn-link stretched-link px-0 text-reset" href="blog-post.html">
+                  <Link className="btn btn-link stretched-link px-0 text-reset" to="blog-post">
                     Read More <i className="fe fe-arrow-right ml-2" />
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -113,9 +114,9 @@ export default function Blog() {
                     Years dominion shall from years a hath Good appear yielding.
                   </p>
                   {/* Button */}
-                  <a className="btn btn-link stretched-link px-0 text-reset" href="blog-post.html">
+                  <Link className="btn btn-link stretched-link px-0 text-reset" to="blog-post">
                     Read More <i className="fe fe-arrow-right ml-2" />
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -138,9 +139,9 @@ export default function Blog() {
                     yielding green was fly one kind fish hath be be winged.
                   </p>
                   {/* Button */}
-                  <a className="btn btn-link stretched-link px-0 text-reset" href="blog-post.html">
+                  <Link className="btn btn-link stretched-link px-0 text-reset" to="blog-post">
                     Read More <i className="fe fe-arrow-right ml-2" />
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -163,9 +164,9 @@ export default function Blog() {
                     two. Fowl may open first.
                   </p>
                   {/* Button */}
-                  <a className="btn btn-link stretched-link px-0 text-reset" href="blog-post.html">
+                  <Link className="btn btn-link stretched-link px-0 text-reset" to="blog-post">
                     Read More <i className="fe fe-arrow-right ml-2" />
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>

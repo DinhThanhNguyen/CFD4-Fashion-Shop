@@ -73,9 +73,9 @@
 
 .product_details{
     #productSlider a{
-        display: block;
-        & .active{
-            display: none;
+        display: none;
+        &.active{
+            display: block;
         }
     }
     .slider-thumbnail{

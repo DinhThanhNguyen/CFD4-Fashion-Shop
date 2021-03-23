@@ -31,10 +31,10 @@ export default function MainNavbar() {
                             <Link className="nav-link" data-toggle="dropdown" to="/catalog/men">Men</Link>
                         </li>
                         <li className="nav-item dropdown">
-                            <Link className="nav-link" data-toggle="dropdown" to="/catalog/kids">Kids</Link>
+                            <Link className="nav-link" data-toggle="dropdown" to="/blog">Blog</Link>
                         </li>
                         <li className="nav-item dropdown">
-                            <Link className="nav-link" data-toggle="dropdown" to="/store-locator">Store Locator</Link>
+                            <Link className="nav-link" data-toggle="dropdown" to="/about">About</Link>
                         </li>
                         <li className="nav-item dropdown">
                             <Link className="nav-link" data-toggle="dropdown" to="/contact-us">Contact</Link>
