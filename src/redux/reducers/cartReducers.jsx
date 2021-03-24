@@ -124,6 +124,9 @@ let { reducer, action, TYPE } = createSlice({
                 shipping_price: 0,
                 payment_option: 'paypal'
             })
+        },
+        setCart: function(state, action) {
+            return returnCart(action.payload)
         }
     }
 })

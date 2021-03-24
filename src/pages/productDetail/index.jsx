@@ -110,7 +110,7 @@ export default function ProductDetail() {
                                         configurable_options?.map((e, i) => (
                                             <div className="form-group" key={i}>
                                                 <p className="mb-5">
-                                                    {e.name}: {e.values.map(e1 => <span id="colorCaption">{e1.label}</span>)}
+                                                    {e.name}: {e.values.map((e1, i1) => <span key={i1} id="colorCaption">{e1.label}</span>)}
                                                 </p>
                                                 {/* Radio */}
                                                 {/* <div className="mb-8 ml-n1" >
@@ -139,7 +139,7 @@ export default function ProductDetail() {
                                                 {/* Quantity */}
                                                 <select className="custom-select mb-2" onChange={_changeAmount}>
                                                     {
-                                                        [...Array(10)].map((e, i) => <option value={i + 1} selected={(i + 1) === amount}>{i + 1}</option>)
+                                                        [...Array(10)].map((e, i) => <option value={i + 1} selected={(i + 1) === amount} key={i}>{i + 1}</option>)
                                                     }
                                                 </select>
                                             </div>

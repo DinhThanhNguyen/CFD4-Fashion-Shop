@@ -16,7 +16,7 @@ const styles = {
     }
 }
 
-export default function Search() {
+export default function PopupSearch() {
 
 
     let { form, error, inputChange, submit } = useFormValidate({

@@ -142,8 +142,8 @@ export default function Catalog() {
                             <div className="row">
                                 {
                                     product.products.length === 0 ?
-                                        [...Array(15)].map(e => (
-                                            <div className="col-6 col-md-4">
+                                        [...Array(15)].map((e, i) => (
+                                            <div className="col-6 col-md-4" key={i}>
                                                 {/* Card */}
                                                 {withPriceFormat(Product, { loading: product.loading })}
                                             </div>

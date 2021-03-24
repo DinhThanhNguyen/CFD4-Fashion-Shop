@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-export default function ModalSizeChart() {
+export default function PopupSizeChart() {
     return ReactDOM.createPortal(
         <div className="modal fade" id="modalSizeChart" tabIndex={-1} role="dialog" aria-hidden="true">
             <div className="modal-dialog modal-dialog-centered modal-lg" role="document">

@@ -15,4 +15,6 @@ export function* cartUpdate(data) {
 
 export function* userLoginGetCart() {
     let cart = yield call(cartApi.getCartFromUser)
+
+    yield put(CartAction.setCart(cart.data))
 }

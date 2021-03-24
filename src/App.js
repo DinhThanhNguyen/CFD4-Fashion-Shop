@@ -1,6 +1,6 @@
 import { Route, Switch } from 'react-router-dom'
-import Home from '../src/pages/home'
-import errorPage from '../src/pages/404Page'
+import Home from './pages/home'
+import errorPage from './pages/404Page'
 import About from './pages/about'
 import blogPost from './pages/blogPost'
 import Footer from './components/Footer'
@@ -16,16 +16,17 @@ import reducers from './redux/reducers'
 import Account from './pages/account'
 import PrivateRoute from './core/PrivateRoute'
 import Catalog from './pages/catalog'
-import ModalCart from './components/ModalCart'
+import PopupCart from './components/PopupCart'
 import './assets/custom.scss'
 import ComingSoon from './pages/comingSoon'
 import WithCountDown from './hoc/withCountDown'
-import Search from './components/Search'
-import ModalSizeChart from './components/ModalSizeChart'
+import PopupSearch from './components/PopupSearch'
+import PopupSizeChart from './components/PopupSizeChart'
 import ShoppingCart from './pages/shoppingCart'
 import Blog from 'pages/blog'
 import ProductDetail from 'pages/productDetail'
 import saga from './redux/saga'
+import PopupProduct from 'components/PopupProduct'
 
 function App() {
   return <AppProvider reducers={reducers} saga={saga}>
@@ -49,9 +50,10 @@ function App() {
     <Route path="/" component={errorPage} />
   </Switch>
   <Footer />
-  <ModalCart />
-  <Search />
-  <ModalSizeChart />
+  <PopupCart />
+  <PopupSearch />
+  <PopupProduct />
+  <PopupSizeChart />
   </AppProvider>
 }
 

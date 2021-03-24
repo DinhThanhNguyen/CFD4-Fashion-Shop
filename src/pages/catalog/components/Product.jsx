@@ -49,8 +49,8 @@ export default function Product(props) {
                         </button>
                     </span>
                     <span className="card-action">
-                        <button className="btn btn-xs btn-circle btn-white-primary" data-toggle="button" onClick={dispatch.bind(null, addCart(props))}>
-                            <i className="fe fe-shopping-cart" />
+                        <button className="btn btn-xs btn-circle btn-white-primary" data-toggle="button" onClick={() => dispatch(addCart(props))}>
+                            <i className="fe fe-shopping-cart" /> 
                         </button>
                     </span>
                     <span className="card-action">

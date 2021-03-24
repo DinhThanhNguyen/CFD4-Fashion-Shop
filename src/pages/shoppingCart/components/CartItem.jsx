@@ -34,7 +34,7 @@ export default function CartItem({ name, price_text, images, _id, cartNum, short
                     <div className="d-flex align-items-center">
                         {/* Cart Number */}
                         <button className="cartItem-button" onClick={() => dispatch(decrementCart(_id))}>-</button>
-                        <input className="cartItem-number" type="text" value={cartNum} />
+                        <input className="cartItem-number" type="text" value={cartNum} readOnly />
                         <button className="cartItem-button" onClick={() => dispatch(incrementCart(_id))}>+</button>
                         {/* Remove */}
                         <a className="font-size-xs text-gray-400 ml-auto" href="#!" onClick={remove}>

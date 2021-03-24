@@ -1,7 +1,7 @@
 import React from 'react'
 import reactDom from 'react-dom'
 
-export default function Product() {
+export default function PopupProduct() {
     return reactDom.createPortal (
         <div className="modal fade" id="modalProduct" tabIndex={-1} role="dialog" aria-hidden="true">
             <div className="modal-dialog modal-dialog-centered modal-xl" role="document">

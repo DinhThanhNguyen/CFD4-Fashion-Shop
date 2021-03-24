@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import withPriceFormat from '../hoc/withPriceFormat'
 import { decrementCart, incrementCart, removeCart } from '../redux/reducers/cartReducers'
 
-export default function ModalCart() {
+export default function PopupCart() {
 
     const cart = useSelector(state => state.cart)
 
@@ -66,7 +66,7 @@ export default function ModalCart() {
     )
 }
 
-function CartItem({ name, price_text, images, _id, cartNum }) {
+function CartItem({ name, price_text, images, _id, cartNum, slug }) {
 
     const dispatch = useDispatch()
 
@@ -79,24 +79,19 @@ function CartItem({ name, price_text, images, _id, cartNum }) {
         <li className="list-group-item">
             <div className="row align-items-center">
                 <div className="col-4">
-                    {/* Image */}
-                    <Link to="/product-detail">
+                    <Link to={`/product/${slug}`}>
                         <img className="img-fluid" src={images?.[0]?.medium_url} alt="..." />
                     </Link>
                 </div>
                 <div className="col-8">
-                    {/* Title */}
                     <p className="font-size-sm font-weight-bold mb-6">
-                        <Link className="text-body" to="/product-detail">{name}</Link> <br />
+                        <Link className="text-body" to={`/product/${slug}`}>{name}</Link> <br />
                         <span className="text-muted">{price_text}₫</span>
                     </p>
-                    {/*Footer */}
                     <div className="d-flex align-items-center">
-                        {/* Select */}
                         <button className="cartItem-button" onClick={() => dispatch(decrementCart(_id))}>-</button>
-                        <input className="cartItem-number" type="text" value={cartNum} />
+                        <input className="cartItem-number" type="text" value={cartNum} readOnly />
                         <button className="cartItem-button" onClick={() => dispatch(incrementCart(_id))}>+</button>
-                        {/* Remove */}
                         <a className="font-size-xs text-gray-400 ml-auto" href="#!" onClick={remove}>
                             <i className="fe fe-x" /> Remove
                         </a>
