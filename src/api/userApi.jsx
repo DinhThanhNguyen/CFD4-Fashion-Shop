@@ -1,4 +1,4 @@
-import { domain } from './configApi'
+import { domain } from './config'
 
 
 export default {

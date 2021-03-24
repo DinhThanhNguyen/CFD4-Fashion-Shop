@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux';
 import { NavLink, useRouteMatch } from 'react-router-dom'
+import { CartAction } from 'redux/reducers/cartReducers';
 import { userLogout } from '../../../redux/reducers/authReducer';
 
 export default function SlideBar() {

@@ -25,9 +25,10 @@ import ModalSizeChart from './components/ModalSizeChart'
 import ShoppingCart from './pages/shoppingCart'
 import Blog from 'pages/blog'
 import ProductDetail from 'pages/productDetail'
+import saga from './redux/saga'
 
 function App() {
-  return <AppProvider reducers={reducers}>
+  return <AppProvider reducers={reducers} saga={saga}>
   <Header />
   <Switch>
     <Route path="/faq" component={FAQ} />

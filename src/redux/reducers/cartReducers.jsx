@@ -103,7 +103,7 @@ let { reducer, action, TYPE } = createSlice({
                 amount
             })
         },
-        cartUpdate: function(state, action) {
+        cartUpdate: function (state, action) {
             let { shipping_option, shipping_price } = action.payload
 
             let { payment_option } = action.payload
@@ -113,6 +113,16 @@ let { reducer, action, TYPE } = createSlice({
                 shipping_option,
                 shipping_price,
                 payment_option
+            })
+        },
+        clearCart: function (state, action) {
+            return ({
+                list: [],
+                num: 0,
+                amount: 0,
+                shipping_option: 'free',
+                shipping_price: 0,
+                payment_option: 'paypal'
             })
         }
     }
@@ -130,3 +140,7 @@ export const incrementCart = action.increment
 export const decrementCart = action.decrement
 
 export const cartUpdate = action.cartUpdate
+
+export const CART = TYPE
+
+export const CartAction = action

@@ -110,4 +110,6 @@ export const userLogout = action.logout
 
 export const userRegister = action.register
 
-export const USER = TYPE
+export const AUTH = TYPE
+
+export const AuthAction = action

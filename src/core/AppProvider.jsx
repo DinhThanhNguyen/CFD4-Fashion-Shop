@@ -1,8 +1,8 @@
 import React from 'react'
 import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
-import { combineReducers } from 'redux';
-import { applyMiddleware, compose, createStore } from 'redux';
+import { combineReducers, applyMiddleware, compose, createStore } from 'redux';
+import createSagaMiddleware from 'redux-saga'
 
 
 let store;
@@ -15,12 +15,22 @@ let thunkFake = store => next => action => {
     return next(action)
 }
 
-export default function App({ children, reducers = {} }) {
+export default function App({ children, reducers = {}, saga }) {
 
-    if(!store){
+    if (!store) {
         store = combineReducers(reducers)
         const composeEnhancers = typeof window === 'object' && window['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__'] ? window['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__']({}) : compose
-        store = createStore(reducers, composeEnhancers(applyMiddleware(thunkFake)))
+        let params = [thunkFake]
+
+        let sagaMidleware = { run: () => { } }
+        if (saga) {
+            sagaMidleware = createSagaMiddleware()
+            params.push(sagaMidleware)
+        }
+
+        store = createStore(reducers, composeEnhancers(applyMiddleware(...params)))
+
+        sagaMidleware.run(saga)
     }
 
 

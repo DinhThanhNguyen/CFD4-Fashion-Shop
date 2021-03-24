@@ -34,7 +34,7 @@ export default function ProductDetail() {
         productApi.detail(routeMatch.params.slug)
             .then(res => {
                 if (res.data.length > 0)
-                    setProduct(res.data[0])
+                setProduct(res.data[0])
             })
     }, [routeMatch.params.slug])
 
@@ -45,8 +45,6 @@ export default function ProductDetail() {
     let real_price = new Intl.NumberFormat('vn').format(product.real_price)
 
     let { images, configurable_options } = product
-
-    console.log(configurable_options)
 
     return (
         <>
@@ -112,7 +110,7 @@ export default function ProductDetail() {
                                         configurable_options?.map((e, i) => (
                                             <div className="form-group" key={i}>
                                                 <p className="mb-5">
-                                                    {e.name}: {e.values.map((e1, i1) => <span id="colorCaption">{e1.label}</span>)}
+                                                    {e.name}: {e.values.map(e1 => <span id="colorCaption">{e1.label}</span>)}
                                                 </p>
                                                 {/* Radio */}
                                                 {/* <div className="mb-8 ml-n1" >
@@ -133,10 +131,10 @@ export default function ProductDetail() {
                                         ))
                                     }
                                     <span
-                                     style={{fontSize: '20px'}}>{product.short_description}</span>
+                                        style={{ fontSize: '20px' }}>{product.short_description}</span>
                                     <div className="form-group">
                                         {/* Radio */}
-                                        <div className="form-row mb-7" style={{marginTop: '20px'}}>
+                                        <div className="form-row mb-7" style={{ marginTop: '20px' }}>
                                             <div className="col-12 col-lg-auto">
                                                 {/* Quantity */}
                                                 <select className="custom-select mb-2" onChange={_changeAmount}>
@@ -147,7 +145,7 @@ export default function ProductDetail() {
                                             </div>
                                             <div className="col-12 col-lg">
                                                 {/* Submit */}
-                                                <button type="submit" className="btn btn-block btn-dark mb-2" onClick={() => dispatch(addCart({...product, cartNum: amount}))}>
+                                                <button type="submit" className="btn btn-block btn-dark mb-2" onClick={() => dispatch(addCart({ ...product, cartNum: amount }))}>
                                                     Add to Cart <i className="fe fe-shopping-cart ml-2" />
                                                 </button>
                                             </div>
@@ -184,7 +182,9 @@ export default function ProductDetail() {
                 </div>
             </section>
             <Description description={product.description} />
-            <SimilarProduct />
+            <section className="pt-11">
+                <SimilarProduct />
+            </section>
             <Comments />
             <Features />
         </>

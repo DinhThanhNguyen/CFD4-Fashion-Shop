@@ -2,7 +2,7 @@ import React from 'react'
 import { Route, Switch, useRouteMatch } from 'react-router'
 import Address from './components/Address';
 import AddressList from './components/AddressList'
-import PaymentList from './PaymentList/PaymentList';
+import PaymentList from './components/PaymentList/PaymentList';
 import PaymentMethod from './components/PaymentMethod/PaymentMethod';
 import PersonalInfor from './components/PersonalInfor';
 import SlideBar from './components/SlideBar'
