@@ -14,7 +14,13 @@ export function* cartUpdate(data) {
 }
 
 export function* userLoginGetCart() {
-    let cart = yield call(cartApi.getCartFromUser)
+    const state = yield select()
 
-    yield put(CartAction.setCart(cart.data))
+    if (state.cart.num === 0) {
+        let cart = yield call(cartApi.getCartFromUser)
+
+        yield put(CartAction.setCart(cart.data))
+    } else {
+        yield call(cartApi.create, state.cart)
+    }
 }

@@ -18,6 +18,9 @@ export default function Pagination({ currentPage, totalPage }) {
         if (end > totalPage) {
             end = totalPage;
             start = end - 4
+            if (start < 1) {
+                start = 1
+            }
         }
 
         let list = []

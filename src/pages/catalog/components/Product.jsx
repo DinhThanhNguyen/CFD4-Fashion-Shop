@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { addCart } from '../../../redux/reducers/cartReducers'
+import { addCart, addWishList } from '../../../redux/reducers/cartReducers'
 import { Skeleton } from '@material-ui/lab';
 
 export default function Product(props) {
@@ -12,6 +12,8 @@ export default function Product(props) {
 
     let image1 = images?.[0]?.medium_url
     let image2 = images?.[1]?.medium_url
+
+
 
     return (
         <div className="card mb-7">
@@ -37,8 +39,8 @@ export default function Product(props) {
                         </>
                     }
                     {
-                        !discount_rate ? <p className="discount_rate hidden">{discount_rate}%</p> : 
-                        !loading && <p className="discount_rate">-{discount_rate}%</p>
+                        !discount_rate ? <p className="discount_rate hidden">{discount_rate}%</p> :
+                            !loading && <p className="discount_rate">-{discount_rate}%</p>
                     }
                 </Link>
                 {/* Actions */}
@@ -50,11 +52,11 @@ export default function Product(props) {
                     </span>
                     <span className="card-action">
                         <button className="btn btn-xs btn-circle btn-white-primary" data-toggle="button" onClick={() => dispatch(addCart(props))}>
-                            <i className="fe fe-shopping-cart" /> 
+                            <i className="fe fe-shopping-cart" />
                         </button>
                     </span>
                     <span className="card-action">
-                        <button className="btn btn-xs btn-circle btn-white-primary" data-toggle="button">
+                        <button className="btn btn-xs btn-circle btn-white-primary" data-toggle="button" onClick={() => dispatch(addWishList(props))}>
                             <i className="fe fe-heart" />
                         </button>
                     </span>
@@ -81,7 +83,7 @@ export default function Product(props) {
                     </del>
                 }
                 {
-                    loading ? <Skeleton variant="text" /> : <div className="font-weight-bold text-muted">
+                    loading ? <Skeleton variant="text" /> : <div className="font-weight-bold text-primary">
                         {price_text}₫
                     </div>
                 }

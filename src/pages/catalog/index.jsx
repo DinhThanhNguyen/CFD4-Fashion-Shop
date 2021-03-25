@@ -37,7 +37,6 @@ export default function Catalog() {
 
     function sortChange(e) {
         let value = e.target.value;
-        console.log(value)
         let queryObj = convertQueryToObject();
         queryObj.sort = value;
         delete queryObj.page;

@@ -58,6 +58,11 @@
    font-weight: bold;
    padding: 0 5px;
    line-height: 22px;
+   &-left{
+       @extend .discount_rate;
+       left: 0;
+       right: initial;
+   }
 }
 
 .hidden{
@@ -65,7 +70,7 @@
 }
 
 .custom-name-product{
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
   display: -webkit-box;

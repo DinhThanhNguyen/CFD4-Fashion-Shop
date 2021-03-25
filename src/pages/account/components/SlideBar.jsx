@@ -21,11 +21,11 @@ export default function SlideBar() {
                     <NavLink className="list-group-item list-group-item-action dropright-toggle" to={`${match.path}`}>
                         Personal Info
                     </NavLink>
+                    <NavLink className="list-group-item list-group-item-action dropright-toggle" to={`${match.path}/wishlist`}>
+                        Wishlist
+                    </NavLink>
                     <NavLink className="list-group-item list-group-item-action dropright-toggle" to={`${match.path}/order`}>
                         Orders
-                    </NavLink>
-                    <NavLink className="list-group-item list-group-item-action dropright-toggle" to={`${match.path}/widhlist`}>
-                        Widhlist
                     </NavLink>
                     <NavLink className="list-group-item list-group-item-action dropright-toggle" to={`${match.path}/address`}>
                         Addresses

@@ -6,10 +6,10 @@ import PaymentList from './components/PaymentList/PaymentList';
 import PaymentMethod from './components/PaymentMethod/PaymentMethod';
 import PersonalInfor from './components/PersonalInfor';
 import SlideBar from './components/SlideBar'
-import widhlist from './components/Widhlist';
 import Order from './components/Order';
 import OrderList from './components/OrderList';
 import Breadcrumb from 'components/Breadcrumb';
+import WishList from './components/WishList';
 
 export default function Account() {
 
@@ -42,7 +42,7 @@ export default function Account() {
                             <Route path={`${match.path}/address`} exact component={AddressList} />
                             <Route path={`${match.path}/order`} exact component={OrderList} />
                             <Route path={`${match.path}/order/:id`} component={Order} />
-                            <Route path={`${match.path}/widhlist`} component={widhlist} />
+                            <Route path={`${match.path}/wishlist`} component={WishList} />
                             <Route path={`${match.path}/payment`} exact component={PaymentList} />
                             <Route path={`${match.path}/payment/:action`} component={PaymentMethod} />
                             <Route path={`${match.path}`} exact component={PersonalInfor} />

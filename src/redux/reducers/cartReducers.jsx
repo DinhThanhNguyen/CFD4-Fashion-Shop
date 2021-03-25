@@ -1,3 +1,4 @@
+import userApi from "api/userApi"
 import createSlice from "../../core/createSlice"
 
 let cart = JSON.parse(localStorage.getItem('cart'))
@@ -14,6 +15,12 @@ const initialState = {
 function returnCart(cart) {
     localStorage.setItem('cart', JSON.stringify(cart))
     return cart
+}
+
+export function addWishList(product) {
+    return () => {
+        userApi.addWishList(product)
+    }
 }
 
 let { reducer, action, TYPE } = createSlice({
@@ -116,16 +123,17 @@ let { reducer, action, TYPE } = createSlice({
             })
         },
         clearCart: function (state, action) {
+            localStorage.removeItem('cart')
             return ({
                 list: [],
                 num: 0,
                 amount: 0,
                 shipping_option: 'free',
                 shipping_price: 0,
-                payment_option: 'paypal'
+                payment_option: 'paypal',
             })
         },
-        setCart: function(state, action) {
+        setCart: function (state, action) {
             return returnCart(action.payload)
         }
     }
