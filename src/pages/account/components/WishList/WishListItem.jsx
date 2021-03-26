@@ -2,11 +2,7 @@ import userApi from 'api/userApi'
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
-export default function WishListItem({ name, real_price, price, images, _id, slug, discount_rate }) {
-
-    let price_text = new Intl.NumberFormat('vn').format(real_price)
-
-    let price_before_discount = new Intl.NumberFormat('vn').format(price)
+export default function WishListItem({ name, price_text, price_before_discount, images, _id, slug, discount_rate }) {
 
     let [remove, setRemove] = useState(false)
     

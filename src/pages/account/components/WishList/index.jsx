@@ -1,4 +1,5 @@
 import userApi from 'api/userApi'
+import { serializeObjectToQueryURL, convertQueryToObject } from 'components/helper'
 import Pagination from 'components/Pagination'
 import withPriceFormat from 'hoc/withPriceFormat'
 import React, { useEffect, useState } from 'react'
@@ -11,16 +12,19 @@ export default function WishList() {
         paginate: null
     })
 
-    useEffect(async () => {
-        let result = await userApi.getWishList()
+    let queryURL = convertQueryToObject()
 
-        console.log(result)
+    let QueryString = serializeObjectToQueryURL(queryURL)
 
-        setState({
-            list: result.data,
-            paginate: result.paginate
-        })
-    }, [])
+    useEffect(() => {
+        userApi.getWishList(QueryString)
+            .then(res => {
+                setState({
+                    list: res.data,
+                    paginate: res.paginate
+                })
+            })
+    }, [QueryString])
 
 
     return (
@@ -29,11 +33,11 @@ export default function WishList() {
             <div className="row">
                 {/* Item */}
                 {
-                    state.list.map(e => <WishListItem key={e._id} {...e} />)
+                    state.list.map(e => <React.Fragment key={e._id}>{withPriceFormat(WishListItem, e)}</React.Fragment>)
                 }
             </div>
             {/* Pagination */}
-            <Pagination { ...state.paginate } />
+            <Pagination {...state.paginate} />
         </div>
     )
 }

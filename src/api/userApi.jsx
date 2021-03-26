@@ -1,5 +1,5 @@
 import Api from 'core/Api'
-import { domain } from './config'
+// import { domain } from './config'
 
 
 export default {
@@ -18,16 +18,20 @@ export default {
     },
     update: (data) => {
         return Api.token().post('update-profile', data)
-        // return fetch(`/update.json`)
-        //     .then(res => res.json())
     },
     addWishList: (data) => {
         return Api.token().post('ecommerce/v1/profile/wishlist', data)
     },
-    getWishList: () => {
-        return Api.token().get('ecommerce/v1/profile/wishlist')
+    getWishList: (query) => {
+        return Api.token().get(`ecommerce/v1/profile/wishlist${query ? `?${query}` : ''}`)
     },
     removeWistList: (_id) => {
         return Api.token().delete(`ecommerce/v1/profile/wishlist/${_id}`)
+    },
+
+
+    //Address
+    addAddress: (data) => {
+        return Api.token().post('ecommerce/v1/profile/address', data)
     }
 }

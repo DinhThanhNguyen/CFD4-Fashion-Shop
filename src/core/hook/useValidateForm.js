@@ -17,18 +17,18 @@ export default function useFormValidate(initialValue, validate, options = {}) {
     function inputChange(event) {
 
         let name = event.target.getAttribute('name')
-
+    
         let input = getElement().querySelector(`[name="${name}"]`);
-
-        let value = event.target.value.trim()
+    
+        let value = event.target.value
         if (input.type === 'checkbox') {
             value = !form[name]
         }
-
+    
         if (input.type === 'radio') {
             value = getElement().querySelector(`[name="${name}"]:checked`).value
         }
-
+    
         setForm({
             ...form,
             [name]: value

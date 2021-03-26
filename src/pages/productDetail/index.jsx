@@ -4,6 +4,7 @@ import Features from 'components/Features'
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useRouteMatch } from 'react-router'
+import { addWishList } from 'redux/reducers/cartReducers'
 import { addCart } from 'redux/reducers/cartReducers'
 import Comments from './components/Comments'
 import Description from './components/Description'
@@ -151,7 +152,7 @@ export default function ProductDetail() {
                                             </div>
                                             <div className="col-12 col-lg-auto">
                                                 {/* Wishlist */}
-                                                <button className="btn btn-outline-dark btn-block mb-2" data-toggle="button">
+                                                <button className="btn btn-outline-dark btn-block mb-2" data-toggle="button" onClick={() => dispatch(addWishList(product))}>
                                                     Wishlist <i className="fe fe-heart ml-2" />
                                                 </button>
                                             </div>

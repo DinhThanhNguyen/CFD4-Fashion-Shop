@@ -1,6 +1,61 @@
+import userApi from 'api/userApi'
+import InputGroup from 'components/InputGroup'
+import useFormValidate from 'core/hook/useValidateForm'
 import React from 'react'
+import { useHistory } from 'react-router'
 
 export default function Address() {
+
+    let history = useHistory()
+
+    let { form, error, inputChange, submit } = useFormValidate({
+        first_name: '',
+        last_name: '',
+        username: '',
+        country: '',
+        address_line1: '',
+        city: '',
+        zip: '',
+        phone: ''
+    }, {
+        rule: {
+            first_name: {
+                required: true
+            },
+            last_name: {
+                required: true
+            },
+            username: {
+                required: true,
+                pattern: 'email'
+            },
+            country: {
+                required: true
+            },
+            address_line1: {
+                required: true
+            },
+            city: {
+                required: true
+            },
+            zip: {
+                required: true
+            },
+            phone: {
+                required: true
+            }
+        }
+    })
+
+    async function _btnAddress() {
+        let error = submit()
+        if(Object.keys(error).length === 0) {
+            let result = await userApi.addAddress(form)
+            history.push('/account/address')
+        }
+    }
+
+
     return (
         <div className="col-12 col-md-9 col-lg-8 offset-lg-1">
             {/* Heading */}
@@ -8,86 +63,60 @@ export default function Address() {
                 Add Address
             </h6>
             {/* Form */}
-            <form>
-                <div className="row">
-                    <div className="col-12 col-md-6">
-                        <div className="form-group">
-                            <label htmlFor="firstName">First Name *</label>
-                            <input className="form-control" id="firstName" type="text" placeholder="First Name" required />
-                        </div>
-                    </div>
-                    <div className="col-12 col-md-6">
-                        <div className="form-group">
-                            <label htmlFor="lastName">Last Name *</label>
-                            <input className="form-control" id="lastName" type="text" placeholder="Last Name" required />
-                        </div>
-                    </div>
-                    <div className="col-12">
-                        <div className="form-group">
-                            <label htmlFor="emailAddress">Email Address *</label>
-                            <input className="form-control" id="emailAddress" type="email" placeholder="Email Address" required />
-                        </div>
-                    </div>
-                    <div className="col-12">
-                        <div className="form-group">
-                            <label htmlFor="companyName">Company Name</label>
-                            <input className="form-control" id="companyName" type="text" placeholder="Company Name" required />
-                        </div>
-                    </div>
-                    <div className="col-12">
-                        <div className="form-group">
-                            <label htmlFor="country">Country *</label>
-                            <input className="form-control" id="country" type="text" placeholder="Country" required />
-                        </div>
-                    </div>
-                    <div className="col-12">
-                        <div className="form-group">
-                            <label htmlFor="addressLineOne">Address Line 1 *</label>
-                            <input className="form-control" id="addressLineOne" type="text" placeholder="Address Line 1" required />
-                        </div>
-                    </div>
-                    <div className="col-12">
-                        <div className="form-group">
-                            <label htmlFor="addressLineTwo">Address Line 2</label>
-                            <input className="form-control" id="addressLineTwo" type="text" placeholder="Address Line 2" required />
-                        </div>
-                    </div>
-                    <div className="col-12 col-md-6">
-                        <div className="form-group">
-                            <label htmlFor="townCity">Town / City *</label>
-                            <input className="form-control" id="townCity" type="text" placeholder="Town / City" required />
-                        </div>
-                    </div>
-                    <div className="col-12 col-md-6">
-                        <div className="form-group">
-                            <label htmlFor="zipPostcode">ZIP / Postcode *</label>
-                            <input className="form-control" id="zipPostcode" type="text" placeholder="ZIP / Postcode" required />
-                        </div>
-                    </div>
-                    <div className="col-12">
-                        <div className="form-group">
-                            <label htmlFor="mobilePhone">Mobile Phone *</label>
-                            <input className="form-control" id="mobilePhone" type="tel" placeholder="Mobile Phone" required />
-                        </div>
-                    </div>
-                    <div className="col-12">
-                        <div className="form-group">
-                            <div className="custom-control custom-checkbox mb-3">
-                                <input type="checkbox" className="custom-control-input" id="defaultDeliveryAddress" />
-                                <label className="custom-control-label" htmlFor="defaultDeliveryAddress">Default delivery address</label>
-                            </div>
-                            <div className="custom-control custom-checkbox mb-0">
-                                <input type="checkbox" className="custom-control-input" id="defaultShippingAddress" />
-                                <label className="custom-control-label" htmlFor="defaultShippingAddress">Default shipping address</label>
-                            </div>
-                        </div>
+            <div className="row">
+                <div className="col-12 col-md-6">
+                    <InputGroup name="first_name" title="First Name *" form={form} inputChange={inputChange} error={error} />
+                </div>
+                <div className="col-12 col-md-6">
+                    <InputGroup name="last_name" title="Last Name *" form={form} inputChange={inputChange} error={error} />
+                </div>
+                <div className="col-12">
+                    <InputGroup name="username" title="Email Address *" form={form} inputChange={inputChange} error={error} />
+                </div>
+                <div className="col-12">
+                    <div className="form-group">
+                        <label htmlFor="companyName">Company Name</label>
+                        <input className="form-control" id="companyName" type="text" placeholder="Company Name" required />
                     </div>
                 </div>
-                {/* Button */}
-                <button className="btn btn-dark" type="submit">
-                    Add Address
-                </button>
-            </form>
+                <div className="col-12">
+                    <InputGroup name="country" title="Country *" form={form} inputChange={inputChange} error={error} />
+                </div>
+                <div className="col-12">
+                    <InputGroup name="address_line1" title="Address Line 1 *" form={form} inputChange={inputChange} error={error} />
+                </div>
+                <div className="col-12">
+                    <div className="form-group">
+                        <label htmlFor="addressLineTwo">Address Line 2</label>
+                        <input className="form-control" id="addressLineTwo" type="text" placeholder="Address Line 2" required />
+                    </div>
+                </div>
+                <div className="col-12 col-md-6">
+                    <InputGroup name="city" title="Town / City *" form={form} inputChange={inputChange} error={error} />
+                </div>
+                <div className="col-12 col-md-6">
+                    <InputGroup name="zip" title="ZIP / Postcode *" form={form} inputChange={inputChange} error={error} />
+                </div>
+                <div className="col-12">
+                    <InputGroup name="phone" title="Mobile Phone *" form={form} inputChange={inputChange} error={error} />
+                </div>
+                <div className="col-12">
+                    <div className="form-group">
+                        <div className="custom-control custom-checkbox mb-3">
+                            <input type="checkbox" className="custom-control-input" id="defaultDeliveryAddress" />
+                            <label className="custom-control-label" htmlFor="defaultDeliveryAddress">Default delivery address</label>
+                        </div>
+                        {/* <div className="custom-control custom-checkbox mb-0">
+                            <input type="checkbox" className="custom-control-input" id="defaultShippingAddress" />
+                            <label className="custom-control-label" htmlFor="defaultShippingAddress">Default shipping address</label>
+                        </div> */}
+                    </div>
+                </div>
+            </div>
+            {/* Button */}
+            <button className="btn btn-dark" type="submit" onClick={_btnAddress}>
+                Add Address
+            </button>
         </div>
     )
 }
