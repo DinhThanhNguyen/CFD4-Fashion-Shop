@@ -1,7 +1,6 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Route, Switch, useRouteMatch } from 'react-router'
 import Address from './components/Address';
-import AddressList from './components/AddressList'
 import PaymentList from './components/PaymentList/PaymentList';
 import PaymentMethod from './components/PaymentMethod/PaymentMethod';
 import PersonalInfor from './components/PersonalInfor';
@@ -10,6 +9,7 @@ import Order from './components/Order';
 import OrderList from './components/OrderList';
 import Breadcrumb from 'components/Breadcrumb';
 import WishList from './components/WishList';
+import AddressList from './components/AddressList';
 
 export default function Account() {
 
@@ -38,8 +38,8 @@ export default function Account() {
                     <div className="row">
                         <SlideBar />
                         <Switch>
-                            <Route path={`${match.path}/address/:action`} exact component={Address} />
                             <Route path={`${match.path}/address`} exact component={AddressList} />
+                            <Route path={`${match.path}/address/:action/:_id?`} exact component={Address} />
                             <Route path={`${match.path}/order`} exact component={OrderList} />
                             <Route path={`${match.path}/order/:id`} component={Order} />
                             <Route path={`${match.path}/wishlist`} component={WishList} />

@@ -1,22 +1,36 @@
 import userApi from 'api/userApi'
 import InputGroup from 'components/InputGroup'
 import useFormValidate from 'core/hook/useValidateForm'
-import React from 'react'
-import { useHistory } from 'react-router'
+import React, { useEffect } from 'react'
+import { useHistory, useRouteMatch } from 'react-router'
 
 export default function Address() {
 
     let history = useHistory()
 
-    let { form, error, inputChange, submit } = useFormValidate({
+    let { _id } = useRouteMatch().params
+
+    useEffect(async () => {
+        let form = await userApi.getAddress(_id)
+        if (form.data) {
+            setForm(form.data)
+        }
+    }, [])
+
+
+
+    let { form, error, inputChange, submit, setForm } = useFormValidate({
         first_name: '',
         last_name: '',
         username: '',
+        company: '',
         country: '',
         address_line1: '',
+        address_line2: '',
         city: '',
         zip: '',
-        phone: ''
+        phone: '',
+        default: false
     }, {
         rule: {
             first_name: {
@@ -42,15 +56,16 @@ export default function Address() {
                 required: true
             },
             phone: {
-                required: true
+                required: true,
+                pattern: 'phone'
             }
         }
     })
 
     async function _btnAddress() {
         let error = submit()
-        if(Object.keys(error).length === 0) {
-            let result = await userApi.addAddress(form)
+        if (Object.keys(error).length === 0) {
+            await userApi.addAddress(form)
             history.push('/account/address')
         }
     }
@@ -74,10 +89,7 @@ export default function Address() {
                     <InputGroup name="username" title="Email Address *" form={form} inputChange={inputChange} error={error} />
                 </div>
                 <div className="col-12">
-                    <div className="form-group">
-                        <label htmlFor="companyName">Company Name</label>
-                        <input className="form-control" id="companyName" type="text" placeholder="Company Name" required />
-                    </div>
+                    <InputGroup name="company" title="Company Name" form={form} inputChange={inputChange} error={error} />
                 </div>
                 <div className="col-12">
                     <InputGroup name="country" title="Country *" form={form} inputChange={inputChange} error={error} />
@@ -86,10 +98,7 @@ export default function Address() {
                     <InputGroup name="address_line1" title="Address Line 1 *" form={form} inputChange={inputChange} error={error} />
                 </div>
                 <div className="col-12">
-                    <div className="form-group">
-                        <label htmlFor="addressLineTwo">Address Line 2</label>
-                        <input className="form-control" id="addressLineTwo" type="text" placeholder="Address Line 2" required />
-                    </div>
+                    <InputGroup name="address_line2" title="Address Line 2" form={form} inputChange={inputChange} error={error} />
                 </div>
                 <div className="col-12 col-md-6">
                     <InputGroup name="city" title="Town / City *" form={form} inputChange={inputChange} error={error} />
@@ -103,13 +112,9 @@ export default function Address() {
                 <div className="col-12">
                     <div className="form-group">
                         <div className="custom-control custom-checkbox mb-3">
-                            <input type="checkbox" className="custom-control-input" id="defaultDeliveryAddress" />
+                            <input type="checkbox" className="custom-control-input" id="defaultDeliveryAddress" form={form.default} onChange={inputChange} name="default" />
                             <label className="custom-control-label" htmlFor="defaultDeliveryAddress">Default delivery address</label>
                         </div>
-                        {/* <div className="custom-control custom-checkbox mb-0">
-                            <input type="checkbox" className="custom-control-input" id="defaultShippingAddress" />
-                            <label className="custom-control-label" htmlFor="defaultShippingAddress">Default shipping address</label>
-                        </div> */}
                     </div>
                 </div>
             </div>

@@ -103,6 +103,7 @@ export default function useFormValidate(initialValue, validate, options = {}) {
         form,
         inputChange,
         error,
-        submit
+        submit,
+        setForm
     }
 }

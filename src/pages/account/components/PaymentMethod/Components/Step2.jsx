@@ -1,23 +1,49 @@
+import InputGroup from 'components/InputGroup';
+import useFormValidate from 'core/hook/useValidateForm';
 import React from 'react'
 
 export default function Step2() {
 
     let yearNow = new Date().getFullYear();
 
+    let { form, error, inputChange, submit } = useFormValidate({
+        payment_card_number: '',
+        payment_card_name: '',
+        payment_card_month: '',
+        payment_card_year: '',
+        payment_card_cvv: '',
+    }, {
+        rule: {
+            payment_card_number: {
+                required: true
+            },
+            payment_card_name: {
+                required: true
+            },
+            payment_card_month: {
+                required: true
+            },
+            payment_card_year: {
+                required: true
+            },
+            payment_card_cvv: {
+                required: true
+            }
+        }
+    })
+
+    function _addPaymentMethod() {
+        let error = submit()
+    }
+
     return (
         <>
             <div className="row">
                 <div className="col-12 col-md-6">
-                    <div className="form-group">
-                        <label htmlFor="cardNumber">Card Number *</label>
-                        <input className="form-control" id="cardNumber" type="text" placeholder="Card Number" required />
-                    </div>
+                    <InputGroup name="payment_card_number" title="Card Number *" form={form} inputChange={inputChange} error={error} />
                 </div>
                 <div className="col-12 col-md-6">
-                    <div className="form-group">
-                        <label htmlFor="nameOnCard">Name on Card *</label>
-                        <input className="form-control" id="nameOnCard" type="text" placeholder="Name on Card" required />
-                    </div>
+                    <InputGroup name="payment_card_name" title="Name on Card *" form={form} inputChange={inputChange} error={error} />
                 </div>
                 <div className="col-12">
                     {/* Label */}
@@ -28,7 +54,7 @@ export default function Step2() {
                 <div className="col-12 col-md-4">
                     <div className="form-group">
                         <label className="sr-only" htmlFor="paymentMonth">Month</label>
-                        <select className="custom-select" id="paymentMonth" required>
+                        <select className="custom-select" id="paymentMonth" name="payment_card_month" inputChange={inputChange} error={error}>
                             <option selected disabled value>Month *</option>
                             <option>January</option>
                             <option>February</option>
@@ -78,7 +104,7 @@ export default function Step2() {
                 </div>
             </div>
             {/* Button */}
-            <button className="btn btn-dark" type="submit">
+            <button className="btn btn-dark" type="submit" onClick={_addPaymentMethod}>
                 Add Card
             </button>
         </>
