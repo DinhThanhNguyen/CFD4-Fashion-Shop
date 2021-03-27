@@ -2,7 +2,7 @@ import React from 'react'
 import { Route, Switch, useRouteMatch } from 'react-router'
 import Address from './components/Address';
 import PaymentList from './components/PaymentList/PaymentList';
-import PaymentMethod from './components/PaymentMethod/PaymentMethod';
+import Payment from './components/Payment/Payment';
 import PersonalInfor from './components/PersonalInfor';
 import SlideBar from './components/SlideBar'
 import Order from './components/Order';
@@ -44,7 +44,7 @@ export default function Account() {
                             <Route path={`${match.path}/order/:id`} component={Order} />
                             <Route path={`${match.path}/wishlist`} component={WishList} />
                             <Route path={`${match.path}/payment`} exact component={PaymentList} />
-                            <Route path={`${match.path}/payment/:action`} component={PaymentMethod} />
+                            <Route path={`${match.path}/payment/:action`} component={Payment} />
                             <Route path={`${match.path}`} exact component={PersonalInfor} />
                         </Switch>
                     </div>

@@ -9,6 +9,14 @@
     border: 1px solid white;
 }
 
+// .input-group-merge{
+//     .form-control{
+//         &.error-input{
+//             border: 1px red solid;
+//         }
+//     }
+// }
+
 .input-group-merge .form-control~.input-group-append>.error-input,
 .error-input {
     border-color: red !important;

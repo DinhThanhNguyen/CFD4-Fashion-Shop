@@ -1,6 +1,9 @@
 import React from 'react'
 
-export default function Step1({ nextStep }) {
+export default function Step1({ nextStep, formValidate }) {
+
+    let {form, inputChange} = formValidate
+
     return (
         <>
             {/* Card */}
@@ -9,7 +12,7 @@ export default function Step1({ nextStep }) {
                     {/* Radio */}
                     <div className="custom-control custom-radio">
                         {/* Input */}
-                        <input className="custom-control-input collapsed" id="checkoutPaymentCard" name="payment" type="radio" defaultChecked />
+                        <input className="custom-control-input collapsed" id="checkoutPaymentCard" name="payment_option" type="radio" value="credit_Cart" onChange={inputChange} checked={form.payment_option === 'credit_Cart'} />
                         {/* Label */}
                         <label className="custom-control-label d-flex justify-content-between font-size-sm text-body text-nowrap" htmlFor="checkoutPaymentCard">
                             I want to add Debit / Credit Card <img className="ml-2" src="/img/brands/color/cards.svg" alt="..." />
@@ -23,7 +26,7 @@ export default function Step1({ nextStep }) {
                     {/* Radio */}
                     <div className="custom-control custom-radio">
                         {/* Input */}
-                        <input className="custom-control-input" id="checkoutPaymentPaypal" name="payment" type="radio" />
+                        <input className="custom-control-input" id="checkoutPaymentPaypal" name="payment_option" type="radio" value="paypall" onChange={inputChange} checked={form.payment_option === 'paypall'} />
                         {/* Label */}
                         <label className="custom-control-label d-flex justify-content-between font-size-sm text-body text-nowrap" htmlFor="checkoutPaymentPaypal">
                             I want to add PayPall <img src="/img/brands/color/paypal.svg" alt="..." />
