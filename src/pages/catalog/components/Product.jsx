@@ -46,7 +46,7 @@ export default function Product(props) {
                 {/* Actions */}
                 <div className="card-actions">
                     <span className="card-action">
-                        <button className="btn btn-xs btn-circle btn-white-primary" data-toggle="modal" data-target="#modalProduct">
+                        <button className="btn btn-xs btn-circle btn-white-primary" data-toggle="modal" data-target="#modalProduct" >
                             <i className="fe fe-eye" />
                         </button>
                     </span>

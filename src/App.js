@@ -27,6 +27,8 @@ import Blog from 'pages/blog'
 import ProductDetail from 'pages/productDetail'
 import saga from './redux/saga'
 import PopupProduct from 'components/PopupProduct'
+import Horizontal from 'components/Horizontal'
+import OrderCompleted from 'pages/orderCompleted'
 
 function App() {
   return <AppProvider reducers={reducers} saga={saga}>
@@ -45,6 +47,7 @@ function App() {
     <Route path="/blog-post" component={blogPost} />
     <Route path="/blog" component={Blog} />
     <Route path="/contact-us" component={ContactUs} />
+    <Route path="/order-completed" component={OrderCompleted} />
     <Route path="/about" component={About} />
     <Route path="/" exact component={Home} />
     <Route path="/" component={errorPage} />
@@ -54,6 +57,7 @@ function App() {
   <PopupSearch />
   <PopupProduct />
   <PopupSizeChart />
+  <Horizontal />
   </AppProvider>
 }
 

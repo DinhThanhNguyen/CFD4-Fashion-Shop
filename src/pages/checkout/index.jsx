@@ -1,8 +1,10 @@
+import cartApi from 'api/cartApi'
 import Breadcrumb from 'components/Breadcrumb'
 import InputGroup from 'components/InputGroup'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Redirect } from 'react-router'
+import { Redirect, useHistory } from 'react-router'
+import { CartAction } from 'redux/reducers/cartReducers'
 import Features from '../../components/Features'
 import useFormValidate from '../../core/hook/useValidateForm'
 import withPriceFormat from '../../hoc/withPriceFormat'
@@ -22,6 +24,8 @@ export default function Checkout() {
     const cart = useSelector(state => state.cart)
 
     let dispatch = useDispatch()
+
+    let history = useHistory()
 
     let { form, inputChange, submit, error } = useFormValidate({
         first_name: '',
@@ -106,9 +110,16 @@ export default function Checkout() {
         }
 
         error = submit({ exclude })
-
         if (Object.keys(error).length === 0) {
-            alert('Đặt hành thành công')
+            cartApi.order(form)
+            .then(res => {
+                if(res.error) {
+                    dispatch(CartAction.error(res.error))
+                } else {
+                    dispatch(CartAction.clearCart())
+                    history.push('/order-completed')
+                }
+            })
         }
     }
 

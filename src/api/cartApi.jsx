@@ -10,9 +10,12 @@ export default {
         })
     },
     create: (data) => {
-        return Api.token().post(`ecommerce/v1/cart`, data)
+        return Api.token().post('ecommerce/v1/cart', data)
     },
     getCartFromUser: () => {
         return Api.token().get('ecommerce/v1/cart')
+    },
+    order: (data) => {
+        return Api.token().post('ecommerce/v1/order', data)
     }
 }

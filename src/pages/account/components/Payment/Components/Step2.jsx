@@ -26,9 +26,9 @@ export default function Step2({ formValidate, _btnAddPayment }) {
                     </label>
                 </div>
                 <div className="col-12 col-md-4">
-                    <SelectGroup
-                        name="payment_card_month" title="Month *" form={form} inputChange={inputChange} error={error}
-                        options={[...Array(12)].map((e, i) => i + 1)}
+                    <SelectGroup name="payment_card_month" title="Month *" form={form} inputChange={inputChange} error={error}
+
+                        options={[...Array(12)].map((e, i) =>  i + 1)}
                     />
                 </div>
                 <div className="col-12 col-md-4">
@@ -55,7 +55,7 @@ export default function Step2({ formValidate, _btnAddPayment }) {
                 <div className="col-12">
                     <div className="form-group">
                         <div className="custom-control custom-checkbox mb-3">
-                            <input type="checkbox" className="custom-control-input" id="defaultPaymentMethod" />
+                            <input type="checkbox" className="custom-control-input" id="defaultPaymentMethod" form={form.default} onChange={inputChange} name="default" />
                             <label className="custom-control-label" htmlFor="defaultPaymentMethod">Default payment method</label>
                         </div>
                     </div>

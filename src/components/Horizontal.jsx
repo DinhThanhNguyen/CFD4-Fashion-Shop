@@ -24,7 +24,7 @@ export default function Horizontal() {
                                 {/* Text */}
                                 <p className="mb-7 font-size-lg">
                                     On your next purchase
-                  </p>
+                                </p>
                                 {/* Form */}
                                 <form>
                                     <div className="form-row">
@@ -51,7 +51,7 @@ export default function Horizontal() {
                                     {/* Label */}
                                     <label className="custom-control-label font-size-xs" htmlFor="modalNewsletterHorizontalCheckbox">
                                         Prevent this Pop-up
-                    </label>
+                                    </label>
                                 </div>
                             </div>
                         </div>

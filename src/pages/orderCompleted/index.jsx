@@ -17,7 +17,7 @@ export default function OrderCompleted() {
                 are shown for your personal accont.
               </p>
               {/* Button */}
-              <a className="btn btn-dark" href="#!">
+              <a className="btn btn-dark" href="/account/order">
                 View My Orders
               </a>
             </div>

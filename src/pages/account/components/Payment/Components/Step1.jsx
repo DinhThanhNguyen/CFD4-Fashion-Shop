@@ -12,7 +12,7 @@ export default function Step1({ nextStep, formValidate }) {
                     {/* Radio */}
                     <div className="custom-control custom-radio">
                         {/* Input */}
-                        <input className="custom-control-input collapsed" id="checkoutPaymentCard" name="payment_option" type="radio" value="credit_Cart" onChange={inputChange} checked={form.payment_option === 'credit_Cart'} />
+                        <input className="custom-control-input collapsed" id="checkoutPaymentCard" name="payment_option" value="credit_card" type="radio" onChange={inputChange} checked={form.payment_option === 'credit_card'} />
                         {/* Label */}
                         <label className="custom-control-label d-flex justify-content-between font-size-sm text-body text-nowrap" htmlFor="checkoutPaymentCard">
                             I want to add Debit / Credit Card <img className="ml-2" src="/img/brands/color/cards.svg" alt="..." />

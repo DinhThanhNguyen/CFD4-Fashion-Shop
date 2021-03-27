@@ -1,24 +1,26 @@
 import userApi from 'api/userApi'
 import useFormValidate from 'core/hook/useValidateForm'
 import React, { useEffect, useState } from 'react'
-import { useRouteMatch } from 'react-router'
+import { useHistory, useRouteMatch } from 'react-router'
 import Step1 from './Components/Step1'
 import Step2 from './Components/Step2'
 
 export default function Payment() {
 
-    let {_id} = useRouteMatch().params
+    let { _id } = useRouteMatch().params
+    let history = useHistory()
 
     let [state, setState] = useState({
         errorMessage: '',
-        successMessage: '',
         step: _id ? 2 : 1
     })
 
     useEffect(async () => {
-        let result = await userApi.getPayment(_id)
-        if (result.data) {
-            
+        if (_id) {
+            let result = await userApi.getPayment(_id)
+            if (result.data) {
+                form.setForm(result.data)
+            }
         }
     }, [])
 
@@ -59,8 +61,19 @@ export default function Payment() {
 
     function _btnAddPayment() {
         let error = form.submit()
-        if(Object.keys(error).length === 0) {
-            userApi.addPayment()
+        if (Object.keys(error).length === 0) {
+            userApi.addPayment(form.form)
+            .then(res => {
+                if (res.data) {
+                    history.push('/account/payment')
+                }
+                else {
+                    setState({
+                        ...state,
+                        errorMessage: res.error
+                    })
+                }
+            })
         }
     }
 
@@ -72,6 +85,9 @@ export default function Payment() {
                 Add Debit / Credit Card
             </h6>
             {/* Form */}
+            {
+                state.errorMessage && <p className="error-text">{state.errorMessage}</p>
+            }
             {
                 state.step === 1 && <Step1 nextStep={nextStep} formValidate={form} />
             }

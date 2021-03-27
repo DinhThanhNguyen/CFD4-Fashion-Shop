@@ -6,6 +6,7 @@ import Shopper from './components/Shopper'
 import Topmonth from './components/Topmonth'
 import Category from './components/Category'
 import Banners from 'components/Banners'
+import Horizontal from 'components/Horizontal'
 
 export default function Home() {
     return (

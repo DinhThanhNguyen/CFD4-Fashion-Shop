@@ -2,7 +2,7 @@ import userApi from 'api/userApi'
 import React, { useEffect, useState } from 'react'
 import { useRouteMatch } from 'react-router'
 import { Link } from 'react-router-dom'
-import PaymentListItem from './PaymentListItem'
+import PaymentItem from './PaymentItem'
 
 export default function PaymentList() {
 
@@ -37,7 +37,7 @@ export default function PaymentList() {
     <div className="col-12 col-md-9 col-lg-8 offset-lg-1">
       <div className="row">
         {
-          list.map(e => <PaymentListItem key={e._id} {...e} setPaymentDefault={setPaymentDefault.bind(null, e)} />)
+          list.map(e => <PaymentItem key={e._id} {...e} setPaymentDefault={setPaymentDefault.bind(null, e)} />)
         }
         <div className="col-12">
           {/* Button */}
