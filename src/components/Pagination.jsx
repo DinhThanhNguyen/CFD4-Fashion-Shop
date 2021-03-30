@@ -36,6 +36,8 @@ export default function Pagination({ currentPage, totalPage }) {
         return list;
     }
 
+    if(totalPage === 1) return null
+
     return (
         <nav className="d-flex justify-content-center justify-content-md-end">
             <ul className="pagination pagination-sm text-gray-400">

@@ -5,11 +5,11 @@ import PaymentList from './components/PaymentList';
 import Payment from './components/Payment/Payment';
 import PersonalInfor from './components/PersonalInfor';
 import SlideBar from './components/SlideBar'
-import Order from './components/Order';
-import OrderList from './components/OrderList';
+import OrderList from './OrderList';
 import Breadcrumb from 'components/Breadcrumb';
 import WishList from './components/WishList';
 import AddressList from './components/AddressList';
+import Order from './components/Order';
 
 export default function Account() {
 

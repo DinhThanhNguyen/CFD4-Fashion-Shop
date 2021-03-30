@@ -17,5 +17,11 @@ export default {
     },
     order: (data) => {
         return Api.token().post('ecommerce/v1/order', data)
+    },
+    getOrder: (_id) => {
+        return Api.token().get(`ecommerce/v1/order${_id ? `/${_id}` : ''}`)
+    },
+    getAllOrder: () => {
+        return Api.token().get('ecommerce/v1/order')
     }
 }

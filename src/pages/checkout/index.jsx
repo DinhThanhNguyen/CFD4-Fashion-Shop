@@ -3,7 +3,7 @@ import Breadcrumb from 'components/Breadcrumb'
 import InputGroup from 'components/InputGroup'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Redirect, useHistory } from 'react-router'
+import { Redirect, useHistory, useRouteMatch } from 'react-router'
 import { CartAction } from 'redux/reducers/cartReducers'
 import Features from '../../components/Features'
 import useFormValidate from '../../core/hook/useValidateForm'
@@ -117,7 +117,7 @@ export default function Checkout() {
                     dispatch(CartAction.error(res.error))
                 } else {
                     dispatch(CartAction.clearCart())
-                    history.push('/order-completed')
+                    history.push(`/order-completed/${res.data._id}`)
                 }
             })
         }
@@ -449,7 +449,7 @@ export default function Checkout() {
                             {/* Button */}
                             <button className="btn btn-block btn-dark" onClick={_btnPlaceOrderClick}>
                                 Place Order
-                    </button>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -487,7 +487,7 @@ function CartItem({ name, price_text, images, _id, cartNum }) {
                     <div className="d-flex align-items-center">
                         {/* Select */}
                         <button className="cartItem-button" onClick={() => dispatch(decrementCart(_id))}>-</button>
-                        <input className="cartItem-number" type="text" value={cartNum} />
+                        <input className="cartItem-number" type="text" value={cartNum} readOnly />
                         <button className="cartItem-button" onClick={() => dispatch(incrementCart(_id))}>+</button>
                         {/* Remove */}
                         <a className="font-size-xs text-gray-400 ml-auto" href="#!" onClick={remove}>
