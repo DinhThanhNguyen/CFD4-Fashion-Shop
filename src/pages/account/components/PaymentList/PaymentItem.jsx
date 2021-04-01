@@ -42,15 +42,19 @@ export default function PaymentItem(props) {
                         <span className="text-muted">{payment_card_name}</span>
                     </p>
                     {/* Action */}
-                    <div className="card-action card-action-right">
+                    <div className="card-action card-action-right btn_edit_address">
                         {/* Button */}
                         <Link className="btn btn-xs btn-circle btn-white-primary" to={`/account/payment/edit/${_id}`}>
                             <i className="fe fe-edit-2" />
                         </Link>
                         {/* Button */}
-                        <button className="btn btn-xs btn-circle btn-white-primary" onClick={_removePayment}>
-                            <i className="fe fe-x" />
-                        </button>
+                        {
+                            !props.default && (
+                                <button className="btn btn-xs btn-circle btn-white-primary" style={{ marginLeft: '5px' }} onClick={_removePayment}>
+                                    <i className="fe fe-x" />
+                                </button>
+                            )
+                        }
                     </div>
                 </div>
             </div>

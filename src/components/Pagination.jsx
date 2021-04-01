@@ -29,7 +29,7 @@ export default function Pagination({ currentPage, totalPage }) {
             queryObj.page = i
             let queryURL = serializeObjectToQueryURL(queryObj)
             list.push(<li className={`page-item ${currentPage === i ? 'active' : ''}`} key={i}>
-                <Link className="page-link" to={`${match.path}?${queryURL}`}>{i}</Link>
+                <Link className="page-link" to={`${match.url}?${queryURL}`}>{i}</Link>
             </li>)
         }
 
@@ -43,7 +43,7 @@ export default function Pagination({ currentPage, totalPage }) {
             <ul className="pagination pagination-sm text-gray-400">
                 {
                     currentPage > 1 && <li className="page-item">
-                        <Link className="page-link page-link-arrow" to={`${match.path}?${serializeObjectToQueryURL({ ...convertQueryToObject(), page: currentPage - 1 })}`}>
+                        <Link className="page-link page-link-arrow" to={`${match.url}?${serializeObjectToQueryURL({ ...convertQueryToObject(), page: currentPage - 1 })}`}>
                             <i className="fa fa-caret-left" />
                         </Link>
                     </li>
@@ -55,7 +55,7 @@ export default function Pagination({ currentPage, totalPage }) {
 
                 {
                     currentPage < totalPage && <li className="page-item">
-                        <Link className="page-link page-link-arrow" to={`${match.path}?${serializeObjectToQueryURL({ ...convertQueryToObject(), page: currentPage + 1 })}`}>
+                        <Link className="page-link page-link-arrow" to={`${match.url}?${serializeObjectToQueryURL({ ...convertQueryToObject(), page: currentPage + 1 })}`}>
                             <i className="fa fa-caret-right" />
                         </Link>
                     </li>

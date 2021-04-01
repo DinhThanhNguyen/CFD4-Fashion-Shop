@@ -1,11 +1,7 @@
 import React, { useEffect } from 'react'
 import Category from './components/Category'
-import Size from './components/Size'
-import Color from './components/Color'
-import Brand from './components/Brand'
 import Price from './components/Price'
 import Slider from './components/Slider'
-import Session from './components/Session'
 import { useDispatch, useSelector } from 'react-redux'
 import { getProduct } from '../../redux/reducers/productReducers'
 import Product from './components/Product'
@@ -14,6 +10,7 @@ import withPriceFormat from '../../hoc/withPriceFormat'
 import { useHistory, useRouteMatch } from 'react-router'
 import { convertQueryToObject, serializeObjectToQueryURL } from 'components/helper'
 import Banners from 'components/Banners'
+import Breadcrumb from 'components/Breadcrumb'
 
 
 export default function Catalog() {
@@ -22,6 +19,8 @@ export default function Catalog() {
 
     let product = useSelector(state => state.product)
 
+    let { categories } = product
+
     let queryURL = convertQueryToObject()
 
     let QueryString = serializeObjectToQueryURL(queryURL)
@@ -29,6 +28,26 @@ export default function Catalog() {
     let history = useHistory()
 
     let routeMatch = useRouteMatch()
+
+    let { slug } = useRouteMatch().params
+
+    let category = {
+        title: 'All Product',
+        link: '/catalog'
+    }
+
+    if (slug) {
+        slug = slug.replace(/.*id/, '')
+        let f = categories.find(e => e.id == slug)
+        if (f) {
+            category = {
+                title: f.title,
+                link: `/catalog/${f.slug}`
+            }
+
+            QueryString += `${QueryString ? '&' : ''}categories=${slug}`
+        }
+    }
 
     useEffect(() => {
         dispatch(getProduct(QueryString))
@@ -42,7 +61,7 @@ export default function Catalog() {
         delete queryObj.page;
 
         let queryURL = serializeObjectToQueryURL(queryObj)
-        history.push(`${routeMatch.path}?${queryURL}`)
+        history.push(`${routeMatch.url}?${queryURL}`)
     }
 
     return (
@@ -53,16 +72,14 @@ export default function Catalog() {
                     <div className="row">
                         <div className="col-12 col-md-4 col-lg-3">
                             {/* Filters */}
-                            <form className="mb-10 mb-md-0">
-                                <ul className="nav nav-vertical" id="filterNav">
-                                    <Category />
-                                    <Session />
+                            <ul className="nav nav-vertical" id="filterNav">
+                                <Category />
+                                {/* <Session />
                                     <Size />
                                     <Color />
-                                    <Brand />
-                                    <Price />
-                                </ul>
-                            </form>
+                                    <Brand /> */}
+                                <Price />
+                            </ul>
                         </div>
                         <div className="col-12 col-md-8 col-lg-9">
                             {/* Slider */}
@@ -71,29 +88,30 @@ export default function Catalog() {
                             <div className="row align-items-center mb-7">
                                 <div className="col-12 col-md">
                                     {/* Heading */}
-                                    <h3 className="mb-1">Womens' Clothing</h3>
+                                    <h3 className="mb-1">{category.title}</h3>
                                     {/* Breadcrumb */}
-                                    <ol className="breadcrumb mb-md-0 font-size-xs text-gray-400">
-                                        <li className="breadcrumb-item">
-                                            <a className="text-gray-400" href="index.html">Home</a>
-                                        </li>
-                                        <li className="breadcrumb-item active">
-                                            Women's Clothing
-                                    </li>
-                                    </ol>
+                                    <Breadcrumb
+                                        list={[
+                                            {
+                                                title: 'Home',
+                                                link: '/'
+                                            },
+                                            category
+                                        ]}
+                                    />
                                 </div>
                                 <div className="col-12 col-md-auto">
                                     {/* Select */}
                                     <select className="custom-select custom-select-xs cursor-pointer" onChange={sortChange}>
-                                        <option selected disabled className="cursor-pointer">--Sắp xếp--</option>
-                                        <option selected={queryURL.sort === 'price.-1'} value="price.-1">Giá cao đến thấp</option>
-                                        <option selected={queryURL.sort === 'price.1'} value="price.1">Giá thấp đến cao</option>
+                                        <option selected={queryURL.sort === ''} className="cursor-pointer">--Sắp xếp--</option>
+                                        <option selected={queryURL.sort === 'real_price.-1'} value="real_price.-1">Giá cao đến thấp</option>
+                                        <option selected={queryURL.sort === 'real_price.1'} value="real_price.1">Giá thấp đến cao</option>
                                         <option selected={queryURL.sort === 'discount_rate.-1'} value="discount_rate.-1">Giá giảm nhiều</option>
                                     </select>
                                 </div>
                             </div>
                             {/* Tags */}
-                            <div className="row mb-7">
+                            {/* <div className="row mb-7">
                                 <div className="col-12">
                                     <span className="btn btn-xs btn-light font-weight-normal text-muted mr-3 mb-3">
                                         Shift dresses <a className="text-reset ml-2" href="#!" role="button">
@@ -136,7 +154,7 @@ export default function Catalog() {
                                         </a>
                                     </span>
                                 </div>
-                            </div>
+                            </div> */}
                             {/* Products */}
                             <div className="row">
                                 {

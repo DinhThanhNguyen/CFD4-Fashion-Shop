@@ -4,6 +4,8 @@ import createSlice from '../../core/createSlice'
 const initialState = {
     products: [],
     paginate: null,
+    categories: [],
+    // loadingCategories: true,
     loading: true
 }
 
@@ -17,11 +19,27 @@ export function getProduct(queryString) {
     }
 }
 
+export function getCategories() {
+
+    return (dispatch) => {
+        productApi.category()
+        .then (res => {
+            dispatch(action.categories(res))
+        })
+
+
+        // if (state.product.loadingCategories) {
+            
+        // }
+    }
+}
+
+
 let { reducer, TYPE, action } = createSlice({
     name: 'product',
     initialState,
     reducers: {
-        loading: function(state) {
+        loading: function (state) {
             state.loading = true
         },
         catalog: function (state, action) {
@@ -31,8 +49,16 @@ let { reducer, TYPE, action } = createSlice({
                 paginate: action.payload.paginate,
                 loading: false
             }
+        },
+        categories: (state, action) => {
+            state.categories = action.payload
+            // state.loadingCategories = false
         }
     }
 })
 
 export default reducer
+
+export const PRODUCT = TYPE
+
+export const productAction = action

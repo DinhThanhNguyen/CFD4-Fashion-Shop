@@ -1,0 +1,8 @@
+let initial = {
+    en: {
+
+    }, 
+    vn: {
+        
+    }
+}

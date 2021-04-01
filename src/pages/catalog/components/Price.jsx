@@ -1,50 +1,70 @@
-import React from 'react'
+import { convertQueryToObject, serializeObjectToQueryURL } from 'components/helper'
+import React, { useRef } from 'react'
+import { useHistory, useRouteMatch } from 'react-router'
 
 export default function Price() {
+
+    let query = convertQueryToObject()
+    let routeMatch = useRouteMatch()
+    let history = useHistory()
+
+    let minRef = useRef(),
+        maxRef = useRef()
+
+    function _apply() {
+        let minValue = minRef.current.value,
+            maxValue = maxRef.current.value
+
+        if (minValue || maxValue) {
+            if (minValue) {
+                query.min = minValue.trim()
+            } else {
+                delete query.min
+            }
+
+            if (maxValue) {
+                query.max = maxValue.trim()
+            } else {
+                delete query.max
+            }
+
+            delete query.page
+        }
+
+        if (minValue) {
+            query.min = minValue.trim()
+        } else {
+            delete query.min
+        }
+
+        if (maxValue) {
+            query.max = maxValue.trim()
+        } else {
+            delete query.max
+        }
+
+        let queryURL = serializeObjectToQueryURL(query)
+        history.push(`${routeMatch.url}?${queryURL}`)
+    }
+
     return (
         <li className="nav-item">
             {/* Toggle */}
             <a className="nav-link dropdown-toggle font-size-lg text-reset border-bottom mb-6" data-toggle="collapse" href="#priceCollapse">
                 Price
-                    </a>
+            </a>
             {/* Collapse */}
-            <div className="collapse" id="priceCollapse" data-toggle="simplebar" data-target="#priceGroup">
-                {/* Form group*/}
-                <div className="form-group form-group-overflow mb-6" id="priceGroup">
-                    <div className="custom-control custom-checkbox mb-3">
-                        <input className="custom-control-input" id="priceOne" type="checkbox" defaultChecked />
-                        <label className="custom-control-label" htmlFor="priceOne">
-                            $10.00 - $49.00
-                          </label>
-                    </div>
-                    <div className="custom-control custom-checkbox mb-3">
-                        <input className="custom-control-input" id="priceTwo" type="checkbox" defaultChecked />
-                        <label className="custom-control-label" htmlFor="priceTwo">
-                            $50.00 - $99.00
-                          </label>
-                    </div>
-                    <div className="custom-control custom-checkbox mb-3">
-                        <input className="custom-control-input" id="priceThree" type="checkbox" />
-                        <label className="custom-control-label" htmlFor="priceThree">
-                            $100.00 - $199.00
-                          </label>
-                    </div>
-                    <div className="custom-control custom-checkbox">
-                        <input className="custom-control-input" id="priceFour" type="checkbox" />
-                        <label className="custom-control-label" htmlFor="priceFour">
-                            $200.00 and Up
-                          </label>
-                    </div>
-                </div>
+            <div className="collapse show" id="priceCollapse" data-toggle="simplebar" data-target="#priceGroup">
                 {/* Range */}
                 <div className="d-flex align-items-center">
                     {/* Input */}
-                    <input type="number" className="form-control form-control-xs" placeholder="$10.00" min={10} />
+                    <input ref={minRef} defaultValue={query.min} type="number" className="form-control form-control-xs" placeholder="1.000₫" />
                     {/* Divider */}
                     <div className="text-gray-350 mx-2">‒</div>
                     {/* Input */}
-                    <input type="number" className="form-control form-control-xs" placeholder="$350.00" max={350} />
+                    <input ref={maxRef} defaultValue={query.max} type="number" className="form-control form-control-xs" placeholder="10.000₫" />
                 </div>
+                <div className="btn-light btn" onClick={_apply} style={{ marginTop: 10, cursor: 'pointer', pointerEvents: 'auto' }}>Apply</div>
             </div>
         </li>
     )

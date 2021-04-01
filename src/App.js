@@ -39,7 +39,7 @@ function App() {
     <PrivateRoute path="/account" component={Account} />
     <Route path="/checkout" component={Checkout} />
     <Route path="/auth" component={Auth} />
-    <Route path="/catalog" component={Catalog} />
+    <Route path="/catalog/:slug?" component={Catalog} />
     <Route path="/shopping-cart" component={ShoppingCart} />
     <Route path="/shipping-and-returns" component={shippingAndReturns} />
     <Route path="/store-locator" component={StoreLocator} />
@@ -47,7 +47,7 @@ function App() {
     <Route path="/blog-post" component={blogPost} />
     <Route path="/blog" component={Blog} />
     <Route path="/contact-us" component={ContactUs} />
-    <Route path="/order-completed" component={OrderCompleted} />
+    <Route path="/order-completed/:_id" component={OrderCompleted} />
     <Route path="/about" component={About} />
     <Route path="/" exact component={Home} />
     <Route path="/" component={errorPage} />

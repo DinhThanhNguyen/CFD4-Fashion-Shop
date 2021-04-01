@@ -1,9 +1,10 @@
 import cartApi from 'api/cartApi'
+import userApi from 'api/userApi'
 import Breadcrumb from 'components/Breadcrumb'
 import InputGroup from 'components/InputGroup'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Redirect, useHistory, useRouteMatch } from 'react-router'
+import { Redirect, useHistory } from 'react-router'
 import { CartAction } from 'redux/reducers/cartReducers'
 import Features from '../../components/Features'
 import useFormValidate from '../../core/hook/useValidateForm'
@@ -21,13 +22,32 @@ const styles = {
 
 export default function Checkout() {
 
-    const cart = useSelector(state => state.cart)
+    const state = useSelector(state => state)
+    let { cart, auth } = state
 
     let dispatch = useDispatch()
 
     let history = useHistory()
 
-    let { form, inputChange, submit, error } = useFormValidate({
+    useEffect(() => {
+        if (auth.user) {
+            Promise.all([
+                userApi.getAddressDefault(),
+                userApi.getPaymentDefault()
+            ])
+                .then(([address, payment]) => {
+                    console.log(address)
+                    console.log(payment)
+                    setForm({
+                        ...form,
+                        ...address.data,
+                        ...payment.data
+                    })
+                })
+        }
+    }, [])
+
+    let { form, inputChange, submit, error, setForm } = useFormValidate({
         first_name: '',
         last_name: '',
         email: '',
@@ -65,6 +85,7 @@ export default function Checkout() {
             // payment_option: { required: true },
 
             ship_country: { required: true },
+            ship_address1: {required: true},
             ship_city: { required: true },
             ship_post_code: { required: true },
 
@@ -112,14 +133,14 @@ export default function Checkout() {
         error = submit({ exclude })
         if (Object.keys(error).length === 0) {
             cartApi.order(form)
-            .then(res => {
-                if(res.error) {
-                    dispatch(CartAction.error(res.error))
-                } else {
-                    dispatch(CartAction.clearCart())
-                    history.push(`/order-completed/${res.data._id}`)
-                }
-            })
+                .then(res => {
+                    if (res.error) {
+                        dispatch(CartAction.error(res.error))
+                    } else {
+                        dispatch(CartAction.clearCart())
+                        history.push(`/order-completed/${res.data._id}`)
+                    }
+                })
         }
     }
 

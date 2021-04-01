@@ -1,4 +1,5 @@
 import cartApi from 'api/cartApi'
+import { currency } from 'components/helper'
 import withPriceFormat from 'hoc/withPriceFormat'
 import React, { useEffect, useState } from 'react'
 import { useRouteMatch } from 'react-router'
@@ -6,19 +7,17 @@ import OrderItem from './OrderItem'
 
 export default function Order() {
 
-    let _id = useRouteMatch().params
+    let { _id } = useRouteMatch().params
 
     let [order, setOrder] = useState({
         list: []
     });
 
-    useEffect(() => {
-        cartApi.getOrder(_id.id)
-            .then(res => {
-                if (res.data) {
-                    setOrder(res.data)
-                }
-            })
+    useEffect(async () => {
+        let result = await cartApi.getOrder(_id)
+        if (result.data) {
+            setOrder(result.data)
+        }
     }, [])
 
     let day = new Date().getDate()
@@ -30,13 +29,15 @@ export default function Order() {
     if (!order === 0) return null
 
     let { first_name, last_name, address_line1, address_line2, zip, city, phone, company, country,
-        payment_option, status, num, payment_card_number, payment_card_month, payment_card_year, payment_card_name, shipping_price } = order;
-    
-    let amount = new Intl.NumberFormat('vn').format(order.amount)
-    
-    let tax = new Intl.NumberFormat('vn').format((order.amount)/10)
+        payment_option, status, num, payment_card_number, payment_card_month, payment_card_year, payment_card_name } = order;
 
-    let total = new Intl.NumberFormat('vn').format(order.shipping_price + order.amount + (order.amount / 10))
+    let amount = currency(order.amount)
+
+    let tax = currency(order.amount / 10)
+
+    let shipping = currency(order.shipping_price)
+
+    let total = currency(order.shipping_price + order.amount + (order.amount / 10))
 
     return (
         <div className="col-12 col-md-9 col-lg-8 offset-lg-1">
@@ -52,7 +53,7 @@ export default function Order() {
                                     <h6 className="heading-xxxs text-muted">Order No:</h6>
                                     {/* Text */}
                                     <p className="mb-lg-0 font-size-sm font-weight-bold">
-                                        {_id.id}
+                                        {_id}
                                     </p>
                                 </div>
                                 <div className="col-6 col-lg-3">
@@ -60,7 +61,7 @@ export default function Order() {
                                     <h6 className="heading-xxxs text-muted">Shipped date:</h6>
                                     {/* Text */}
                                     <p className="mb-lg-0 font-size-sm font-weight-bold">
-                                        <time dateTime="2019-10-01">
+                                        <time>
                                             {day} {month.toString().padStart(2, 0)}, {year}
                                         </time>
                                     </p>
@@ -70,7 +71,11 @@ export default function Order() {
                                     <h6 className="heading-xxxs text-muted">Status:</h6>
                                     {/* Text */}
                                     <p className="mb-0 font-size-sm font-weight-bold">
-                                        {status}
+                                        {status === 'order' && 'Đang đặt hàng'}
+                                        {status === 'cart' && 'Đơn hàng đang được xử lí'}
+                                        {status === 'confirm' && 'Đơn hàng được xác nhận'}
+                                        {status === 'shipping' && 'Đơn hàng đang được giao'}
+                                        {status === 'finish' && 'Đã hoàn thành'}
                                     </p>
                                 </div>
                                 <div className="col-6 col-lg-3">
@@ -115,7 +120,7 @@ export default function Order() {
                         </li>
                         <li className="list-group-item d-flex">
                             <span>Shipping</span>
-                            <span className="ml-auto">{shipping_price}</span>
+                            <span className="ml-auto">{shipping}</span>
                         </li>
                         <li className="list-group-item d-flex font-size-lg font-weight-bold">
                             <span>Total</span>

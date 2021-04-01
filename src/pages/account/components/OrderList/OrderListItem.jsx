@@ -1,3 +1,4 @@
+import { currency } from 'components/helper'
 import React from 'react'
 import { Link, useRouteMatch } from 'react-router-dom'
 
@@ -5,11 +6,17 @@ export default function OrderListItem({ list, _id, status, amount }) {
 
     let match = useRouteMatch()
 
-    let images = list.map(e => e.images?.[0]?.small_url || null)
+    let images = list.map(e => e.images?.[0]?.thumbnail_url || null)
 
     images = images.filter(e => e !== null)
 
-    amount = new Intl.NumberFormat('vn').format(amount)
+    let day = new Date().getDate()
+
+    let month = new Date().getMonth()
+
+    let year = new Date().getFullYear()
+
+    amount = currency(amount)
 
     return (
         <div className="card card-lg mb-5 border">
@@ -31,8 +38,8 @@ export default function OrderListItem({ list, _id, status, amount }) {
                                 <h6 className="heading-xxxs text-muted">Shipped date:</h6>
                                 {/* Text */}
                                 <p className="mb-lg-0 font-size-sm font-weight-bold">
-                                    <time dateTime="28-03-2021">
-                                        28-03-2021
+                                    <time>
+                                        {day.toString().padStart(2, 0)} {month.toString().padStart(2, 0)}, {year}
                                     </time>
                                 </p>
                             </div>
@@ -41,7 +48,11 @@ export default function OrderListItem({ list, _id, status, amount }) {
                                 <h6 className="heading-xxxs text-muted">Status:</h6>
                                 {/* Text */}
                                 <p className="mb-0 font-size-sm font-weight-bold">
-                                    {status}
+                                    {status === 'order' && 'Đang đặt hàng'}
+                                    {status === 'cart' && 'Đơn hàng đang được xử lí'}
+                                    {status === 'confirm' && 'Đơn hàng được xác nhận'}
+                                    {status === 'shipping' && 'Đơn hàng đang được giao'}
+                                    {status === 'finish' && 'Đã hoàn thành'}
                                 </p>
                             </div>
                             <div className="col-6 col-lg-3">

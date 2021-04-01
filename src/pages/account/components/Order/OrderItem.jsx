@@ -1,7 +1,10 @@
+import { currency } from 'components/helper'
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-export default function OrderItem({slug, images, cartNum, name, price_text }) {
+export default function OrderItem({ slug, images, cartNum, name, real_price }) {
+
+    let amount = currency(real_price * cartNum)
 
     return (
         <li className="list-group-item">
@@ -14,7 +17,7 @@ export default function OrderItem({slug, images, cartNum, name, price_text }) {
                     {/* Title */}
                     <p className="mb-4 font-size-sm font-weight-bold">
                         <Link className="text-body" to={`/product/${slug}`}> {name} x {cartNum}</Link> <br />
-                        <span className="text-muted">{price_text}</span>
+                        <span className="text-muted">{amount}</span>
                     </p>
                 </div>
             </div>

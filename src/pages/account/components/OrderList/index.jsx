@@ -11,19 +11,20 @@ export default function OrderList() {
         paginate: null
     })
 
-    // let queryURL = convertQueryToObject()
+    let queryURL = convertQueryToObject()
 
-    // let QueryString = serializeObjectToQueryURL(queryURL)
+    let QueryString = serializeObjectToQueryURL(queryURL)
 
     useEffect(() => {
-        cartApi.getAllOrder()
+        cartApi.getAllOrder(QueryString)
             .then(res => {
+                console.log(res)
                 setState({
                     list: res.data,
                     paginate: res.paginate
                 })
             })
-    }, [])
+    }, [QueryString])
 
     return (
         <div className="col-12 col-md-9 col-lg-8 offset-lg-1">

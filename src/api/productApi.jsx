@@ -1,3 +1,4 @@
+import Api from 'core/Api'
 import { domain } from './config'
 
 export default {
@@ -12,5 +13,8 @@ export default {
     detail: (slug) => {
         return fetch(`${domain}product?slug=${slug}`)
             .then(res => res.json())
-    } 
+    },
+    category: () => {
+        return Api.get('categories')
+    }
 }

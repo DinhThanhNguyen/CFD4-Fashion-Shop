@@ -41,9 +41,13 @@ export default function AddressListItem(props) {
                             <i className="fe fe-edit-2" />
                         </Link>
                         {/* Button */}
-                        <button className="btn btn-xs btn-circle btn-white-primary" style={{ marginLeft: '5px' }} onClick={_removeAddress}>
-                            <i className="fe fe-x" />
-                        </button>
+                        {
+                            !props.default && (
+                                <button className="btn btn-xs btn-circle btn-white-primary" style={{ marginLeft: '5px' }} onClick={_removeAddress}>
+                                    <i className="fe fe-x" />
+                                </button>
+                            )
+                        }
                     </div>
                 </div>
             </div>

@@ -14,15 +14,14 @@ export default function Product(props) {
     let image2 = images?.[1]?.medium_url
 
 
-
     return (
         <div className="card mb-7">
             {/* Badge */}
-            {
+            {/* {
                 !loading && <div className="badge badge-white card-badge card-badge-left text-uppercase">
                     New
                 </div>
-            }
+            } */}
             {/* Image */}
             <div className="card-img">
                 {/* Image */}
@@ -79,7 +78,7 @@ export default function Product(props) {
                 {/* Price */}
                 {
                     loading ? <Skeleton variant="text" /> : <del className="font-weight-bold text-muted">
-                        {price_before_discount}₫
+                        {discount_rate ? `${price_before_discount}₫` : ''}
                     </del>
                 }
                 {

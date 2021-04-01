@@ -42,7 +42,10 @@ export default {
     },
     changeAddressDefault: (data) => {
         return Api.token().post('ecommerce/v1/profile/address-default', data)
-    }, 
+    },
+    getAddressDefault: () => {
+        return Api.token().get(`ecommerce/v1/profile/address-default`)
+    },
 
 
     //Payment
@@ -57,5 +60,8 @@ export default {
     },
     changePaymentDefault: (data) => {
         return Api.token().post('ecommerce/v1/profile/payment-default', data)
-    }, 
+    },
+    getPaymentDefault: () => {
+        return Api.token().get('ecommerce/v1/profile/payment-default')
+    }
 }
