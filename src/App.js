@@ -29,35 +29,44 @@ import saga from './redux/saga'
 import PopupProduct from 'components/PopupProduct'
 import Horizontal from 'components/Horizontal'
 import OrderCompleted from 'pages/orderCompleted'
+import { setTranslate } from './core/Translate'
+import vi from './translate/vi'
+import en from './translate/en'
+
+
+setTranslate({
+  default: localStorage.getItem('lang') || 'en',
+  vi, en
+})
 
 function App() {
   return <AppProvider reducers={reducers} saga={saga}>
-  <Header />
-  <Switch>
-    <Route path="/faq" component={FAQ} />
-    <Route path="/product/:slug" component={ProductDetail} />
-    <PrivateRoute path="/account" component={Account} />
-    <Route path="/checkout" component={Checkout} />
-    <Route path="/auth" component={Auth} />
-    <Route path="/catalog/:slug?" component={Catalog} />
-    <Route path="/shopping-cart" component={ShoppingCart} />
-    <Route path="/shipping-and-returns" component={shippingAndReturns} />
-    <Route path="/store-locator" component={StoreLocator} />
-    <Route path="/coming-soon" component={() => <WithCountDown WapperComponent={ComingSoon} timeCountDown={((1*24)*60*60) + 59} />} />
-    <Route path="/blog-post" component={blogPost} />
-    <Route path="/blog" component={Blog} />
-    <Route path="/contact-us" component={ContactUs} />
-    <Route path="/order-completed/:_id" component={OrderCompleted} />
-    <Route path="/about" component={About} />
-    <Route path="/" exact component={Home} />
-    <Route path="/" component={errorPage} />
-  </Switch>
-  <Footer />
-  <PopupCart />
-  <PopupSearch />
-  <PopupProduct />
-  <PopupSizeChart />
-  <Horizontal />
+    <Header />
+    <Switch>
+      <Route path="/faq" component={FAQ} />
+      <Route path="/product/:slug" component={ProductDetail} />
+      <PrivateRoute path="/account" component={Account} />
+      <Route path="/checkout" component={Checkout} />
+      <Route path="/auth" component={Auth} />
+      <Route path="/catalog/:slug?" component={Catalog} />
+      <Route path="/shopping-cart" component={ShoppingCart} />
+      <Route path="/shipping-and-returns" component={shippingAndReturns} />
+      <Route path="/store-locator" component={StoreLocator} />
+      <Route path="/coming-soon" component={() => <WithCountDown WapperComponent={ComingSoon} timeCountDown={((1 * 24) * 60 * 60) + 59} />} />
+      <Route path="/blog-post" component={blogPost} />
+      <Route path="/blog" component={Blog} />
+      <Route path="/contact-us" component={ContactUs} />
+      <Route path="/order-completed/:_id" component={OrderCompleted} />
+      <Route path="/about" component={About} />
+      <Route path="/" exact component={Home} />
+      <Route path="/" component={errorPage} />
+    </Switch>
+    <Footer />
+    <PopupCart />
+    <PopupSearch />
+    <PopupProduct />
+    <PopupSizeChart />
+    <Horizontal />
   </AppProvider>
 }
 

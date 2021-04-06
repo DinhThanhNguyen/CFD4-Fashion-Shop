@@ -1,4 +1,3 @@
-import { Skeleton } from '@material-ui/lab'
 import userApi from 'api/userApi'
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'

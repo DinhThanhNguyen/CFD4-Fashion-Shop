@@ -1,3 +1,4 @@
+import { useTranslate } from 'core/Translate'
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -5,6 +6,8 @@ import { Link } from 'react-router-dom'
 export default function MainNavbar() {
 
     const cart = useSelector(state => state.cart)
+
+    let { t } = useTranslate()
 
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-white">
@@ -25,7 +28,7 @@ export default function MainNavbar() {
                             <Link className="nav-link" to="/">Home</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="/catalog">Product</Link>
+                            <Link className="nav-link" to="/catalog">{t('Product')}</Link>
                         </li>
                         <li className="nav-item">
                             <Link className="nav-link" to="/blog">Blog</Link>
