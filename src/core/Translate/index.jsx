@@ -16,28 +16,26 @@ export default function TranslateProvider({ children }) {
 
     let [state, setState] = useState(initState)
 
-    function setTranslate(initTranslate) {
-        let { default: langeDefault } = initTranslate
-
-        if(langeDefault) {
-            localStorage.setItem('lange', langeDefault)
-        }
-
-        setState({
-            ...state,
-            ...initTranslate
-        })
-    }
-
     function t(key) {
 
         return state?.[state.default]?.[key] || key
     }
 
+    function setTranslate(initTranslate) {
+        let { default: langDefault } = initTranslate
+        if (langDefault) {
+            localStorage.setItem('lang', langDefault)
+        }
+
+
+        setState({
+            ...state,
+            ...initTranslate,
+        })
+    }
+
     let value = {
         t,
-        setTranslate,
-        default: state.default
     }
 
 
@@ -49,6 +47,10 @@ export function useTranslate() {
 }
 
 export function setTranslate(initTranslate) {
+    let { default: langDefault } = initTranslate
+    if (langDefault) {
+        localStorage.setItem('lang', langDefault)
+    }
     initState = {
         ...initState,
         ...initTranslate

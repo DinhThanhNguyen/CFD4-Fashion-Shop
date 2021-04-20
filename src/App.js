@@ -29,14 +29,14 @@ import saga from './redux/saga'
 import PopupProduct from 'components/PopupProduct'
 import Horizontal from 'components/Horizontal'
 import OrderCompleted from 'pages/orderCompleted'
-import { setTranslate } from './core/Translate'
+import { setTranslate } from "core/Translate";
 import vi from './translate/vi'
 import en from './translate/en'
 
-
 setTranslate({
-  default: localStorage.getItem('lang') || 'en',
-  vi, en
+  default: localStorage.getItem('lang') || 'vi',
+  vi, en,
+  env: 'test'
 })
 
 function App() {

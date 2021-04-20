@@ -36,8 +36,6 @@ export default function Checkout() {
                 userApi.getPaymentDefault()
             ])
                 .then(([address, payment]) => {
-                    console.log(address)
-                    console.log(payment)
                     setForm({
                         ...form,
                         ...address.data,
